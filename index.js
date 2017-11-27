@@ -12,5 +12,5 @@ function init() {
                    .append('div')
     newDiv.html("<img src=\"http://your-photography.com/files/2016/07/HH0A1943.jpg\">")
     newDiv.append('p').text('Inserted by javascript')
-    setInterval(addRandomCatGif, 20000)
+    setInterval(addRandomCatGif, 5000)
 }
