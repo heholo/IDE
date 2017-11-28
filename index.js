@@ -11,6 +11,15 @@ function addRandomCatGif() {
 
 function stopCats() {
     clearInterval(cats)
+    document.getElementById('startcats').style.display = 'block'
+    document.getElementById('stopcats').style.display = 'none'
+}
+
+function startCats() {
+    cats = setInterval(addRandomCatGif, 5000)
+    document.getElementById('stopcats').style.display = 'block'
+    document.getElementById('startcats').style.display = 'none'
+    addRandomCatGif()
 }
 
 function init() {
