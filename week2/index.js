@@ -14,7 +14,7 @@ const margin = {
 
 
 const dims = {
-    width: 700 - margin.left - margin.right,
+    width: 1200 - margin.left - margin.right,
     height: 450 - margin.top - margin.bottom,
 }
 
