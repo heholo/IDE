@@ -21,6 +21,10 @@ h1 {
     width:200px;
 }
 
+svg {
+    border: 1px solid black;
+    border-radius: 5px;
+}
 
 .line {
   fill: none;
