@@ -1,0 +1,22 @@
+body {
+    font-family: arial, monospace
+}
+
+h1 {
+    color: #916887
+}
+
+.negative {color: red}
+
+.positive {color: green}
+
+#script1 img {
+    height: 150px;
+    width:150px
+}
+
+#script1 div {
+    display: inline-block;
+    padding-left: 10px;
+    width:200px;
+}
