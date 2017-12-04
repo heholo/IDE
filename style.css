@@ -20,3 +20,10 @@ h1 {
     padding-left: 10px;
     width:200px;
 }
+
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2px;
+}
