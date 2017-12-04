@@ -68,7 +68,7 @@ function plotTemperatureData(d) {
        .attr('x', 0 - (dims.height / 2))
        .attr('dy', '1em')
        .style('text-anchor', 'middle')
-       .text('Temperature (C)');
+       .text('Temperature (°C)');
 
     // Title
     svg.append('text')
@@ -94,7 +94,7 @@ function plotTemperatureDifference(d) {
 
     // Scale the range of the data
     x.domain(d3.extent(d, function(d) { return d.YEAR; }));
-    y.domain([5, d3.max(d, function(d) { return d.diff; })]);
+    y.domain([10, d3.max(d, function(d) { return d.diff; })]);
 
     var valueline = d3.line()
                       .x(function(d) { return x(d.YEAR); })
@@ -104,6 +104,7 @@ function plotTemperatureDifference(d) {
     svg.append('path')
        .attr('class', 'line')
        .attr('d', valueline(d));
+
 
     // Add the X Axis
     svg.append('g')
@@ -144,6 +145,8 @@ function plotTemperatureDifference(d) {
 
 
 var parseTime = d3.timeParse('%Y');
+
+
 
 function handleData(d) {
     const parser = d3.dsvFormat(' ');
