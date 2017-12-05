@@ -79,13 +79,13 @@ function plotTemperatureData(d) {
        .text('Mean Annual Temperature (Copenhagen)');
 
     // Trendline
-    var leastSquaresCoeff = leastSquares(d.map((e) => e.YEAR.getTime()), d.map((e) => e.metANN));
+    var leastSquaresCoeff = leastSquares(d.map((e) => e.YEAR.getFullYear()), d.map((e) => e.metANN));
     console.log(leastSquaresCoeff)
     // apply the reults of the least squares regression
     var x1 = d[0].YEAR;
-    var y1 = leastSquaresCoeff[0] * x1 + leastSquaresCoeff[1];
+    var y1 = leastSquaresCoeff[0] * x1.getFullYear() + leastSquaresCoeff[1];
     var x2 = d[d.length - 1].YEAR;
-    var y2 = leastSquaresCoeff[0] * x2 + leastSquaresCoeff[1];
+    var y2 = leastSquaresCoeff[0] * x2.getFullYear() + leastSquaresCoeff[1];
     var trendData = [[x1,y1],[x2,y2]];
     console.log(trendData)
     var trendLine = d3.line()
@@ -98,6 +98,21 @@ function plotTemperatureData(d) {
         .append("path")
         .attr("class","trendline")
         .attr("d",trendLine(trendData))
+
+    // display equation on the chart
+    svg.append("text")
+        .text("eq: " + Math.round(leastSquaresCoeff[0]*1000)/1000 + "x + " +
+            Math.round(leastSquaresCoeff[1]*1000)/1000)
+        .attr("class", "text-label")
+        .attr("x", dims.width - 100)
+        .attr("y", dims.height - 50);
+
+    // display r-square on the chart
+    svg.append("text")
+        .text("r-sq: " + Math.round(leastSquaresCoeff[2]*1000)/1000)
+        .attr("class", "text-label")
+        .attr("x", dims.width - 100)
+        .attr("y", dims.height - 70);
 }
 
 function plotTemperatureDifference(d) {
@@ -182,6 +197,20 @@ function plotTemperatureDifference(d) {
         .attr("class","trendline")
         .attr("d",trendLine(trendData))
 
+    // display equation on the chart
+    svg.append("text")
+        .text("eq: " + Math.round(leastSquaresCoeff[0]*1000)/1000 + "x + " +
+            Math.round(leastSquaresCoeff[1]*1000)/1000)
+        .attr("class", "text-label")
+        .attr("x", dims.width - 100)
+        .attr("y", 30);
+
+    // display r-square on the chart
+    svg.append("text")
+        .text("r-sq: " + Math.round(leastSquaresCoeff[2]*1000)/1000)
+        .attr("class", "text-label")
+        .attr("x", dims.width - 100)
+        .attr("y", 10);
 }
 
 var parseTime = d3.timeParse('%Y');
