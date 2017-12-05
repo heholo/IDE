@@ -78,6 +78,26 @@ function plotTemperatureData(d) {
        .style('text-anchor', 'middle')
        .text('Mean Annual Temperature (Copenhagen)');
 
+    // Trendline
+    var leastSquaresCoeff = leastSquares(d.map((e) => e.YEAR.getTime()), d.map((e) => e.metANN));
+    console.log(leastSquaresCoeff)
+    // apply the reults of the least squares regression
+    var x1 = d[0].YEAR;
+    var y1 = leastSquaresCoeff[0] * x1 + leastSquaresCoeff[1];
+    var x2 = d[d.length - 1].YEAR;
+    var y2 = leastSquaresCoeff[0] * x2 + leastSquaresCoeff[1];
+    var trendData = [[x1,y1],[x2,y2]];
+    console.log(trendData)
+    var trendLine = d3.line()
+        .x( d => x(d[0]))
+        .y( d => y(d[1]))
+
+    svg.selectAll(".trendline")
+        .data(trendData)
+        .enter()
+        .append("path")
+        .attr("class","trendline")
+        .attr("d",trendLine(trendData))
 }
 
 function plotTemperatureDifference(d) {
@@ -140,6 +160,27 @@ function plotTemperatureDifference(d) {
        .attr('dy', '1em')
        .style('text-anchor', 'middle')
        .text('Difference Between Summer and Winter');
+
+    // Trendline
+    var leastSquaresCoeff = leastSquares(d.map((e) => e.YEAR.getFullYear()), d.map((e) => e.diff));
+    console.log(leastSquaresCoeff)
+    // apply the reults of the least squares regression
+    var x1 = d[0].YEAR;
+    var y1 = leastSquaresCoeff[0] * x1.getFullYear() + leastSquaresCoeff[1];
+    var x2 = d[d.length - 1].YEAR;
+    var y2 = leastSquaresCoeff[0] * x2.getFullYear() + leastSquaresCoeff[1];
+    var trendData = [[x1,y1],[x2,y2]];
+    console.log(trendData)
+    var trendLine = d3.line()
+        .x( d => x(d[0]))
+        .y( d => y(d[1]))
+
+    svg.selectAll(".trendline")
+        .data(trendData)
+        .enter()
+        .append("path")
+        .attr("class","trendline")
+        .attr("d",trendLine(trendData))
 
 }
 
