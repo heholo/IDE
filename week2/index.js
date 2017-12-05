@@ -209,10 +209,55 @@ function leastSquares(xSeries, ySeries) {
     return [slope, intercept, rSquare];
 }
 
+function populateLists(d) {
+    // create sorted lists
+    const n = 15;
+    const sorted = d.slice(0).sort((a, b) => a.metANN - b.metANN);
+
+    const coldest = sorted.slice(0, n);
+    const warmest = sorted.slice(sorted.length - n - 1, sorted.length - 1).reverse();
+
+    const median = sorted[Math.floor(sorted.length/2)].metANN
+    var color = d3.scaleLinear()
+                  .domain([sorted[0].metANN,
+                           median,
+                           sorted[sorted.length - 1].metANN])
+                  .range(['LightSkyBlue', 'grey', 'DarkRed'])
+    d3.select('#coldest')
+                  .append('h4')
+                  .text(`${n} Coldest Years`)
+    d3.select('#coldest')
+                  .append('ol')
+                  .selectAll('li')
+                  .data(coldest)
+                  .enter()
+                  .append('li')
+                  .html(function (d) {
+                      var colorString = `<span style="color: ${color(d.metANN)}">(${d.metANN}°C)`
+                      return `${d.YEAR.getFullYear()} ${colorString}`
+                  })
+
+    d3.select('#warmest')
+                  .append('h4')
+                  .text(`${n} Warmest Years`)
+    d3.select('#warmest')
+                  .append('ol')
+                  .selectAll('li')
+                  .data(warmest)
+                  .enter()
+                  .append('li')
+                  .html(function (d) {
+                      var colorString = `<span style="color: ${color(d.metANN)}">(${d.metANN}°C)`
+                      return `${d.YEAR.getFullYear()} ${colorString}`
+                  })
+
+}
+
 function handleData(d) {
     const parser = d3.dsvFormat(' ');
     var parsed = parser.parse(d.replace(/[ ]+/g, ' '));
     console.log(parsed)
+    const months = parsed.columns.slice(1, 13)
     parsed.forEach(function(d) {
         d.metANN = Number(d.metANN);
         d.winter = Number(d['D-J-F']);
@@ -223,5 +268,6 @@ function handleData(d) {
 
 
     plotTemperatureData(parsed.filter(d => d.metANN < 900 && !!d.YEAR));
+    populateLists(parsed.filter(d => d.metANN < 900 && !!d.YEAR));
     plotTemperatureDifference(parsed.filter(d => d.diff < 900 && !!d.YEAR));
 }

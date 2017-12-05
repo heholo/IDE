@@ -32,9 +32,21 @@ svg {
     stroke-width: 2px;
 }
 
+
 .trendline {
     fill: none;
     stroke: OrangeRed;
     stroke-width: 2px;
     stroke-dasharray: 5.5;
+
+.lists div {
+    display: inline-block;
 }
+
+.lists h4 {
+    text-align: center;
+    margin-bottom: -0.7em;
+}
+
+#coldest {
+    padding-left: 5em;
