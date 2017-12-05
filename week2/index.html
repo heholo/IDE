@@ -9,15 +9,51 @@
         <h2>Motivation</h2>
         <p>Our motivation is to show how it has gotten warmer during the last 100 year.</p>
         <h2>Method</h2>
-        <p>The data we choose to use are the temperature data for Copenhagen found at <a href="https://data.giss.nasa.gov/gistemp/station_data/">https://data.giss.nasa.gov/gistemp/station_data/</a> </p>
+        <p>
+            The results we present below are gathered from the temperature data for Copenhagen found at <a href="https://data.giss.nasa.gov/gistemp/station_data/">nasa.gov</a>.
+            The dataset contains the monthly, seasonal, and meteorological means (see <a href="https://data.giss.nasa.gov/gistemp/station_data/seas_ann_means.html">here</a>)
+            for the years 1880-2017 (although we skip missing data, so in practice we do not look at 2017).
+        </p>
+        <p>
+            For the temperature plot, we plot the yearly meteorological temperature mean as a function of year. Additionally we plot a least squares linear regression
+            trend-line.
+        </p>
+        <p>
+            For the seasonal difference plot, we plot the difference between the summer (June, July, August) seasonal mean temperature and winter seasonal mean temperature
+            (December, January, February) as a function of year. Again we plot a trend-line based on LLS linear regression.
+        </p>
+        <p>
+            <i>
+                Our charts are based on the <a href="http://bl.ocks.org/d3noob/b3ff6ae1c120eea654b5">Simple d3.js Graph</a> tutorial, and the trend-line code is taken from
+                <a href="henrik smid link">skriv text</a>.
+            </i>
+        </p>
         <svg id="plotarea"></svg>
+        <h2>Results</h2>
+        <p>
+            The yearly temperature plot above seems to indicate that it has gotten slightly warmer over the last 100 years. However, note that the data has high variability
+            which is reflected in the low r<sup>2</sup> value. Still, further evidence of increased temperature can be found in the list of coldest and warmest years
+            below. We note that all but three of the 15 warmest years are after 1990 (inclusive), and likewise 1996 is the only year after 1990 which is among the
+            15 coldest years.
+        </p>            
         <div class="lists">
             <div id="warmest">
             </div>
             <div id="coldest">
             </div>
         </div>
+        <p>
+            We also decided to investigate whether the discrepancy in the temperature between the seasons has changed. To investigate this, we plotted the difference in seasonal
+            temperature of each year.
+        </p>
+        <p>
+            Looking at the chart, there does not seem to be a general trend in temperature difference between summer and winter. This is supported by a r<sub>2</sub> value below
+            0.01 for our linear regression (and besides, the resulting slope is near non existent).
+        </p>
         <svg id="temperature-difference"></svg>
+        <p>
+            In conclusion, we believe we have observed that Copenhagen has seen an increase in temperature in over the last 100 years.
+        </p>
         <script src="https://d3js.org/d3.v4.min.js"></script>
         <script src="index.js"></script>
     </body>
