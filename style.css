@@ -26,8 +26,19 @@ svg {
     border-radius: 5px;
 }
 
+.lists div {
+    display: inline-block;
+}
 .line {
-  fill: none;
-  stroke: steelblue;
-  stroke-width: 2px;
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 2px;
+}
+
+.lists h4 {
+    text-align: center;
+    margin-bottom: -0.7em;
+}
+#coldest {
+    padding-left: 5em;
 }
