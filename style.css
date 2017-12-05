@@ -38,7 +38,8 @@ svg {
     stroke: OrangeRed;
     stroke-width: 2px;
     stroke-dasharray: 5.5;
-
+}
+    
 .lists div {
     display: inline-block;
 }
@@ -50,3 +51,4 @@ svg {
 
 #coldest {
     padding-left: 5em;
+}
