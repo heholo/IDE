@@ -32,6 +32,11 @@ svg {
     stroke-width: 2px;
 }
 
+.grid-line {
+    fill: none;
+    stroke: grey;
+    stroke-width: 0.5px;
+}
 
 .trendline {
     fill: none;

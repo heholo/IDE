@@ -29,10 +29,11 @@ function plotTemperatureData(d) {
     var x = d3.scaleTime().range([0, dims.width]);
     var y = d3.scaleLinear().range([dims.height, 0]);
 
-
+    var xDomain = d3.extent(d, function(d) { return d.YEAR; })
+    //xDomain[1] = Math.ceil(xDomain[1]/10) * 10 + 10
     // Scale the range of the data
-    x.domain(d3.extent(d, function(d) { return d.YEAR; }));
-    y.domain([5, d3.max(d, function(d) { return d.metANN; })]);
+    x.domain(xDomain).nice();
+    y.domain([5, d3.max(d, function(d) { return d.metANN; })]).nice();
 
     var valueline = d3.line()
                       .x(function(d) { return x(d.YEAR); })
@@ -45,10 +46,17 @@ function plotTemperatureData(d) {
 
     // Add the X Axis
     svg.append('g')
-       .attr('class', 'x axis')
+       .attr('class', 'x-axis')
        .attr('transform', 'translate(0,' + dims.height + ')')
        .call(d3.axisBottom(x));
 
+    svg.selectAll('g.x-axis g.tick')
+       .append('line')
+       .classed('grid-line', true)
+       .attr('x1', 0)
+       .attr('y1', 0)
+       .attr('x2', 0)
+       .attr('y2', -dims.height);
     // text label for the x axis
     svg.append('text')
        .attr('transform',
@@ -58,8 +66,16 @@ function plotTemperatureData(d) {
 
     // Add the Y Axis
     svg.append('g')
-       .attr('class', 'y axis')
+       .attr('class', 'y-axis')
        .call(d3.axisLeft(y));
+
+    svg.selectAll('g.y-axis g.tick')
+       .append('line')
+       .classed('grid-line', true)
+       .attr('x1', 0)
+       .attr('y1', 0)
+       .attr('x2', dims.width)
+       .attr('y2', 0);
 
     // text label for the y axis
     svg.append('text')
@@ -89,30 +105,30 @@ function plotTemperatureData(d) {
     var trendData = [[x1,y1],[x2,y2]];
     console.log(trendData)
     var trendLine = d3.line()
-        .x( d => x(d[0]))
-        .y( d => y(d[1]))
+                      .x( d => x(d[0]))
+                      .y( d => y(d[1]))
 
     svg.selectAll(".trendline")
-        .data(trendData)
-        .enter()
-        .append("path")
-        .attr("class","trendline")
-        .attr("d",trendLine(trendData))
+                      .data(trendData)
+                      .enter()
+                      .append("path")
+                      .attr("class","trendline")
+                      .attr("d",trendLine(trendData))
 
     // display equation on the chart
     svg.append("text")
-        .text("eq: " + Math.round(leastSquaresCoeff[0]*1000)/1000 + "x + " +
-            Math.round(leastSquaresCoeff[1]*1000)/1000)
-        .attr("class", "text-label")
-        .attr("x", dims.width - 100)
-        .attr("y", dims.height - 50);
+                      .text("eq: " + Math.round(leastSquaresCoeff[0]*1000)/1000 + "x + " +
+                            Math.round(leastSquaresCoeff[1]*1000)/1000)
+                      .attr("class", "text-label")
+                      .attr("x", dims.width - 100)
+                      .attr("y", dims.height - 50);
 
     // display r-square on the chart
     svg.append("text")
-        .text("r-sq: " + Math.round(leastSquaresCoeff[2]*1000)/1000)
-        .attr("class", "text-label")
-        .attr("x", dims.width - 100)
-        .attr("y", dims.height - 70);
+       .text("r-sq: " + Math.round(leastSquaresCoeff[2]*1000)/1000)
+       .attr("class", "text-label")
+       .attr("x", dims.width - 100)
+       .attr("y", dims.height - 70);
 }
 
 function plotTemperatureDifference(d) {
@@ -128,8 +144,8 @@ function plotTemperatureDifference(d) {
 
 
     // Scale the range of the data
-    x.domain(d3.extent(d, function(d) { return d.YEAR; }));
-    y.domain([10, d3.max(d, function(d) { return d.diff; })]);
+    x.domain(d3.extent(d, function(d) { return d.YEAR; })).nice();
+    y.domain([10, d3.max(d, function(d) { return d.diff; })]).nice();
 
     var valueline = d3.line()
                       .x(function(d) { return x(d.YEAR); })
@@ -143,9 +159,17 @@ function plotTemperatureDifference(d) {
 
     // Add the X Axis
     svg.append('g')
-       .attr('class', 'x axis')
+       .attr('class', 'x-axis')
        .attr('transform', 'translate(0,' + dims.height + ')')
        .call(d3.axisBottom(x));
+
+    svg.selectAll('g.x-axis g.tick')
+       .append('line')
+       .classed('grid-line', true)
+       .attr('x1', 0)
+       .attr('y1', 0)
+       .attr('x2', 0)
+       .attr('y2', -dims.height);
 
     // text label for the x axis
     svg.append('text')
@@ -156,8 +180,16 @@ function plotTemperatureDifference(d) {
 
     // Add the Y Axis
     svg.append('g')
-       .attr('class', 'y axis')
+       .attr('class', 'y-axis')
        .call(d3.axisLeft(y));
+
+    svg.selectAll('g.y-axis g.tick')
+       .append('line')
+       .classed('grid-line', true)
+       .attr('x1', 0)
+       .attr('y1', 0)
+       .attr('x2', dims.width)
+       .attr('y2', 0);
 
     // text label for the y axis
     svg.append('text')
