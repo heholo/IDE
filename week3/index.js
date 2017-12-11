@@ -5,7 +5,7 @@ function init() {
 }
 
 const margin = {
-    top: 50,
+    top: 90,
     bottom: 50,
     left: 85,
     right: 50,
@@ -58,7 +58,13 @@ function initTree(data) {
     var link = g.selectAll(".link")
                 .data( nodes.descendants().slice(1))
                 .enter().append("path")
-                .attr("class", "link")
+                .attr("class", function (d) {
+                    var cls = "link"
+                    if (d.parent.data.partners) {
+                        cls += " spouse"
+                    }
+                    return cls
+                })
                 .attr("d", function(d) {
                     return "M" + d.x + "," + d.y
                          + "C" + d.x + "," + (d.y + d.parent.y) / 2
@@ -72,18 +78,26 @@ function initTree(data) {
                 .enter().append("g")
                 .attr("class", function(d) { 
                     return "node" + 
-       (d.children ? " node--internal" : " node--leaf"); })
+                (d.children ? " node--internal" : " node--leaf") +
+                (!d.parent ? " root" : ""); })
                 .attr("transform", function(d) { 
                     return "translate(" + d.x + "," + d.y + ")"; });
     
     // adds the circle to the node
     node.append("circle")
-        .attr("r", 10);
+        .attr("r", function (d) {
+            return d.data.name == "Donald Trump" ? 40 : 15
+        });
 
     // adds the text to the node
     node.append("text")
-        .attr("dy", ".35em")
-        .attr("y", function(d) { return d.children ? -20 : 20; })
+        .attr("dy", function(d) {
+            if (!d.parent) return ".35em"
+            return ".35em"
+        })
+        .attr("y", function(d) {
+            if (!d.parent) return -55
+            return d.children || d.depth != nodes.height ? -25 : 25; })
         .style("text-anchor", "middle")
         .text(function(d) { return d.data.name; });
 }

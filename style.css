@@ -63,6 +63,16 @@ svg {
   stroke-width: 3px;
 }
 
+.node.root circle {
+  stroke: gold;
+  fill: url(#Donald_Trump);
+}
+
+.node.root text {
+  font-size: 20px;
+  font-family: Times;
+  text-decoration: underline;
+}
 .node text { font: 12px sans-serif; }
 
 .node--internal text {
@@ -73,4 +83,11 @@ svg {
   fill: none;
   stroke: #ccc;
   stroke-width: 2px;
+}
+
+.link.spouse {
+  fill: none;
+  stroke: hotpink;
+  stroke-dasharray: 4px;
+  stroke-width: 4px;
 }
