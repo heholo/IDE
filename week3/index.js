@@ -7,19 +7,19 @@ function init() {
 const margin = {
     top: 80,
     bottom: 50,
-    left: 20,
-    right: 20,
-}
+    left: 85,
+    right: 50
+};
 
 
 const dims = {
     width: 1250 - margin.left - margin.right,
-    height: 450 - margin.top - margin.bottom,
-}
+    height: 450 - margin.top - margin.bottom
+};
 
-var nodes
+var nodes;
 var tree = d3.tree()
-             .size([dims.width, dims.height])
+             .size([dims.width, dims.height]);
 
 tree.separation(function (a, b) {
     if (a.parent == b.parent) {
@@ -29,26 +29,25 @@ tree.separation(function (a, b) {
 
     return 2
     
-})
+});
 
 function handleData(data) {
-    console.log(data)
+    console.log(data);
     initTree(data)
-
 }
 
 function initTree(data) {
 
     nodes = d3.hierarchy(data, function (d) {
         return d.children ? d.children : d.partners
-    })
+    });
 
 
-    tree(nodes)
+    tree(nodes);
 
     var svg = d3.select('#tree')
                 .attr('width', dims.width + margin.left + margin.right)
-                .attr('height', dims.height + margin.top + margin.bottom)
+                .attr('height', dims.height + margin.top + margin.bottom);
     var g = svg.append('g')
                .attr('transform',
                      `translate(${margin.left}, ${margin.top})`)
