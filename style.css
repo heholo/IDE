@@ -85,6 +85,16 @@ svg {
   stroke-width: 2px;
 }
 
+.legend rect {
+  stroke: black;
+  stroke-width: 0.5px;
+  fill: none;
+}
+
+.legend text {
+  font-size: 11px;
+}
+
 .link.spouse {
   fill: none;
   stroke: hotpink;
