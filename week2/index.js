@@ -142,20 +142,28 @@ function plotTemperatureDifference(d) {
     var x = d3.scaleTime().range([0, dims.width]);
     var y = d3.scaleLinear().range([dims.height, 0]);
 
-
     // Scale the range of the data
     x.domain(d3.extent(d, function(d) { return d.YEAR; })).nice();
     y.domain([10, d3.max(d, function(d) { return d.diff; })]).nice();
 
-    var valueline = d3.line()
-                      .x(function(d) { return x(d.YEAR); })
-                      .y(function(d) { return y(d.diff); });
+//    var valueline = d3.line()
+//                      .x(function(d) { return x(d.YEAR); })
+//                      .y(function(d) { return y(d.diff); });
 
     // Add the valueline path.
-    svg.append('path')
-       .attr('class', 'line')
-       .attr('d', valueline(d));
+//    svg.append('path')
+//       .attr('class', 'line')
+//       .attr('d', valueline(d));
 
+    // Bar plot
+    svg.selectAll("bar")
+        .data(d)
+        .enter().append("rect")
+        .style("fill", "steelblue")
+        .attr("x", function(d) { return x(d.YEAR); })
+        .attr("width", 3.5) // her er blot et random tal
+        .attr("y", function(d) { return y(d.diff); })
+        .attr("height", function(d) { return dims.height - y(d.diff); });
 
     // Add the X Axis
     svg.append('g')
@@ -209,40 +217,40 @@ function plotTemperatureDifference(d) {
        .text('Difference Between Summer and Winter');
 
     // Trendline
-    var leastSquaresCoeff = leastSquares(d.map((e) => e.YEAR.getFullYear()), d.map((e) => e.diff));
-    console.log(leastSquaresCoeff)
+//    var leastSquaresCoeff = leastSquares(d.map((e) => e.YEAR.getFullYear()), d.map((e) => e.diff));
+//    console.log(leastSquaresCoeff)
     // apply the reults of the least squares regression
-    var x1 = d[0].YEAR;
-    var y1 = leastSquaresCoeff[0] * x1.getFullYear() + leastSquaresCoeff[1];
-    var x2 = d[d.length - 1].YEAR;
-    var y2 = leastSquaresCoeff[0] * x2.getFullYear() + leastSquaresCoeff[1];
-    var trendData = [[x1,y1],[x2,y2]];
-    console.log(trendData)
-    var trendLine = d3.line()
-        .x( d => x(d[0]))
-        .y( d => y(d[1]))
+//    var x1 = d[0].YEAR;
+//    var y1 = leastSquaresCoeff[0] * x1.getFullYear() + leastSquaresCoeff[1];
+//    var x2 = d[d.length - 1].YEAR;
+//   var y2 = leastSquaresCoeff[0] * x2.getFullYear() + leastSquaresCoeff[1];
+//    var trendData = [[x1,y1],[x2,y2]];
+//    console.log(trendData)
+//    var trendLine = d3.line()
+//        .x( d => x(d[0]))
+//        .y( d => y(d[1]))
 
-    svg.selectAll(".trendline")
-        .data(trendData)
-        .enter()
-        .append("path")
-        .attr("class","trendline")
-        .attr("d",trendLine(trendData))
+//    svg.selectAll(".trendline")
+//        .data(trendData)
+//        .enter()
+//        .append("path")
+//        .attr("class","trendline")
+//        .attr("d",trendLine(trendData))
 
     // display equation on the chart
-    svg.append("text")
-        .text("eq: " + Math.round(leastSquaresCoeff[0]*1000)/1000 + "x + " +
-            Math.round(leastSquaresCoeff[1]*1000)/1000)
-        .attr("class", "text-label")
-        .attr("x", dims.width - 100)
-        .attr("y", 30);
+//    svg.append("text")
+//        .text("eq: " + Math.round(leastSquaresCoeff[0]*1000)/1000 + "x + " +
+//            Math.round(leastSquaresCoeff[1]*1000)/1000)
+//        .attr("class", "text-label")
+//        .attr("x", dims.width - 100)
+//        .attr("y", 30);
 
     // display r-square on the chart
-    svg.append("text")
-        .text("r-sq: " + Math.round(leastSquaresCoeff[2]*1000)/1000)
-        .attr("class", "text-label")
-        .attr("x", dims.width - 100)
-        .attr("y", 10);
+//    svg.append("text")
+//        .text("r-sq: " + Math.round(leastSquaresCoeff[2]*1000)/1000)
+//        .attr("class", "text-label")
+//        .attr("x", dims.width - 100)
+//        .attr("y", 10);
 }
 
 var parseTime = d3.timeParse('%Y');
