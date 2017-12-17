@@ -5,10 +5,10 @@ function init() {
 }
 
 const margin = {
-    top: 90,
+    top: 80,
     bottom: 50,
-    left: 85,
-    right: 50
+    left: 20,
+    right: 20
 };
 
 
@@ -50,7 +50,36 @@ function initTree(data) {
                 .attr('height', dims.height + margin.top + margin.bottom);
     var g = svg.append('g')
                .attr('transform',
-                     `translate(${margin.left}, ${margin.top})`);
+                     `translate(${margin.left}, ${margin.top})`)
+    
+    var legend = svg.append('g')
+                    .attr('transform',
+                          `translate(${margin.left}, ${margin.top / 4})`)
+                    .attr('class', 'legend')
+    legend.append('rect')
+                    .attr('width', dims.width * 0.15)
+                    .attr('height', dims.height * 0.17)
+                    .attr('rx', 12).attr('ry', 12)
+
+    legend.append('text').attr("dy", ".35em")
+                    .attr("y", 15)
+                    .attr("x", 10)
+                    .text("Partner");
+
+    legend.append('line')
+          .attr("class", "link spouse")
+          .attr('x1', 70).attr('x2', 170)
+          .attr('y1', 15).attr('y2', 15)
+
+    legend.append('text').attr("dy", ".35em")
+          .attr("y", 40)
+          .attr("x", 10)
+          .text("Child of");
+
+    legend.append('line')
+          .attr("class", "link")
+          .attr('x1', 70).attr('x2', 170)
+          .attr('y1', 40).attr('y2', 40)
 
     // adds the links between the nodes
     var link = g.selectAll(".link")
