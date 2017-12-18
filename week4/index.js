@@ -5,7 +5,7 @@ var hands;
 var dims;
 
 function init() {
-  dims = d3.select("svg").node().getBBox(); // finding dimensions after svg has been created
+  dims = d3.select("svg").node().getBoundingClientRect(); // finding dims (height, width, x, y) after svg has been created
   d3.csv('hands.csv', function(data) {
     hands = data // bind to global variable
   });
