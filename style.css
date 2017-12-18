@@ -101,3 +101,8 @@ svg {
   stroke-dasharray: 4px;
   stroke-width: 4px;
 }
+
+#week4 {
+    width: 100%;
+    height: 400px;
+}
