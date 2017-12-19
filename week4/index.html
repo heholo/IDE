@@ -9,12 +9,16 @@
     <h1> Show of hands (PCA visualization)</h1>
     <h2> Introduction </h2>
     <p> PCA stands for Principal Component Analysis. It is an analysis tool for reducing the dimensionality of
-    data to a few features that capture the variance of the data.
-    For this visualization PCA has been performed on a dataset of of 40 hand outlines.</p>
-    <h2> The Visualisation </h2>
-    <p> The visualisation below is in two parts. On the right, the forty hands are plotted onto the first principal component (x axis) and second principal
-        component (y axis). The points can be selected and de-selected by clicking. For each selected point the outline of the corresponding hand is displayed on the left.
-    </p>
+        data to a few features that capture the variance of the data.
+        For this visualization PCA has been performed on a dataset of of 40 hand outlines.</p>
+    <h2> The Visualization </h2>
+    <p> On the right each of the hands are projected in the direction of the first (x-axis) and second (y-axis) Principal Component.
+        By hovering a point a tooltip will show which hand the point represents. By clicking on one of the points the point will be highlighted and
+        a hand outline will be shown on the left. You can toggle multiple hands on and off this way and explore the data.
+        The color of the point will match the color of the outline for easy identification.
+        Note that the width of the visualization scale to the width of your browser - if you change your browser window
+        you might need to refresh the page for the visualization to rescale properly.
+        </p>
     <svg id="week4">
         <g id="hand">
 
@@ -31,9 +35,20 @@
     </p>
     <p>
         Looking along the second principal component instead, we see some slightly different pertubations. The <a class="top">top outlier</a> displays what seems to be
-        a broken pinky, while the <a class="bottom">bottom outlier</a> has a fractured middle finger. Perhaps the second principal component describes finger straightness. ;)
+        a broken pinky, while the <a class="bottom">bottom outlier</a> has a fractured index finger. Perhaps the second principal component describes finger straightness. ;)
     </p>
-
+    <h4> Footnote: </h4>
+    <ul>
+        <li>
+            "Multiple hands and highlight" extension done by William.
+        </li>
+        <li>
+            "Text link to visualization" extension done by William.
+        </li>
+        <li>
+            "Tooltip of row number" extension done by Henrik.
+        </li>
+    </ul>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="index.js"></script>
 </body>
