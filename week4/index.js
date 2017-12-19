@@ -5,10 +5,10 @@ var hands;
 var dims;
 
 const marginPCA = {
-  top: 10,
-  bottom: 10,
-  left: 10,
-  right: 10,
+  top: 20,
+  bottom: 20,
+  left: 20,
+  right: 20,
 }
 
 function init() {
@@ -47,24 +47,25 @@ function plotPCA(text) {
   console.log(data);
 
   // plot area
-  var svg = d3.select('#week4');
+  var svg = d3.select('#PCA')
 //    .attr('width', dims.width + margin.left + margin.right)
 //    .attr('height', dims.height + margin.top + margin.bottom)
-    //.attr('transform', `translate(${margin.left}, ${margin.top})`);
+    .attr('transform', `translate(${marginPCA.left + dims.width/2}, ${marginPCA.top})`);
 
   // setup x
   var xValue = function(d) { return d[0];}, // data -> value
-    xScale = d3.scaleLinear().range([dims.width/2 + marginPCA.left, dims.width - marginPCA.right]).domain(d3.extent(data, xValue)), // value -> display
+    xScale = d3.scaleLinear().range([marginPCA.left, dims.width/2 - marginPCA.right]).domain(d3.extent(data, xValue)), // value -> display
     xMap = function(d) { return xScale(xValue(d));}; // data -> display
 
   // setup y
   var yValue = function(d) { return d[1];}, // data -> value
-    yScale = d3.scaleLinear().range([dims.height - marginPCA.top, marginPCA.bottom]).domain(d3.extent(data, yValue)), // value -> display
+    yScale = d3.scaleLinear().range([dims.height - marginPCA.top - marginPCA.bottom, 0]).domain(d3.extent(data, yValue)), // value -> display
     yMap = function(d) { return yScale(yValue(d));}; // data -> display
 
   // x-axis
   var xAxis = d3.axisBottom()
     .scale(xScale);
+
   svg.append("g")
     .attr("class", "axis")
     .call(xAxis)
@@ -73,14 +74,15 @@ function plotPCA(text) {
   // y-axis
   var yAxis = d3.axisLeft()
     .scale(yScale);
+
   svg.append("g")
     .attr("class", "axis")
-    .call(yAxis);
-//    .attr('transform', `translate(${0}, ${0})`);
+    .call(yAxis)
+    .attr('transform', `translate(${marginPCA.left}, ${0})`);
 
   // plotting points
   svg.selectAll(".dot")
-    .data(data)
+    .data(data, function(data,i) {return i})
     .enter()
     .append("circle")
     .attr("cx",xMap)
