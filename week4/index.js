@@ -4,14 +4,12 @@ var hands;
 
 var dims;
 
-const margin = {
-  top: 50,
-  bottom: 50,
-  left: 85,
-  right: 50,
+const marginPCA = {
+  top: 10,
+  bottom: 10,
+  left: 10,
+  right: 10,
 }
-
-const padding = 30;
 
 function init() {
   dims = d3.select("svg").node().getBoundingClientRect(); // finding dims (height, width, x, y) after svg has been created
@@ -31,19 +29,19 @@ function plotPCA(text) {
   console.log(data);
 
   // plot area
-  var svg = d3.select('#week4')
-    .attr('width', dims.width + margin.left + margin.right)
-    .attr('height', dims.height + margin.top + margin.bottom)
-//    .attr('transform', `translate(${margin.left}, ${margin.top})`);
+  var svg = d3.select('#week4');
+//    .attr('width', dims.width + margin.left + margin.right)
+//    .attr('height', dims.height + margin.top + margin.bottom)
+    //.attr('transform', `translate(${margin.left}, ${margin.top})`);
 
   // setup x
   var xValue = function(d) { return d[0];}, // data -> value
-    xScale = d3.scaleLinear().range([0, dims.width]).domain(d3.extent(data, xValue)), // value -> display
+    xScale = d3.scaleLinear().range([dims.width/2 + marginPCA.left, dims.width - marginPCA.right]).domain(d3.extent(data, xValue)), // value -> display
     xMap = function(d) { return xScale(xValue(d));}; // data -> display
 
   // setup y
   var yValue = function(d) { return d[1];}, // data -> value
-    yScale = d3.scaleLinear().range([dims.height, 0]).domain(d3.extent(data, yValue)), // value -> display
+    yScale = d3.scaleLinear().range([dims.height - marginPCA.top, marginPCA.bottom]).domain(d3.extent(data, yValue)), // value -> display
     yMap = function(d) { return yScale(yValue(d));}; // data -> display
 
   // x-axis
@@ -51,16 +49,16 @@ function plotPCA(text) {
     .scale(xScale);
   svg.append("g")
     .attr("class", "axis")
-    .attr("transform", "translate(" + padding + ",0)")
-    .call(xAxis);
+    .call(xAxis)
+    .attr('transform', `translate(${0}, ${dims.height - marginPCA.bottom - marginPCA.top})`);
 
   // y-axis
   var yAxis = d3.axisLeft()
     .scale(yScale);
   svg.append("g")
     .attr("class", "axis")
-    .attr("transform", "translate(" + padding + ",0)")
     .call(yAxis);
+//    .attr('transform', `translate(${0}, ${0})`);
 
   // plotting points
   svg.selectAll(".dot")
