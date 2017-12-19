@@ -35,6 +35,24 @@ function init() {
   });
   d3.text("hands_pca.csv", plotPCA);
   initHands();
+
+  d3.select("a.left").on("click", function () {
+    currentHands = [30, 20, 10, 38].map((i) => hands[i])
+    plotHands(currentHands)
+  })
+  d3.select("a.right").on("click", function () {
+    currentHands = [25, 15, 5, 35].map((i) => hands[i])
+    plotHands(currentHands)
+  })
+  d3.select("a.top").on("click", function () {
+    currentHands = [37].map((i) => hands[i])
+    plotHands(currentHands)
+  })
+  d3.select("a.bottom").on("click", function () {
+    currentHands = [39].map((i) => hands[i])
+    plotHands(currentHands)
+  })
+
 }
 
 function plotPCA(text) {
@@ -85,19 +103,17 @@ function plotPCA(text) {
      .data(data, function(data,i) {return i})
      .enter()
      .append("circle")
+     .attr("class", "dot")
      .attr("cx",xMap)
      .attr("cy",yMap)
      .attr("r",3.5)
      .style("fill", (d, i) => handsColor(i))
      .on("click", function(d,i) {
        const id = currentHands.indexOf(hands[i])
-       const hand = d3.select(this)
        if (id < 0) {
          currentHands.push(hands[i])
-         hand.classed("selected", true)
        } else {
          currentHands.splice(id, 1)
-         hand.classed("selected", false)
        }
          plotHands(currentHands)
      })
@@ -166,6 +182,11 @@ function plotHands(hands) {
         return handsColor(d.key)
       });
 
+  const indices = hands.map((d) => d.key)
+  d3.select("#PCA")
+    .selectAll(".dot")
+    .classed("selected", (d, i) => indices.indexOf(i) >= 0)
+  
   data.exit()
       .remove()
 }

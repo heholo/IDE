@@ -11,8 +11,10 @@
     <p> PCA stands for Principal Component Analysis. It is an analysis tool for reducing the dimensionality of
     data to a few features that capture the variance of the data.
     For this visualization PCA has been performed on a dataset of of 40 hand outlines.</p>
-    <h2> Methods </h2>
-    <p> </p>
+    <h2> The Visualisation </h2>
+    <p> The visualisation below is in two parts. On the right, the forty hands are plotted onto the first principal component (x axis) and second principal
+        component (y axis). The points can be selected and de-selected by clicking. For each selected point the outline of the corresponding hand is displayed on the left.
+    </p>
     <svg id="week4">
         <g id="hand">
 
@@ -21,10 +23,17 @@
 
         </g>
     </svg>
-    <h2> Results </h2>
-    <p></p>
-    <h2> Conclusion </h2>
-    <p></p>
+    <h2>Observations</h2>
+    <p>
+        With the plot above, we can attempt to gain some intuition on what the first two principal components describe. Looking at the <a class="left">cluster of hands
+        to the left (click me)</a> we see outlines which resemble slender hands. This is in contrast to the cluster of points <a class="right">to the right</a> which are thicker.
+        This indicates that perhaps the first principal component tells us something about the width of the hand.
+    </p>
+    <p>
+        Looking along the second principal component instead, we see some slightly different pertubations. The <a class="top">top outlier</a> displays what seems to be
+        a broken pinky, while the <a class="bottom">bottom outlier</a> has a fractured middle finger. Perhaps the second principal component describes finger straightness. ;)
+    </p>
+
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="index.js"></script>
 </body>
