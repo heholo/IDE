@@ -109,7 +109,7 @@ svg {
 
 circle.selected {
     stroke-width: 8px;
-    stroke: gold;
+    stroke: #b3b3b3;
     stroke-opacity: 0.4;
 }
 
