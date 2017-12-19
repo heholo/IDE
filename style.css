@@ -107,6 +107,12 @@ svg {
     height: 400px;
 }
 
+circle.selected {
+    stroke-width: 8px;
+    stroke: gold;
+    stroke-opacity: 0.4;
+}
+
 .hands path {
     fill: none;
     stroke: steelblue;

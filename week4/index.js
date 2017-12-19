@@ -1,7 +1,7 @@
 d3.select(window).on("load", init);
 
 var hands;
-
+var currentHands = []
 var dims;
 
 const marginPCA = {
@@ -80,20 +80,29 @@ function plotPCA(text) {
     .call(yAxis)
     .attr('transform', `translate(${marginPCA.left}, ${0})`);
 
-  // plotting points
+    // plotting points
   svg.selectAll(".dot")
-    .data(data, function(data,i) {return i})
-    .enter()
-    .append("circle")
-    .attr("cx",xMap)
-    .attr("cy",yMap)
-    .attr("r",3.5)
-    .on("click", function(d,i) {
-      console.log(d[0])
-      console.log(d[1])
-      console.log(i)
-      plotHands([hands[i]])
-    })
+     .data(data, function(data,i) {return i})
+     .enter()
+     .append("circle")
+     .attr("cx",xMap)
+     .attr("cy",yMap)
+     .attr("r",3.5)
+     .style("fill", (d, i) => handsColor(i))
+     .on("click", function(d,i) {
+       const id = currentHands.indexOf(hands[i])
+       const hand = d3.select(this)
+       if (id < 0) {
+         currentHands.push(hands[i])
+         hand.classed("selected", true)
+       } else {
+         currentHands.splice(id, 1)
+         hand.classed("selected", false)
+       }
+       plotHands(currentHands)
+
+     })
+    
 }
 
 
