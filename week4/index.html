@@ -9,10 +9,16 @@
     <h1> Show of hands (PCA visualization)</h1>
     <h2> Introduction </h2>
     <p> PCA stands for Principal Component Analysis. It is an analysis tool for reducing the dimensionality of
-    data to a few features that capture the variance of the data.
-    For this visualization PCA has been performed on a dataset of of 40 hand outlines.</p>
-    <h2> Methods </h2>
-    <p> </p>
+        data to a few features that capture the variance of the data.
+        For this visualization PCA has been performed on a dataset of of 40 hand outlines.</p>
+    <h2> The Visualization </h2>
+    <p> On the right each of the hands are projected in the direction of the first (x-axis) and second (y-axis) Principal Component.
+        By hovering a point a tooltip will show which hand the point represents. By clicking on one of the points the point will be highlighted and
+        a hand outline will be shown on the left. You can toggle multiple hands on and off this way and explore the data.
+        The color of the point will match the color of the outline for easy identification.
+        Note that the width of the visualization scale to the width of your browser - if you change your browser window
+        you might need to refresh the page for the visualization to rescale properly.
+        </p>
     <svg id="week4">
         <g id="hand">
 
@@ -25,6 +31,18 @@
     <p></p>
     <h2> Conclusion </h2>
     <p></p>
+    <h4> Footnote: </h4>
+    <ul>
+        <li>
+            "Multiple hands and highlight" extension done by William.
+        </li>
+        <li>
+            "Text link to visualization" extension done by William.
+        </li>
+        <li>
+            "Tooltip of row number" extension done by Henrik.
+        </li>
+    </ul>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="index.js"></script>
 </body>
