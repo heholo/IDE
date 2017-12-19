@@ -88,6 +88,12 @@ function plotPCA(text) {
     .attr("cx",xMap)
     .attr("cy",yMap)
     .attr("r",3.5)
+    .on("click", function(d,i) {
+      console.log(d[0])
+      console.log(d[1])
+      console.log(i)
+      plotHands([hands[i]])
+    })
 }
 
 
