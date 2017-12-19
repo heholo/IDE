@@ -4,6 +4,15 @@ var hands;
 
 var dims;
 
+const margin = {
+  top: 50,
+  bottom: 50,
+  left: 85,
+  right: 50,
+}
+
+const padding = 30;
+
 function init() {
   dims = d3.select("svg").node().getBoundingClientRect(); // finding dims (height, width, x, y) after svg has been created
   d3.csv("hands.csv", function(data) {
@@ -13,6 +22,7 @@ function init() {
 }
 
 function plotPCA(text) {
+  // handling data
   var data = d3.csvParseRows(text).map(function(row) {
     return row.map(function(value) {
       return +value;
@@ -20,37 +30,46 @@ function plotPCA(text) {
   });
   console.log(data);
 
-  /*
-  var data2 = [];
-  var point = {};
-  for (i = 0; i < data.length; i++) { // loop 40 hands
-    point.x = data[i][0]; // first feature
-    point.y = data[i][1]; // second feature
-    data2.push(point);
-  }
-  console.log(data2);
-*/
+  // plot area
+  var svg = d3.select('#week4')
+    .attr('width', dims.width + margin.left + margin.right)
+    .attr('height', dims.height + margin.top + margin.bottom)
+//    .attr('transform', `translate(${margin.left}, ${margin.top})`);
+
   // setup x
   var xValue = function(d) { return d[0];}, // data -> value
-    xScale = d3.scaleLinear().range([0, dims.width]), // value -> display
+    xScale = d3.scaleLinear().range([0, dims.width]).domain(d3.extent(data, xValue)), // value -> display
     xMap = function(d) { return xScale(xValue(d));}; // data -> display
-    //xAxis = d3.svg.axis().scale(xScale).orient("bottom");
 
   // setup y
   var yValue = function(d) { return d[1];}, // data -> value
-    yScale = d3.scaleLinear().range([dims.height, 0]), // value -> display
+    yScale = d3.scaleLinear().range([dims.height, 0]).domain(d3.extent(data, yValue)), // value -> display
     yMap = function(d) { return yScale(yValue(d));}; // data -> display
-    //yAxis = d3.svg.axis().scale(yScale).orient("left");
+
+  // x-axis
+  var xAxis = d3.axisBottom()
+    .scale(xScale);
+  svg.append("g")
+    .attr("class", "axis")
+    .attr("transform", "translate(" + padding + ",0)")
+    .call(xAxis);
+
+  // y-axis
+  var yAxis = d3.axisLeft()
+    .scale(yScale);
+  svg.append("g")
+    .attr("class", "axis")
+    .attr("transform", "translate(" + padding + ",0)")
+    .call(yAxis);
 
   // plotting points
-  d3.select("#PCA")
-    .selectAll(".dot")
+  svg.selectAll(".dot")
     .data(data)
     .enter()
     .append("circle")
     .attr("cx",xMap)
     .attr("cy",yMap)
-    .attr("r",1)
+    .attr("r",3.5)
 }
 
 function plotHand(data) {
