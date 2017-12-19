@@ -6,9 +6,9 @@ var dims;
 
 const marginPCA = {
   top: 20,
-  bottom: 20,
-  left: 20,
-  right: 20,
+  bottom: 30,
+  left: 10,
+  right: 30,
 }
 
 function init() {
@@ -99,10 +99,12 @@ function plotPCA(text) {
          currentHands.splice(id, 1)
          hand.classed("selected", false)
        }
-       plotHands(currentHands)
-
+         plotHands(currentHands)
      })
-    
+     .append("title")
+     .text(function(d,i) {
+         return "Hand " + i;
+     });
 }
 
 
