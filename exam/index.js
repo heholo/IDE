@@ -12,4 +12,8 @@ const margin = {
 // function init
 
 function init() {
+  $.getJSON('data/ghetto.json', function(d) {
+    console.log(d)
+  });
+  //var ghetto = JSON.parse(ghetto);
 }
