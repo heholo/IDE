@@ -12,8 +12,11 @@ const margin = {
 // function init
 
 function init() {
-  $.getJSON('data/ghetto.json', function(d) {
-    console.log(d)
+  d3.json("data/ghetto.json", function(data) {
+    console.log(data);
   });
+//  $.getJSON('data/ghetto.json', function(d) {
+//    console.log(d)
+//  });
   //var ghetto = JSON.parse(ghetto);
 }
