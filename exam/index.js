@@ -9,6 +9,10 @@ const margin = {
   right: 30,
 }
 
+var ghettos
+var munis
+var regions
+
 // function init
 
 function init() {
@@ -32,19 +36,40 @@ function init() {
 function collect_pops(pop) {
   var res = {}
   var years = pop.columns.slice(2)
-
-  pop.forEach(function(o) {
-    if (!res[o.municipality])  {
-      res[o.municipality] = {
-        agegroups: {},
-        total: 0,
-        municipality: o.municipality
-      }
-    }
-    // sum
-    // res[o.municipality].total += 0
+  years.forEach(function (o) {
+    res[o] = []
   })
 
+  var tmp = {}
+
+  pop.forEach(function(o) {
+    if (!tmp[o.municipality])  {
+      tmp[o.municipality] = {}
+      years.forEach(function (y) {
+        tmp[o.municipality][y] = {
+          population: {
+            agegroups: {},
+            total: 0,
+          },
+          municipality: o.municipality,
+          id: o.municipality
+        }
+      })
+    }
+
+    years.forEach(function (y) {
+      tmp[o.municipality][y].population.total += o[y] - 0 
+      tmp[o.municipality][y].population.agegroups[o.age] =  o[y] - 0
+    })
+  })
+  var munis = Object.keys(tmp)
+
+  years.forEach(function (y) {
+    munis.forEach(function (m) {
+      res[y].push(tmp[m][y])
+    })
+  })
+  
   return res
 }
 
@@ -58,4 +83,10 @@ function _init(err, ghetto, pop, emp, foreigners, edu, income, crime, reg_crime,
   console.log(crime)
   console.log(reg_crime)
   console.log(reg_income)
+
+  ghettos = ghetto
+  munis = collect_pops(pop)
+  
+  regions = {}
+  console.log(munis)
 }
