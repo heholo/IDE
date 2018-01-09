@@ -18,6 +18,10 @@ function init() {
     .defer(d3.csv, "data/muni_emp.csv")
     .defer(d3.csv, "data/muni_foreigners.csv")
     .defer(d3.csv, "data/muni_edu.csv")
+    .defer(d3.csv, "data/muni_income.csv")
+    .defer(d3.csv, "data/muni_crime.csv")
+    .defer(d3.csv, "data/reg_crime.csv")
+    .defer(d3.csv, "data/reg_income.csv")
     .await(_init)
 }
 
@@ -29,7 +33,6 @@ function collect_pops(pop) {
   var res = {}
   var years = pop.columns.slice(2)
 
-  years.forEach()
   pop.forEach(function(o) {
     if (!res[o.municipality])  {
       res[o.municipality] = {
@@ -38,20 +41,21 @@ function collect_pops(pop) {
         municipality: o.municipality
       }
     }
-
     // sum
-
-    res[o.municipality].total += o.
-    
+    // res[o.municipality].total += 0
   })
 
   return res
 }
 
-function _init(err, ghetto, pop, emp, foreigners, edu) {
+function _init(err, ghetto, pop, emp, foreigners, edu, income, crime, reg_crime, reg_income) {
   console.log(ghetto)
-  console.log(collect_pops(pop))
+  console.log(pop)
   console.log(emp)
   console.log(foreigners)
   console.log(edu)
+  console.log(income)
+  console.log(crime)
+  console.log(reg_crime)
+  console.log(reg_income)
 }
