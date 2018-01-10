@@ -151,6 +151,7 @@ function collectEmp(munis, emp) {
       }
 
       m.employment.twoYearAvg = n ? tot/n : undefined
+      m.unemployed = (1 - m.employment.twoYearAvg) * 100
     })
   }
 
@@ -183,7 +184,43 @@ function collectForeigners(munis, foreigners) {
 
       if (muni.foreigners.immigrants && muni.foreigners.descendants) {
         muni.foreigners.freq = muni.foreigners.total / muni.population.total
+        muni.immigrants = muni.foreigners.freq * 100
       }
+    })
+  })
+}
+
+function collectEducation(munis, edu) {
+  var years = Object.keys(munis)
+
+  edu.forEach(function (e) {
+    var muni = munis[e.year].get(e.municipality)
+
+    if (!muni.education) muni.edu = {}
+
+    if (e.type == "Procent") {
+      muni.education = e.value - 0
+      muni.edu.freq = muni.education / 100
+    } else if (e.part == "Uuddannet") {
+      muni.edu.uneducated = e.value - 0
+    } else {
+      muni.edu.total = e.value - 0
+    }
+  })
+
+}
+
+/*
+ * Collects the crime data 
+ * total is divided by pop for each year
+ */
+function collectCrime(munis, crime) {
+  var years = Object.keys(munis)
+  crime.forEach(function (c) {
+    years.forEach(function (y) {
+      var muni = munis[y].get(c.municipality)
+      muni.crime = { totalProsecuted: c[y] - 0 }
+      muni.prosecuted = muni.crime.totalProsecuted / muni.population.total
     })
   })
 }
@@ -212,7 +249,8 @@ function _init(err, ghetto, pop, emp, foreigners, edu, income, crime, reg_crime,
   munis = collectPops(pop)
   collectEmp(munis, emp)
   collectForeigners(munis, foreigners)
-  
+  collectEducation(munis, edu)
+  collectCrime(munis, crime)
   regions = {}
   console.log(munis)
 }
