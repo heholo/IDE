@@ -217,10 +217,20 @@ function collectEducation(munis, edu) {
 function collectCrime(munis, crime) {
   var years = Object.keys(munis)
   crime.forEach(function (c) {
-    years.forEach(function (y) {
+    years.forEach(function (y, i) {
       var muni = munis[y].get(c.municipality)
       muni.crime = { totalProsecuted: c[y] - 0 }
-      muni.prosecuted = muni.crime.totalProsecuted / muni.population.total
+      muni.crime.freq = muni.crime.totalProsecuted / muni.population.total
+      var n = 0
+      var tot = 0
+      for (var j = Math.max(0, i - 2); j < i; j++) {
+        var y2 = years[j]
+        if (munis[y2].get(muni.id).crime.freq) {
+          n += 1
+          tot += munis[y2].get(muni.id).crime.freq
+        }
+      }
+      muni.prosecuted = n ? 100 * tot / n : undefined
     })
   })
 }
