@@ -86,7 +86,7 @@
     },
     {
       "ghetto":true,
-      "name":"Ringparken",
+      "name":"Ringparken, Slagelse",
       "municipality":"Slagelse",
       "new":false,
       "residents":1979,
@@ -448,7 +448,7 @@
     },
     {
       "ghetto":true,
-      "name":"Ringparken",
+      "name":"Ringparken, Slagelse",
       "municipality":"Slagelse",
       "new":false,
       "residents":1978,
@@ -798,7 +798,7 @@
     },
     {
       "ghetto":true,
-      "name":"Ringparken",
+      "name":"Ringparken, Slagelse",
       "municipality":"Slagelse",
       "new":false,
       "residents":1949,
@@ -1244,7 +1244,7 @@
     },
     {
       "ghetto":true,
-      "name":"Ringparken",
+      "name":"Ringparken, Slagelse",
       "municipality":"Slagelse",
       "new":false,
       "residents":1878,
@@ -1541,6 +1541,418 @@
       "prosecuted":2.43,
       "education":52.6,
       "income":62.0
+    }
+  ],
+  "2013": [
+    {
+      "ghetto":true,
+      "name":"Lundtoftegade",
+      "municipality":"København",
+      "new":false,
+      "residents":1485,
+      "unemployed":40.7,
+      "immigrants":52.5,
+      "prosecuted":4.26
+    },
+    {
+      "ghetto":true,
+      "name":"Aldersrogade",
+      "municipality":"København",
+      "new":true,
+      "residents":2351,
+      "unemployed":38.3,
+      "immigrants":73.3,
+      "prosecuted":2.76
+    },
+    {
+      "ghetto":true,
+      "name":"Mjølnerparken",
+      "municipality":"København",
+      "new":false,
+      "residents":1920,
+      "unemployed":46.4,
+      "immigrants":85.5,
+      "prosecuted":3.09
+    },
+    {
+      "ghetto":true,
+      "name":"Sjælør Boulevard",
+      "municipality":"København",
+      "new":false,
+      "residents":1280,
+      "unemployed":36.0,
+      "immigrants":56.6,
+      "prosecuted":3.20
+    },
+    {
+      "ghetto":true,
+      "name":"Bispeparken",
+      "municipality":"København",
+      "new":false,
+      "residents":1587,
+      "unemployed":40.0,
+      "immigrants":58.5,
+      "prosecuted":3.89
+    },
+    {
+      "ghetto":true,
+      "name":"Stærevej mv",
+      "municipality":"København",
+      "new":false,
+      "residents":1069,
+      "unemployed":41.0,
+      "immigrants":36.6,
+      "prosecuted":5.74
+    },
+    {
+      "ghetto":true,
+      "name":"Degnegården mv",
+      "municipality":"København",
+      "new":false,
+      "residents":1046,
+      "unemployed":37.6,
+      "immigrants":55.0,
+      "prosecuted":2.78
+    },
+    {
+      "ghetto":true,
+      "name":"Hørgården",
+      "municipality":"København",
+      "new":false,
+      "residents":1619,
+      "unemployed":35.6,
+      "immigrants":53.3,
+      "prosecuted":2.88
+    },
+    {
+      "ghetto":true,
+      "name":"Tåstrupgård",
+      "municipality":"Høje Tåstrup",
+      "new":false,
+      "residents":2563,
+      "unemployed":36.4,
+      "immigrants":67.3,
+      "prosecuted":3.31
+    },
+    {
+      "ghetto":true,
+      "name":"Charlotteager",
+      "municipality":"Høje Tåstrup",
+      "new":false,
+      "residents":1697,
+      "unemployed":40.8,
+      "immigrants":52.7,
+      "prosecuted":3.66
+    },
+    {
+      "ghetto":true,
+      "name":"Gadehavegård",
+      "municipality":"Høje Tåstrup",
+      "new":false,
+      "residents":2056,
+      "unemployed":41.3,
+      "immigrants":55.5,
+      "prosecuted":3.48
+    },
+    {
+      "ghetto":true,
+      "name":"Nivåhøj",
+      "municipality":"Fredensborg",
+      "new":false,
+      "residents":1474,
+      "unemployed":41.1,
+      "immigrants":47.7,
+      "prosecuted":2.72
+    },
+    {
+      "ghetto":true,
+      "name":"Askerød",
+      "municipality":"Greve",
+      "new":false,
+      "residents":1475,
+      "unemployed":31.7,
+      "immigrants":52.1,
+      "prosecuted":2.79
+    },
+    {
+      "ghetto":true,
+      "name":"Karlemoseparken",
+      "municipality":"Køge",
+      "new":false,
+      "residents":1509,
+      "unemployed":43.6,
+      "immigrants":49.7,
+      "prosecuted":2.76
+    },
+    {
+      "ghetto":true,
+      "name":"Rønnebærparken/Æblehaven",
+      "municipality":"Roskilde",
+      "new":false,
+      "residents":1524,
+      "unemployed":42.2,
+      "immigrants":44.5,
+      "prosecuted":3.27
+    },
+    {
+      "ghetto":true,
+      "name":"Agervang mv.",
+      "municipality":"Holbæk",
+      "new":false,
+      "residents":1433,
+      "unemployed":51.6,
+      "immigrants":57.2,
+      "prosecuted":3.23
+    },
+    {
+      "ghetto":true,
+      "name":"Ladegårdsparken",
+      "municipality":"Holbæk",
+      "new":true,
+      "residents":1370,
+      "unemployed":41.6,
+      "immigrants":29.2,
+      "prosecuted":2.94
+    },
+    {
+      "ghetto":true,
+      "name":"Ringparken, Slagelse",
+      "municipality":"Slagelse",
+      "new":false,
+      "residents":1865,
+      "unemployed":46.3,
+      "immigrants":55.2,
+      "prosecuted":2.85
+    },
+    {
+      "ghetto":true,
+      "name":"Solbakken mv",
+      "municipality":"Odense",
+      "new":false,
+      "residents":1304,
+      "unemployed":46.8,
+      "immigrants":47.5,
+      "prosecuted":3.04
+    },
+    {
+      "ghetto":true,
+      "name":"Korsløkkeparken Øst",
+      "municipality":"Odense",
+      "new":true,
+      "residents":2423,
+      "unemployed":42.1,
+      "immigrants":56.5,
+      "prosecuted":2.53
+    },
+    {
+      "ghetto":true,
+      "name":"Vollsmose",
+      "municipality":"Odense",
+      "new":false,
+      "residents":9089,
+      "unemployed":54.2,
+      "immigrants":66.9,
+      "prosecuted":3.73
+    },
+    {
+      "ghetto":true,
+      "name":"Byparken/Skovparken",
+      "municipality":"Svendborg",
+      "new":false,
+      "residents":1085,
+      "unemployed":56.4,
+      "immigrants":54.6,
+      "prosecuted":3.48
+    },
+    {
+      "ghetto":true,
+      "name":"Nørager/Søstjernevej m.fl",
+      "municipality":"Sønderborg",
+      "new":false,
+      "residents":1296,
+      "unemployed":49.3,
+      "immigrants":59.3,
+      "prosecuted":2.85
+    },
+    {
+      "ghetto":true,
+      "name":"Stengårdsvej-kvarteret",
+      "municipality":"Esbjerg",
+      "new":false,
+      "residents":1854,
+      "unemployed":46.3,
+      "immigrants":63.8,
+      "prosecuted":3.29
+    },
+    {
+      "ghetto":true,
+      "name":"Hedelundgårdparken",
+      "municipality":"Esbjerg",
+      "new":false,
+      "residents":2376,
+      "unemployed":45.3,
+      "immigrants":25.8,
+      "prosecuted":2.86
+    },
+    {
+      "ghetto":true,
+      "name":"Høje Kolstrup",
+      "municipality":"Åbenrå",
+      "new":true,
+      "residents":1579,
+      "unemployed":49.5,
+      "immigrants":31.3,
+      "prosecuted":2.88
+    },
+    {
+      "ghetto":true,
+      "name":"Korskærparken",
+      "municipality":"Fredericia",
+      "new":false,
+      "residents":1874,
+      "unemployed":48.1,
+      "immigrants":47.0,
+      "prosecuted":2.87
+    },
+    {
+      "ghetto":true,
+      "name":"Sundparken",
+      "municipality":"Horsens",
+      "new":false,
+      "residents":1509,
+      "unemployed":54.6,
+      "immigrants":63.8,
+      "prosecuted":2.44
+    },
+    {
+      "ghetto":true,
+      "name":"Munkebo",
+      "municipality":"Kolding",
+      "new":false,
+      "residents":1459,
+      "unemployed":44.8,
+      "immigrants":57.7,
+      "prosecuted":1.94
+    },
+    {
+      "ghetto":true,
+      "name":"Skovparken/Skovvejen",
+      "municipality":"Kolding",
+      "new":false,
+      "residents":2378,
+      "unemployed":44.4,
+      "immigrants":59.8,
+      "prosecuted":2.99
+    },
+    {
+      "ghetto":true,
+      "name":"Finlandsparken",
+      "municipality":"Vejle",
+      "new":false,
+      "residents":1558,
+      "unemployed":45.3,
+      "immigrants":71.4,
+      "prosecuted":2.67
+    },
+    {
+      "ghetto":true,
+      "name":"Glarbjergvej-området",
+      "municipality":"Randers",
+      "new":true,
+      "residents":1439,
+      "unemployed":48.4,
+      "immigrants":27.4,
+      "prosecuted":2.81
+    },
+    {
+      "ghetto":true,
+      "name":"Arendalsvej",
+      "municipality":"Silkeborg",
+      "new":true,
+      "residents":1102,
+      "unemployed":44.3,
+      "immigrants":16.0,
+      "prosecuted":2.85
+    },
+    {
+      "ghetto":true,
+      "name":"Højvangen",
+      "municipality":"Skanderborg",
+      "new":true,
+      "residents":1199,
+      "unemployed":41.3,
+      "immigrants":29.0,
+      "prosecuted":2.99
+    },
+    {
+      "ghetto":true,
+      "name":"Bispehaven",
+      "municipality":"Århus",
+      "new":false,
+      "residents":2305,
+      "unemployed":44.6,
+      "immigrants":67.1,
+      "prosecuted":2.93
+    },
+    {
+      "ghetto":true,
+      "name":"Langkærparken",
+      "municipality":"Århus",
+      "new":true,
+      "residents":2023,
+      "unemployed":40.7,
+      "immigrants":50.2,
+      "prosecuted":2.04
+    },
+    {
+      "ghetto":true,
+      "name":"Trigeparken",
+      "municipality":"Århus",
+      "new":false,
+      "residents":1057,
+      "unemployed":43.7,
+      "immigrants":35.3,
+      "prosecuted":3.29
+    },
+    {
+      "ghetto":true,
+      "name":"Havrevej",
+      "municipality":"Thisted",
+      "new":true,
+      "residents":1153,
+      "unemployed":46.1,
+      "immigrants":27.1,
+      "prosecuted":2.78
+    },
+    {
+      "ghetto":true,
+      "name":"Sebbersundvej mv",
+      "municipality":"Ålborg",
+      "new":false,
+      "residents":1162,
+      "unemployed":46.7,
+      "immigrants":20.2,
+      "prosecuted":3.53
+    },
+    {
+      "ghetto":false,
+      "name":"Blågården",
+      "municipality":"København",
+      "new":false,
+      "residents":2515,
+      "unemployed":34.2,
+      "immigrants":62.3,
+      "prosecuted":2.63
+    },
+    {
+      "ghetto":false,
+      "name":"Sianavænget/Heliosvænget",
+      "municipality":"Odense",
+      "new":false,
+      "residents":1078,
+      "unemployed":50.8,
+      "immigrants":42.9,
+      "prosecuted":2.69
     }
   ]
 }
