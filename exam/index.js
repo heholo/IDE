@@ -8,7 +8,7 @@ var regions
 var criterion = {}
 
 var friendlyNames = {
-  unemployed: "Unemployed 18-64 (% 2 year avg)",
+  unemployed: "Unemployed & Not Studying 18-64 (% 2 year avg)",
   immigrants: "Non Western Immigrants 18+ (%)",
   prosecuted: "Convicted Criminals 18+ (% 2 year avg)",
   education: "Only Completed Primary Education 30-59 (%)",
@@ -48,6 +48,7 @@ function init() {
     .defer(d3.csv,  "data/muni_edu_cur.csv")
     .defer(d3.csv,  "data/muni_income.csv")
     .defer(d3.csv,  "data/muni_crime.csv")
+    .defer(d3.csv,  "data/muni_region.csv")
     .defer(d3.csv,  "data/reg_crime.csv")
     .defer(d3.csv,  "data/reg_income.csv")
     .await(_init)
@@ -220,6 +221,16 @@ function collectForeigners(munis, foreigners) {
   })
 }
 
+function collectRegions(munis, reg) {
+  var years = Object.keys(munis)
+
+  reg.forEach(function (reg) {
+    years.forEach(function(y) {
+      munis[y].get(reg.municipality).region = reg.region
+    })
+  })
+}
+
 function collectEducation(munis, edu) {
   var years = Object.keys(munis)
 
@@ -240,6 +251,52 @@ function collectEducation(munis, edu) {
 
 }
 
+function collectIncome(munis, reg, inc) {
+  var years = Object.keys(munis)
+  // Make an incty object for each muni
+  years.forEach(function (y) {
+    munis[y].forEach(function (m) {
+      m._income = {
+        _total_pop: 0,
+        _total_inc: 0,
+        _tmp: {},
+        mean: undefined,
+      }
+    })
+  })
+  var incYears = years.slice(0, -1)  // we don't have data for 2017
+
+  // Now load the raw data by multiplying the frequencies with the population of the age range
+  inc.forEach(function (e) {
+    incYears.forEach(function (y) {
+      var muni = munis[y].get(e.municipality)
+      const incKey = e["age-start"] + e["age-end"]
+      if (e["value-type"] == "population_size") {
+        muni._income._total_pop += e[y] - 0
+      } else {
+        muni._income._total_inc += e[y] - 0
+      }
+    })
+  })
+
+  // Now iterate over munis and divide raw data
+  var y
+  for (var i = 0; i < years.length; i++) {
+    y = years[i]
+
+    munis[y].forEach(function (m) {
+      if (m._income._total_pop) {
+        m._income.mean = m._income._total_inc / m._income._total_pop
+      }
+
+      if (i > 0) {
+        var lastYearMuni = munis[y - 1].get(m.id)
+        m.income = 100 * (lastYearMuni._income.mean / regions[y-1][lastYearMuni.region].income)
+      }
+    })
+  }
+
+}
 /*
  * Collects the crime data
  * total is divided by pop for each year
@@ -342,28 +399,28 @@ function plot2(ghettos, munis) {
 
   // selecting plot area
   var svg = d3.select('#plot2')
-    .attr('width', dim.w + margin.left + margin.right)
-    .attr('height', dim.h + margin.top + margin.bottom)
-    .append('g')
-    .attr('transform', `translate(${margin.left}, ${margin.top})`);
+              .attr('width', dim.w + margin.left + margin.right)
+              .attr('height', dim.h + margin.top + margin.bottom)
+              .append('g')
+              .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
   // define scales
   var xScale = d3.scaleBand() // to-do: add the ordering (muni-ghettos, muni-ghettos ...)
-    .domain(data.map(function(d) { return d.id }))
-    .range([0, dim.w])
-    .padding(0.1)
+                 .domain(data.map(function(d) { return d.id }))
+                 .range([0, dim.w])
+                 .padding(0.1)
   var ySpan =  d3.max(data, function(d) { return d.unemployed }) - d3.min(data, function(d) { return d.unemployed })
   var yScale = d3.scaleLinear()
-    .domain([d3.min(data, function(d) { return d.unemployed }) - ySpan * 0.1,
-      d3.max(data, function(d) { return d.unemployed }) + ySpan * 0.1])
-    .range([dim.h, 0])
+                 .domain([d3.min(data, function(d) { return d.unemployed }) - ySpan * 0.1,
+                          d3.max(data, function(d) { return d.unemployed }) + ySpan * 0.1])
+                 .range([dim.h, 0])
 
   // adding bars
   svg.selectAll("bar")
-    .data(data)
-    .enter().append("rect")
-    .style("fill", function(d) {if (d.ghetto === true) {return "red"} else {return "steelblue"}})
-    .attr("x", function(d) { return xScale(d.id); })
+                 .data(data)
+                 .enter().append("rect")
+                 .style("fill", function(d) {if (d.ghetto === true) {return "red"} else {return "steelblue"}})
+                 .attr("x", function(d) { return xScale(d.id); })
     .attr("width", xScale.bandwidth)
     .attr("y", function(d) { return yScale(d.unemployed); })
     .attr("height", function(d) { return dim.h - yScale(d.unemployed); });
@@ -400,7 +457,7 @@ function plot2(ghettos, munis) {
 
 }
 
-function _init(err, ghetto, pop, emp, foreigners, edu, edu_cur, income, crime, reg_crime, reg_income) {
+function _init(err, ghetto, pop, emp, foreigners, edu, edu_cur, income, crime, muni_region, reg_crime, reg_income) {
   console.log("ghetto")
   console.log(ghetto)
   console.log("pop")
@@ -422,11 +479,27 @@ function _init(err, ghetto, pop, emp, foreigners, edu, edu_cur, income, crime, r
 
   ghettos = ghetto
   munis = collectPops(pop)
+  collectRegions(munis, muni_region)
   collectEmp(munis, emp, edu_cur)
   collectForeigners(munis, foreigners)
   collectEducation(munis, edu)
   collectCrime(munis, crime)
+
+  // Set the region data
   regions = {}
+
+  Object.keys(munis).forEach(function (y) {
+    regions[y] = {}
+  })
+  reg_income.forEach(function (i) {
+    Object.keys(munis).forEach(function (y) {
+      if (!regions[y][i.region]) regions[y][i.region] = {}
+      regions[y][i.region].income = i[y]
+    })
+  })
+
+  collectIncome(munis, regions, income)
+
   console.log(munis)
 
   var dropdownMenu = d3.select("#sticky-selector")
@@ -528,7 +601,6 @@ function generateWeirdHistograms() {
                 .style("height", 2*padding + histoMensions.height + "px")
 
     generateWeirdHistogram(svg, key, 2017, histoMensions, padding)
-    console.log(key)
   })
 
 }
