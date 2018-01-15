@@ -312,35 +312,25 @@ function initPlot2() {
 
   const padding = 20
 
-  Object.keys(criterion[2015]).forEach(function (key) {
-    // selecting plot area
-    var svg = d3.select('#plot2')
-      .append("div")
-      .attr("class", key)
-      .append("svg")
-      .attr('width', oneDim.w + margin.left + margin.right)
-      .attr('height', oneDim.h + margin.top + margin.bottom)
+  var svg = d3.select('#plot2')
+    .attr('width', dim.w + margin.left + margin.right)
+    .attr('height', dim.h + margin.top + margin.bottom)
 
-    onePlot2(svg, key, 2015, oneDim, padding)
+  Object.keys(criterion[2015]).forEach(function (key, i) {
+    onePlot2(svg, key, 2015, oneDim, padding, i, margin)
     console.log(key)
   })
   console.log("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
 }
 
-function onePlot2(svg, key, year, oneDim, padding) {
-  var container = svg.append("g")
-    .attr('transform', `translate(${padding}, ${padding})`);
-
-  container.append("g")
-    .attr("class", "x-axis")
-
-  container.append("g")
-    .attr("class", "y-axis")
-
-  svg.append("g")
-    .attr("class", "title")
-
-  updatePlot2(svg, key, year, oneDim)
+function onePlot2(svg, key, year, oneDim, padding, i, margin) {
+  // selecting plot area
+  var svgSub = svg.append("g")
+    .attr("class", key)
+    .attr('width', oneDim.w + margin.left + margin.right)
+    .attr('height', oneDim.h + margin.top + margin.bottom)
+    .attr('transform', `translate(${padding}, ${ oneDim.h * (1+i)})`);
+  updatePlot2(svgSub, key, year, oneDim)
 }
 
 function updatePlot2(svg, key, year, oneDim) {
@@ -432,6 +422,7 @@ function updatePlot2(svg, key, year, oneDim) {
   var yAxis = d3.axisLeft()
     .scale(yScale)
     .ticks(5)
+  /* removed xAxis for now
   svg.append("g")
     .attr("class", "axis")
     .attr("transform", "translate(0," + oneDim.h + ")")
@@ -441,6 +432,7 @@ function updatePlot2(svg, key, year, oneDim) {
     .attr("dx", "-.8em")
     .attr("dy", "-.55em")
     .attr("transform", "rotate(-90)" );
+  */
   svg.append("g")
     .call(yAxis)
 
