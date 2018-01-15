@@ -51,7 +51,7 @@
     {
       "ghetto":true,
       "id":"Tåstrupgård",
-      "municipality":"Høje Tåstrup",
+      "municipality":"Høje-Taastrup",
       "new":false,
       "residents":2698,
       "unemployed":30.3,
@@ -63,7 +63,7 @@
     {
       "ghetto":true,
       "id":"Gadehavegård",
-      "municipality":"Høje Tåstrup",
+      "municipality":"Høje-Taastrup",
       "new":false,
       "residents":2133,
       "unemployed":41.4,
@@ -267,7 +267,7 @@
     {
       "ghetto":false,
       "id":"Charlotteager",
-      "municipality":"Høje Tåstrup",
+      "municipality":"Høje-Taastrup",
       "new":false,
       "residents":1747,
       "unemployed":47.4,
@@ -365,7 +365,7 @@
     {
       "ghetto":true,
       "id":"Tåstrupgård",
-      "municipality":"Høje Tåstrup",
+      "municipality":"Høje-Taastrup",
       "new":false,
       "residents":2670,
       "unemployed":31.4,
@@ -377,7 +377,7 @@
     {
       "ghetto":true,
       "id":"Charlotteager",
-      "municipality":"Høje Tåstrup",
+      "municipality":"Høje-Taastrup",
       "new":false,
       "residents":1755,
       "unemployed":38.2,
@@ -389,7 +389,7 @@
     {
       "ghetto":true,
       "id":"Gadehavegård",
-      "municipality":"Høje Tåstrup",
+      "municipality":"Høje-Taastrup",
       "new":false,
       "residents":2153,
       "unemployed":42.0,
@@ -715,7 +715,7 @@
     {
       "ghetto":true,
       "id":"Tåstrupgård",
-      "municipality":"Høje Tåstrup",
+      "municipality":"Høje-Taastrup",
       "new":false,
       "residents":2626,
       "unemployed":32.6,
@@ -727,7 +727,7 @@
     {
       "ghetto":true,
       "id":"Charlotteager",
-      "municipality":"Høje Tåstrup",
+      "municipality":"Høje-Taastrup",
       "new":false,
       "residents":1741,
       "unemployed":39.7,
@@ -739,7 +739,7 @@
     {
       "ghetto":true,
       "id":"Gadehavegård",
-      "municipality":"Høje Tåstrup",
+      "municipality":"Høje-Taastrup",
       "new":false,
       "residents":2142,
       "unemployed":42.6,
@@ -1173,7 +1173,7 @@
     {
       "ghetto":true,
       "id":"Tåstrupgård",
-      "municipality":"Høje Tåstrup",
+      "municipality":"Høje-Taastrup",
       "new":false,
       "residents":2549,
       "unemployed":35.0,
@@ -1185,7 +1185,7 @@
     {
       "ghetto":true,
       "id":"Charlotteager",
-      "municipality":"Høje Tåstrup",
+      "municipality":"Høje-Taastrup",
       "new":false,
       "residents":1715,
       "unemployed":41.7,
@@ -1197,7 +1197,7 @@
     {
       "ghetto":true,
       "id":"Gadehavegård",
-      "municipality":"Høje Tåstrup",
+      "municipality":"Høje-Taastrup",
       "new":false,
       "residents":2078,
       "unemployed":43.8,
@@ -1281,7 +1281,7 @@
     {
       "ghetto":true,
       "id":"Byparken/Skovparken",
-      "municipality":"Svenborg",
+      "municipality":"Svendborg",
       "new":false,
       "residents":1047,
       "unemployed":59.9,
@@ -1413,7 +1413,7 @@
     {
       "ghetto":true,
       "id":"Bispehaven",
-      "municipality":"Århus",
+      "municipality":"Aarhus",
       "new":false,
       "residents":2252,
       "unemployed":46.5,
@@ -1425,7 +1425,7 @@
     {
       "ghetto":true,
       "id":"Gellerupparken/Toveshøj",
-      "municipality":"Århus",
+      "municipality":"Aarhus",
       "new":false,
       "residents":6652,
       "unemployed":52.3,
@@ -1437,7 +1437,7 @@
     {
       "ghetto":true,
       "id":"Trigeparken",
-      "municipality":"Århus",
+      "municipality":"Aarhus",
       "new":false,
       "residents":1083,
       "unemployed":46.2,
@@ -1449,7 +1449,7 @@
     {
       "ghetto":true,
       "id":"Sebbersundvej mv",
-      "municipality":"Ålborg",
+      "municipality":"Aalborg",
       "new":false,
       "residents":1195,
       "unemployed":48.3,
@@ -1627,7 +1627,7 @@
     {
       "ghetto":true,
       "id":"Tåstrupgård",
-      "municipality":"Høje Tåstrup",
+      "municipality":"Høje-Taastrup",
       "new":false,
       "residents":2563,
       "unemployed":36.4,
@@ -1637,7 +1637,7 @@
     {
       "ghetto":true,
       "id":"Charlotteager",
-      "municipality":"Høje Tåstrup",
+      "municipality":"Høje-Taastrup",
       "new":false,
       "residents":1697,
       "unemployed":40.8,
@@ -1647,7 +1647,7 @@
     {
       "ghetto":true,
       "id":"Gadehavegård",
-      "municipality":"Høje Tåstrup",
+      "municipality":"Høje-Taastrup",
       "new":false,
       "residents":2056,
       "unemployed":41.3,
@@ -1797,7 +1797,7 @@
     {
       "ghetto":true,
       "id":"Høje Kolstrup",
-      "municipality":"Åbenrå",
+      "municipality":"Aabenraa",
       "new":true,
       "residents":1579,
       "unemployed":49.5,
@@ -1887,7 +1887,7 @@
     {
       "ghetto":true,
       "id":"Bispehaven",
-      "municipality":"Århus",
+      "municipality":"Aarhus",
       "new":false,
       "residents":2305,
       "unemployed":44.6,
@@ -1897,7 +1897,7 @@
     {
       "ghetto":true,
       "id":"Langkærparken",
-      "municipality":"Århus",
+      "municipality":"Aarhus",
       "new":true,
       "residents":2023,
       "unemployed":40.7,
@@ -1907,7 +1907,7 @@
     {
       "ghetto":true,
       "id":"Trigeparken",
-      "municipality":"Århus",
+      "municipality":"Aarhus",
       "new":false,
       "residents":1057,
       "unemployed":43.7,
@@ -1927,7 +1927,7 @@
     {
       "ghetto":true,
       "id":"Sebbersundvej mv",
-      "municipality":"Ålborg",
+      "municipality":"Aalborg",
       "new":false,
       "residents":1162,
       "unemployed":46.7,
@@ -2248,7 +2248,7 @@
     },
     {
       "ghetto":true,
-      "municipality":"Århus",
+      "municipality":"Aarhus",
       "id":"Bispehaven",
       "new":false,
       "residents":2371,
@@ -2258,7 +2258,7 @@
     },
     {
       "ghetto":true,
-      "municipality":"Århus",
+      "municipality":"Aarhus",
       "id":"Gellerupparken/Toveshøj",
       "new":false,
       "residents":7200,
@@ -2268,7 +2268,7 @@
     },
     {
       "ghetto":true,
-      "municipality":"Århus",
+      "municipality":"Aarhus",
       "id":"Trigeparken",
       "new":false,
       "residents":1051,
