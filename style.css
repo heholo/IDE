@@ -1,6 +1,6 @@
 body {
     font-family: arial, monospace;
-    max-width: 900px;
+    /* max-width: 900px; */
 }
 
 a {
@@ -134,9 +134,10 @@ circle.selected {
 }
 
 .point {
-    fill:none;
+    fill:white;
     stroke: black;
-    stroke-width: 1px
+    stroke-width: 0.5px;
+    transition: fill 1000ms;
 }
 
 #histograms svg text {
@@ -144,10 +145,26 @@ circle.selected {
 }
 
 .point.ghetto {
-    fill: steelblue;
+    fill: #ff7c7c;
+    stroke: #8c0000;
+}
+
+.point.hasGhetto {
+    fill:teal;
 }
 
 g.limit line {
     stroke: grey;
     stroke-dasharray: 2px;
+}
+
+#tooltip {
+    position: absolute;			
+    text-align: center;
+    font: 12px sans-serif;
+		padding: 2px;
+    background: lavender;	
+    border: 0px;		
+    border-radius: 8px;			
+    pointer-events: none;	
 }

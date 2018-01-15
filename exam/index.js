@@ -45,6 +45,7 @@ function init() {
     .defer(d3.csv,  "data/muni_emp.csv")
     .defer(d3.csv,  "data/muni_foreigners.csv")
     .defer(d3.csv,  "data/muni_edu.csv")
+    .defer(d3.csv,  "data/muni_edu_cur.csv")
     .defer(d3.csv,  "data/muni_income.csv")
     .defer(d3.csv,  "data/muni_crime.csv")
     .defer(d3.csv,  "data/reg_crime.csv")
@@ -109,7 +110,7 @@ function collectPops(pop) {
 /*
  * Gets the total age range frequency of the employee data
  */
-function collectEmp(munis, emp) {
+function collectEmp(munis, emp, edu_cur) {
 
   var years = Object.keys(munis)
   // Make an empty object for each muni
@@ -118,6 +119,7 @@ function collectEmp(munis, emp) {
       m.employment = {
         _total_pop: 0,
         _total_emp: 0,
+        _total_edu: 0,
         freq: undefined,
       }
     })
@@ -148,6 +150,15 @@ function collectEmp(munis, emp) {
     })
   })
 
+  edu_cur.forEach(function (e) {
+    empYears.forEach(function (y) {
+      var muni = munis[y].get(e.municipality)
+
+      // Insert raw data
+      muni.employment._total_edu += e[y] - 0
+    })
+  })
+
   // Now iterate over munis and divide raw data
   // And also take average over last two years (if there)
   var y
@@ -156,7 +167,7 @@ function collectEmp(munis, emp) {
 
     munis[y].forEach(function (m) {
       if (m.employment._total_pop) {
-        m.employment.freq = m.employment._total_emp / m.employment._total_pop
+        m.employment.freq = (m.employment._total_emp + m.employment._total_edu)  / m.employment._total_pop
       }
       // look two years back for avg
       var n = 0
@@ -389,7 +400,7 @@ function plot2(ghettos, munis) {
 
 }
 
-function _init(err, ghetto, pop, emp, foreigners, edu, income, crime, reg_crime, reg_income) {
+function _init(err, ghetto, pop, emp, foreigners, edu, edu_cur, income, crime, reg_crime, reg_income) {
   console.log("ghetto")
   console.log(ghetto)
   console.log("pop")
@@ -411,17 +422,83 @@ function _init(err, ghetto, pop, emp, foreigners, edu, income, crime, reg_crime,
 
   ghettos = ghetto
   munis = collectPops(pop)
-  collectEmp(munis, emp)
+  collectEmp(munis, emp, edu_cur)
   collectForeigners(munis, foreigners)
   collectEducation(munis, edu)
   collectCrime(munis, crime)
   regions = {}
   console.log(munis)
 
+  var dropdownMenu = d3.select("#sticky-selector")
+                       .append("select")
+  Object.keys(ghettos).forEach(function (y) {
+    ghettos[y].forEach(function (g) {
+      var muni = munis[y].get(g.municipality)
+      if (!muni.ghettos) {
+        muni.ghettos = []
+      }
+      muni.ghettos.push[g.id]
+
+    })
+    dropdownMenu.append("option")
+              .attr("option", y)
+              .text(y)
+    
+  })
+  $("#sticky-selector").sticky({topSpacing: 0});
+  
   plot2(ghettos, munis)
 
+  d3.select("#sticky-selector")
+    .append("button")
+    .text("play")
+    .on("click", playAll)
+  
   generateWeirdHistograms()
+
+  d3.select("body")
+    .append("div")
+    .attr("id", "tooltip")
+    .style("opacity", 0);
+
+  console.log(dropdownMenu)
+  dropdownMenu.property("value", 2017)
+  dropdownMenu.on("change", function () {
+    yearChange(d3.select(this).property("value"))
+  })
 }
+
+function playAll() {
+  play(d3.min(Object.keys(ghettos).map((x) => x - 0)))
+}
+
+function play(year) {
+  if (year > 2017) return;
+  yearChange(year)
+  d3.timeout(() => play(year + 1), 1000)
+
+}
+
+function yearChange(year) {
+  d3.select("#sticky-selector select").property("value", year)
+  updateAllWeirdHistograms(year);
+}
+
+function showTooltip(x, y, content) {
+  d3.select("#tooltip")
+    .style("left", `${x}px`)
+    .style("top", `${y}px`)
+    .html(content)
+    .transition()
+    .style("opacity", 1)
+}
+
+function hideTooltip() {
+  d3.select("#tooltip")
+    .transition()
+    .style("opacity", 0)
+}
+
 
 var histogramData = {
   width: 600,
@@ -463,32 +540,35 @@ function generateWeirdHistograms() {
  * :key is the key on the objects
  */
 function generateWeirdHistogram(svg, key, year, dims, padding) {
+
   var container = svg.append("g")
-                     .attr("transform", `translate(${padding} ${padding + dims.height/2})`)
+                     .attr("transform", `translate(${padding} ${padding + dims.height/2})`);
 
   container.append("g")
-                     .attr("class", "x-axis")
+           .attr("class", "x-axis");
 
   container.append("g")
-                     .attr("class", "points")
+           .attr("class", "points");
 
   svg.append("g")
-                     .attr("class", "title")
-                     .attr("transform", `translate(${padding} ${padding})`)
-                     .append("text")
-                     .attr("font-size", "12")
+     .attr("class", "title")
+     .attr("transform", `translate(${padding} ${padding})`)
+     .append("text")
+     .attr("font-size", "12");
 
   var lim = svg.append("g")
                .attr("class", "limit")
+               .attr("transform", `translate(${padding})`);
+  
   lim.append("line")
-               .attr("y1", padding)
-               .attr("y2", dims.height - padding)
-               .attr("x1", 0)
-               .attr("x2", 0)
+     .attr("y1", padding)
+     .attr("y2", dims.height - padding)
+     .attr("x1", 0)
+     .attr("x2", 0);
   lim.append("text")
-               .attr("y", padding * 2)
-               .attr("x", 0)
-  updateWeirdHistogram(svg, key, year, dims)
+     .attr("y", padding * 2)
+     .attr("x", 0);
+  updateWeirdHistogram(svg, key, year, dims, padding)
 }
 
 function updateAllWeirdHistograms(year) {
@@ -530,10 +610,7 @@ function updateWeirdHistogram(container, key, year, dims, padding) {
   container.select(".title text").text(friendlyNames[key])
   var data = munis[year].concat(ghettos[year].filter((d) => !!d.ghetto))
   var _key = (d) => d[key]
-  console.log(data)
-  var ticks = 100
-  var tickWidth = (dims.width) / ticks
-  var dotSize = tickWidth / 2 - 1
+
   var ext = d3.extent(data, _key)
 
   // Limit line
@@ -544,14 +621,22 @@ function updateWeirdHistogram(container, key, year, dims, padding) {
             .domain(prettyExt)
             .range([0, dims.width])
 
+  var ticks = 60
+  //var actualTicks = x.ticks(ticks)
+  var actualTicks = d3.range(ext[0], ext[1], (ext[1] - ext[0]) / ticks)
+  var tickWidth = (dims.width) / actualTicks.length
+  var dotSize = (tickWidth / 2) * 0.5
+
   var hist = d3.histogram()
-               .domain(x.domain())
-               .thresholds(x.ticks(ticks))
                .value(_key)
+               .domain(x.domain())
+               .thresholds(actualTicks)
+
 
   var bins = hist(data)
 
   var pointsData = bins.reduce(function (acc, cur, i) {
+    
     var annotated = cur.map(function (d, i) {
       return { x0: cur.x0,
                x1: cur.x1,
@@ -574,26 +659,33 @@ function updateWeirdHistogram(container, key, year, dims, padding) {
     .selectAll('.point')
     .data(pointsData)
 
-  console.log(points)
-
   var _ypos = function(d, i) {
     var mag = ((d.binIndex + 1) / 2) * 7 + 2
     return (d.binIndex + 1) % 2 ? -mag : mag
   }
 
   points.attr("r", dotSize)
+        .classed("ghetto", (d) => !!d.ghetto)
+        .classed("hasGhetto", (d) => !d.ghetto && d.ghettos)
         .transition()
         .duration(1000)
-        .attr("cx", (d) => x(d.x0))
+        .attr("cx", (d) => x((d.x1 + d.x0) / 2))
         .attr("cy", _ypos)
 
   points.enter()
         .append("circle")
         .attr("r", dotSize)
-        .attr("cx", (d) => x(d.x0))
+        .attr("cx", (d) => x((d.x1 + d.x0)/ 2))
         .attr("cy", _ypos)
         .attr("class", "point")
         .classed("ghetto", (d) => !!d.ghetto)
+        .classed("hasGhetto", (d) => !d.ghetto && d.ghettos)
+        .on("mouseover", function (d) {
+          showTooltip(d3.event.pageX + 11, d3.event.pageY, `${d.id}<br>${d[key].toFixed(2)}%`)
+        })
+        .on("mouseout", function (d) {
+          hideTooltip()
+        })
         .style("opacity", 0)
         .transition()
         .style("opacity", 1)
@@ -603,16 +695,16 @@ function updateWeirdHistogram(container, key, year, dims, padding) {
         .style("opacity", 0)
         .remove()
 
-  var lim = container.select(".limit")
+  var lim = container.select(".limit");
   lim.select("line")
-                     .transition()
-                     .duration(1000)
-                     .attr("x1", x(criterion[year][key]))
-                     .attr("x2", x(criterion[year][key]))
+     .transition()
+     .duration(1000)
+     .attr("x1", x(criterion[year][key]))
+     .attr("x2", x(criterion[year][key]));
   lim.select("text")
-                     .transition()
-                     .duration(1000)
-                     .attr("x", x(criterion[year][key]) + 10)
-  .text(`${criterion[year][key]}%`)
+     .transition()
+     .duration(1000)
+     .attr("x", x(criterion[year][key]) + 10)
+     .text(`${criterion[year][key]}%`)
 
 }
