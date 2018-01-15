@@ -293,15 +293,20 @@ function _init(err, ghetto, pop, emp, foreigners, edu, income, crime, reg_crime,
   generateWeirdHistograms()
 }
 
+var histogramData = {
+  width: 600,
+  height: 1000,
+  padding: 20,
+}
+
 function generateWeirdHistograms() {
   var dims = {
-    width: 600,
-    height: 1100,
+    width: histogramData.width,
+    height: histogramData.height,
   }
 
-  var padding = 20
+  var padding = histogramData.padding
 
-  var topPadding = 100
   var histoMensions = {
     width: dims.width,
     height: dims.height / 5,
@@ -339,19 +344,69 @@ function generateWeirdHistogram(svg, key, year, dims, padding) {
 
   svg.append("g")
                      .attr("class", "title")
+                     .attr("transform", `translate(${padding} ${padding})`)
+                     .append("text")
+                     .attr("font-size", "12")
+
+  var lim = svg.append("g")
+               .attr("class", "limit")
+  lim.append("line")
+               .attr("y1", padding)
+               .attr("y2", dims.height - padding)
+               .attr("x1", 0)
+               .attr("x2", 0)
+  lim.append("text")
+               .attr("y", padding * 2)
+               .attr("x", 0)
   updateWeirdHistogram(svg, key, year, dims)
 }
 
-function updateWeirdHistogram(container, key, year, dims) {
+function updateAllWeirdHistograms(year) {
+  var dims = {
+    width: histogramData.width,
+    height: histogramData.height,
+  }
 
+  var padding = histogramData.padding
+
+  var histoMensions = {
+    width: dims.width,
+    height: dims.height / 5,
+  }
+
+  var allCats = Object.keys(criterion[2017])
+  var yearCats = Object.keys(criterion[year])
+
+  allCats.forEach(function(cat) {
+    var svg = d3.select(`#histograms .${cat}`)
+    console.log(cat)
+    if (yearCats.indexOf(cat) >= 0) {
+      svg.transition()
+         .style("stroke-opacity", 1)
+         .style("fill-opacity", 1)
+      updateWeirdHistogram(svg, cat, year, histoMensions, padding)
+
+    } else {
+      svg.transition()
+         .style("stroke-opacity", 0.05)
+         .style("fill-opacity", 0.05)
+
+    } 
+  })
+  
+}
+
+function updateWeirdHistogram(container, key, year, dims, padding) {
+  container.select(".title text").text(friendlyNames[key])
   var data = munis[year].concat(ghettos[year].filter((d) => !!d.ghetto))
   var _key = (d) => d[key]
   console.log(data)
-  var ticks = 50
+  var ticks = 100
   var tickWidth = (dims.width) / ticks
-
+  var dotSize = tickWidth / 2 - 1
   var ext = d3.extent(data, _key)
-  console.log(data[0][key])
+
+  // Limit line
   var prettyExt = [Math.max(0, ext[0] - 0.25 * (ext[1] - ext[0])),
                    Math.min(100, ext[1] + 0.25 * (ext[1] - ext[0]))]
 
@@ -396,14 +451,15 @@ function updateWeirdHistogram(container, key, year, dims) {
     return (d.binIndex + 1) % 2 ? -mag : mag
   }
 
-  points.attr("r", "2.5")
+  points.attr("r", dotSize)
         .transition()
+        .duration(1000)
         .attr("cx", (d) => x(d.x0))
         .attr("cy", _ypos)
 
   points.enter()
         .append("circle")
-        .attr("r", "2.5")
+        .attr("r", dotSize)
         .attr("cx", (d) => x(d.x0))
         .attr("cy", _ypos)
         .attr("class", "point")
@@ -416,5 +472,17 @@ function updateWeirdHistogram(container, key, year, dims) {
         .transition()
         .style("opacity", 0)
         .remove()
+
+  var lim = container.select(".limit")
+  lim.select("line")
+                     .transition()
+                     .duration(1000)
+                     .attr("x1", x(criterion[year][key]))
+                     .attr("x2", x(criterion[year][key]))
+  lim.select("text")
+                     .transition()
+                     .duration(1000)
+                     .attr("x", x(criterion[year][key]) + 10)
+  .text(`${criterion[year][key]}%`)
 
 }

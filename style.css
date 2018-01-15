@@ -136,9 +136,18 @@ circle.selected {
 .point {
     fill:none;
     stroke: black;
-    stroke-width: 1.5px
+    stroke-width: 1px
+}
+
+#histograms svg text {
+    font-size: 11px
 }
 
 .point.ghetto {
     fill: steelblue;
+}
+
+g.limit line {
+    stroke: grey;
+    stroke-dasharray: 2px;
 }
