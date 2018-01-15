@@ -51,7 +51,7 @@
     {
       "ghetto":true,
       "id":"Tåstrupgård",
-      "municipality":"Høje-Taastrup",
+      "municipality":"Høje Tåstrup",
       "new":false,
       "residents":2698,
       "unemployed":30.3,
@@ -63,7 +63,7 @@
     {
       "ghetto":true,
       "id":"Gadehavegård",
-      "municipality":"Høje-Taastrup",
+      "municipality":"Høje Tåstrup",
       "new":false,
       "residents":2133,
       "unemployed":41.4,
@@ -267,7 +267,7 @@
     {
       "ghetto":false,
       "id":"Charlotteager",
-      "municipality":"Høje-Taastrup",
+      "municipality":"Høje Tåstrup",
       "new":false,
       "residents":1747,
       "unemployed":47.4,
@@ -365,7 +365,7 @@
     {
       "ghetto":true,
       "id":"Tåstrupgård",
-      "municipality":"Høje-Taastrup",
+      "municipality":"Høje Tåstrup",
       "new":false,
       "residents":2670,
       "unemployed":31.4,
@@ -377,7 +377,7 @@
     {
       "ghetto":true,
       "id":"Charlotteager",
-      "municipality":"Høje-Taastrup",
+      "municipality":"Høje Tåstrup",
       "new":false,
       "residents":1755,
       "unemployed":38.2,
@@ -389,7 +389,7 @@
     {
       "ghetto":true,
       "id":"Gadehavegård",
-      "municipality":"Høje-Taastrup",
+      "municipality":"Høje Tåstrup",
       "new":false,
       "residents":2153,
       "unemployed":42.0,
@@ -715,7 +715,7 @@
     {
       "ghetto":true,
       "id":"Tåstrupgård",
-      "municipality":"Høje-Taastrup",
+      "municipality":"Høje Tåstrup",
       "new":false,
       "residents":2626,
       "unemployed":32.6,
@@ -727,7 +727,7 @@
     {
       "ghetto":true,
       "id":"Charlotteager",
-      "municipality":"Høje-Taastrup",
+      "municipality":"Høje Tåstrup",
       "new":false,
       "residents":1741,
       "unemployed":39.7,
@@ -739,7 +739,7 @@
     {
       "ghetto":true,
       "id":"Gadehavegård",
-      "municipality":"Høje-Taastrup",
+      "municipality":"Høje Tåstrup",
       "new":false,
       "residents":2142,
       "unemployed":42.6,
@@ -1173,7 +1173,7 @@
     {
       "ghetto":true,
       "id":"Tåstrupgård",
-      "municipality":"Høje-Taastrup",
+      "municipality":"Høje Tåstrup",
       "new":false,
       "residents":2549,
       "unemployed":35.0,
@@ -1185,7 +1185,7 @@
     {
       "ghetto":true,
       "id":"Charlotteager",
-      "municipality":"Høje-Taastrup",
+      "municipality":"Høje Tåstrup",
       "new":false,
       "residents":1715,
       "unemployed":41.7,
@@ -1197,7 +1197,7 @@
     {
       "ghetto":true,
       "id":"Gadehavegård",
-      "municipality":"Høje-Taastrup",
+      "municipality":"Høje Tåstrup",
       "new":false,
       "residents":2078,
       "unemployed":43.8,
@@ -1627,7 +1627,7 @@
     {
       "ghetto":true,
       "id":"Tåstrupgård",
-      "municipality":"Høje-Taastrup",
+      "municipality":"Høje Tåstrup",
       "new":false,
       "residents":2563,
       "unemployed":36.4,
@@ -1637,7 +1637,7 @@
     {
       "ghetto":true,
       "id":"Charlotteager",
-      "municipality":"Høje-Taastrup",
+      "municipality":"Høje Tåstrup",
       "new":false,
       "residents":1697,
       "unemployed":40.8,
@@ -1647,7 +1647,7 @@
     {
       "ghetto":true,
       "id":"Gadehavegård",
-      "municipality":"Høje-Taastrup",
+      "municipality":"Høje Tåstrup",
       "new":false,
       "residents":2056,
       "unemployed":41.3,

@@ -5,7 +5,33 @@ d3.select(window).on("load", init);
 var ghettos
 var munis
 var regions
+var criterion = {}
 
+var friendlyNames = {
+  unemployed: "Unemployed 18-64 (% 2 year avg)",
+  immigrants: "Non Western Immigrants 18+ (%)",
+  prosecuted: "Convicted Criminals 18+ (% 2 year avg)",
+  education: "Only Completed Primary Education 30-59 (%)",
+  income: "Gross Income as Percentage of Mean Regional Income"
+}
+
+for (var i = 2010; i < 2018; i++) {
+    if (i < 2014) {
+        criterion[i] = {
+            unemployed: 40,
+            immigrants: 50,
+            prosecuted: 2.7,
+        }
+    } else {
+        criterion[i] = {
+            unemployed: 40,
+            immigrants: 50,
+            prosecuted: 2.7,
+            education: 50,
+            income: 55,
+        }
+    }
+}
 
 function objectSort(a, b) {
   a.id.localeCompare(b.id)
@@ -204,7 +230,7 @@ function collectEducation(munis, edu) {
 }
 
 /*
- * Collects the crime data 
+ * Collects the crime data
  * total is divided by pop for each year
  */
 function collectCrime(munis, crime) {
@@ -391,5 +417,134 @@ function _init(err, ghetto, pop, emp, foreigners, edu, income, crime, reg_crime,
   collectCrime(munis, crime)
   regions = {}
   console.log(munis)
+
   plot2(ghettos, munis)
+
+  generateWeirdHistograms()
+}
+
+function generateWeirdHistograms() {
+  var dims = {
+    width: 600,
+    height: 1100,
+  }
+
+  var padding = 20
+
+  var topPadding = 100
+  var histoMensions = {
+    width: dims.width,
+    height: dims.height / 5,
+  }
+
+  Object.keys(criterion[2017]).forEach(function (key, i) {
+    var svg = d3.select("#histograms")
+                .append("div")
+                .attr("class", key)
+                .append("svg")
+                .style("width", 2*padding + dims.width + "px")
+                .style("height", 2*padding + histoMensions.height + "px")
+
+    generateWeirdHistogram(svg, key, 2017, histoMensions, padding)
+    console.log(key)
+  })
+
+}
+
+
+
+/* Overview chart thingies
+ * :id whatever needed to d3.select the container
+ * :key is the key on the objects
+ */
+function generateWeirdHistogram(svg, key, year, dims, padding) {
+  var container = svg.append("g")
+                     .attr("transform", `translate(${padding} ${padding + dims.height/2})`)
+
+  container.append("g")
+                     .attr("class", "x-axis")
+
+  container.append("g")
+                     .attr("class", "points")
+
+  svg.append("g")
+                     .attr("class", "title")
+  updateWeirdHistogram(svg, key, year, dims)
+}
+
+function updateWeirdHistogram(container, key, year, dims) {
+
+  var data = munis[year].concat(ghettos[year].filter((d) => !!d.ghetto))
+  var _key = (d) => d[key]
+  console.log(data)
+  var ticks = 50
+  var tickWidth = (dims.width) / ticks
+
+  var ext = d3.extent(data, _key)
+  console.log(data[0][key])
+  var prettyExt = [Math.max(0, ext[0] - 0.25 * (ext[1] - ext[0])),
+                   Math.min(100, ext[1] + 0.25 * (ext[1] - ext[0]))]
+
+  var x = d3.scaleLinear()
+            .domain(prettyExt)
+            .range([0, dims.width])
+
+  var hist = d3.histogram()
+               .domain(x.domain())
+               .thresholds(x.ticks(ticks))
+               .value(_key)
+
+  var bins = hist(data)
+
+  var pointsData = bins.reduce(function (acc, cur, i) {
+    var annotated = cur.map(function (d, i) {
+      return { x0: cur.x0,
+               x1: cur.x1,
+               binIndex: i,
+               ...d
+      }
+    })
+    return acc.concat(annotated)
+  })
+
+  var axis = d3.axisBottom(x)
+               .ticks(2)
+               .tickValues(x.domain())
+
+  container.selectAll("g.x-axis")
+               .call(axis)
+
+  var points = container
+    .select('.points')
+    .selectAll('.point')
+    .data(pointsData)
+
+  console.log(points)
+
+  var _ypos = function(d, i) {
+    var mag = ((d.binIndex + 1) / 2) * 7 + 2
+    return (d.binIndex + 1) % 2 ? -mag : mag
+  }
+
+  points.attr("r", "2.5")
+        .transition()
+        .attr("cx", (d) => x(d.x0))
+        .attr("cy", _ypos)
+
+  points.enter()
+        .append("circle")
+        .attr("r", "2.5")
+        .attr("cx", (d) => x(d.x0))
+        .attr("cy", _ypos)
+        .attr("class", "point")
+        .classed("ghetto", (d) => !!d.ghetto)
+        .style("opacity", 0)
+        .transition()
+        .style("opacity", 1)
+
+  points.exit()
+        .transition()
+        .style("opacity", 0)
+        .remove()
+
 }
