@@ -293,28 +293,30 @@ function initPlot2() {
   // defining margin
   const margin = {
     top: 20,
-    bottom: 120,
-    left: 30,
-    right: 30,
+    bottom: 20,
+    left: 150,
+    right: 100,
   }
 
   // defining dimensions of all 5 subplots
   const dim = {
-    w: 700 - margin.left - margin.right,
-    h: 500 - margin.top - margin.bottom,
+    w: 500,
+    h: 500,
   }
 
   // defining dimensions of a single subplot
   const oneDim = {
-    w: dim.w,
-    h: dim.h / 5,
+    w: dim.w / 5,
+    h: dim.h ,
   }
 
-  const padding = 20
+  const padding = 10
 
   var svg = d3.select('#plot2')
     .attr('width', dim.w + margin.left + margin.right)
     .attr('height', dim.h + margin.top + margin.bottom)
+    .append("g")
+    .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
   Object.keys(criterion[2015]).forEach(function (key, i) {
     onePlot2(svg, key, 2015, oneDim, padding, i, margin)
@@ -327,13 +329,13 @@ function onePlot2(svg, key, year, oneDim, padding, i, margin) {
   // selecting plot area
   var svgSub = svg.append("g")
     .attr("class", key)
-    .attr('width', oneDim.w + margin.left + margin.right)
-    .attr('height', oneDim.h + margin.top + margin.bottom)
-    .attr('transform', `translate(${padding}, ${ oneDim.h * (1+i)})`);
-  updatePlot2(svgSub, key, year, oneDim)
+    .attr('width', oneDim.w)
+    .attr('height', oneDim.h)
+    .attr('transform', `translate(${(oneDim.w+1/3*padding) * i}, ${0})`);
+  updatePlot2(svgSub, key, year, oneDim, i)
 }
 
-function updatePlot2(svg, key, year, oneDim) {
+function updatePlot2(svg, key, year, oneDim, i) {
   // filter ghetto = true
   function ghettoFilter(obj) {
     return obj.ghetto
@@ -379,22 +381,33 @@ function updatePlot2(svg, key, year, oneDim) {
     else {return 0}
   }
   m.sort(compareMuni)
+  m.reverse()
 
   // initialize data array
   data = []
   // fill
   m.forEach(function(i) {
-    data.push(i)
+
     g.forEach(function(t) {
       if (t.municipality === i.municipality) {
         data.push(t)
       }
     })
+    data.push(i)
   })
 
   // define scales
+  var xSpan = d3.max(data, function(d) { return d[key] }) - d3.min(data, function(d) { return d[key] })
+  var xScale = d3.scaleLinear()
+    .domain([d3.min(data, function(d) { return d[key] }) - xSpan * 0.1,
+      d3.max(data, function(d) { return d[key] }) + xSpan * 0.1])
+    .range([0, oneDim.w ])
+  var yScale = d3.scaleBand()
+    .domain(data.map(function(d) { return d.id }))
+    .range([oneDim.h, 0])
+    .padding(0.1)
   // old scales
-
+/*
   var xScale = d3.scaleBand()
     .domain(data.map(function(d) { return d.id }))
     .range([0, oneDim.w])
@@ -404,47 +417,62 @@ function updatePlot2(svg, key, year, oneDim) {
     .domain([d3.min(data, function(d) { return d[key] }) - ySpan * 0.1,
       d3.max(data, function(d) { return d[key] }) + ySpan * 0.1])
     .range([oneDim.h, 0])
-
+*/
 
   // adding bars
   svg.selectAll("bar")
     .data(data)
     .enter().append("rect")
-    .style("fill", function(d) {if (d.ghetto === true) {return "red"} else {return "steelblue"}})
-    .attr("x", function(d) { return xScale(d.id); })
-    .attr("width", xScale.bandwidth)
-    .attr("y", function(d) { return yScale(d[key]); })
-    .attr("height", function(d) { return oneDim.h - yScale(d[key]); });
+    .style("fill", function(d) {if (d.ghetto === true) {return "tomato"} else {return "steelblue"}})
+    .attr("x", 0)
+    .attr("width", function(d) { return xScale(d[key]); })
+    .attr("y", function(d) { return yScale(d.id); })
+    .attr("height", yScale.bandwidth);
 
   // adding axis
+
   var xAxis = d3.axisBottom()
     .scale(xScale)
+    .ticks(5)
   var yAxis = d3.axisLeft()
     .scale(yScale)
-    .ticks(5)
-  /* removed xAxis for now
   svg.append("g")
     .attr("class", "axis")
     .attr("transform", "translate(0," + oneDim.h + ")")
     .call(xAxis)
     .selectAll("text")
     .style("text-anchor", "end")
-    .attr("dx", "-.8em")
-    .attr("dy", "-.55em")
-    .attr("transform", "rotate(-90)" );
+    .attr("dx", "+.4em")
+    .attr("dy", "+.55em")
+  if (i === 0) { // only apply on the leftmost subplot
+    svg.append("g")
+      .call(yAxis)
+      .selectAll("text")
+      .data(data)
+      .style("font-weight", function(d) {if (d.id === d.municipality) {return "bold"} else {return "normal"}})
+      .style("text-decoration", function(d) {if (d.id === d.municipality) {return "underline"} else {return "normal"}})
+  }
+  /* vertical lines, not a fan
+  else {
+    svg.append("line")
+      .attr("x1",0)
+      .attr("y1",0)
+      .attr("x2",0)
+      .attr("y2",oneDim.h)
+      .attr("stroke-width", 1)
+      .attr("stroke", "black")
+  }
   */
-  svg.append("g")
-    .call(yAxis)
 
   // adding cut-off line
   svg.append("line")
-    .attr("x1",0)
-    .attr("y1",yScale(criterion[year][key]))
-    .attr("x2",oneDim.w)
-    .attr("y2",yScale(criterion[year][key]))
+    .attr("x1",xScale(criterion[year][key]))
+    .attr("y1",0)
+    .attr("x2",xScale(criterion[year][key]))
+    .attr("y2",oneDim.h)
     .attr("stroke-width", 1)
     .attr("stroke", "black")
-    .attr("stroke-dasharray", "4,10")
+    .attr("stroke-dasharray", "5,5")
 
   // to-do: adding title and other stuff
 
