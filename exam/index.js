@@ -254,14 +254,101 @@ function collectCrime(munis, crime) {
   })
 }
 
-function plot2(ghettos, munis) {
+function _init(err, ghetto, pop, emp, foreigners, edu, income, crime, reg_crime, reg_income) {
+  console.log("ghetto")
+  console.log(ghetto)
+  console.log("pop")
+  console.log(pop)
+  console.log("emp")
+  console.log(emp)
+  console.log("foreigners")
+  console.log(foreigners)
+  console.log("edu")
+  console.log(edu)
+  console.log("income")
+  console.log(income)
+  console.log("crime")
+  console.log(crime)
+  console.log("reg_crime")
+  console.log(reg_crime)
+  console.log("reg_income")
+  console.log(reg_income)
 
-  // to-do: expand data. currently only 2015
+  ghettos = ghetto
+  munis = collectPops(pop)
+  collectEmp(munis, emp)
+  collectForeigners(munis, foreigners)
+  collectEducation(munis, edu)
+  collectCrime(munis, crime)
+  regions = {}
+  console.log(munis)
+
+  initPlot2()
+
+  generateWeirdHistograms()
+}
+
+function initPlot2() {
+
+  // defining margin
+  const margin = {
+    top: 20,
+    bottom: 120,
+    left: 30,
+    right: 30,
+  }
+
+  // defining dimensions of all 5 subplots
+  const dim = {
+    w: 700 - margin.left - margin.right,
+    h: 500 - margin.top - margin.bottom,
+  }
+
+  // defining dimensions of a single subplot
+  const oneDim = {
+    w: dim.w,
+    h: dim.h / 5,
+  }
+
+  const padding = 20
+
+  Object.keys(criterion[2015]).forEach(function (key) {
+    // selecting plot area
+    var svg = d3.select('#plot2')
+      .append("div")
+      .attr("class", key)
+      .append("svg")
+      .attr('width', oneDim.w + margin.left + margin.right)
+      .attr('height', oneDim.h + margin.top + margin.bottom)
+
+    onePlot2(svg, key, 2015, oneDim, padding)
+    console.log(key)
+  })
+  console.log("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
+}
+
+function onePlot2(svg, key, year, oneDim, padding) {
+  var container = svg.append("g")
+    .attr('transform', `translate(${padding}, ${padding})`);
+
+  container.append("g")
+    .attr("class", "x-axis")
+
+  container.append("g")
+    .attr("class", "y-axis")
+
+  svg.append("g")
+    .attr("class", "title")
+
+  updatePlot2(svg, key, year, oneDim)
+}
+
+function updatePlot2(svg, key, year, oneDim) {
   // filter ghetto = true
   function ghettoFilter(obj) {
     return obj.ghetto
   }
-  var g = ghettos[2015].filter(ghettoFilter)
+  var g = ghettos[year].filter(ghettoFilter)
 
   // list of unique municipalities of the ghettos
   var muniList = [...new Set(g.map(item => item.municipality))]
@@ -276,7 +363,7 @@ function plot2(ghettos, munis) {
       return false
     }
   }
-  var m = munis[2015].filter(muniFilter)
+  var m = munis[year].filter(muniFilter)
   console.log(m)
 
   // number of ghettos in each municipality
@@ -315,37 +402,19 @@ function plot2(ghettos, munis) {
     })
   })
 
-  // defining margin
-  const margin = {
-    top: 20,
-    bottom: 150,
-    left:30,
-    right: 30,
-  }
-
-  // defining dimensions of the 5 subplots
-  const dim = {
-    w: 700 - margin.left - margin.right,
-    h: 280 - margin.top - margin.bottom,
-  }
-
-  // selecting plot area
-  var svg = d3.select('#plot2')
-    .attr('width', dim.w + margin.left + margin.right)
-    .attr('height', dim.h + margin.top + margin.bottom)
-    .append('g')
-    .attr('transform', `translate(${margin.left}, ${margin.top})`);
-
   // define scales
-  var xScale = d3.scaleBand() // to-do: add the ordering (muni-ghettos, muni-ghettos ...)
+  // old scales
+
+  var xScale = d3.scaleBand()
     .domain(data.map(function(d) { return d.id }))
-    .range([0, dim.w])
+    .range([0, oneDim.w])
     .padding(0.1)
-  var ySpan =  d3.max(data, function(d) { return d.unemployed }) - d3.min(data, function(d) { return d.unemployed })
+  var ySpan =  d3.max(data, function(d) { return d[key] }) - d3.min(data, function(d) { return d[key] })
   var yScale = d3.scaleLinear()
-    .domain([d3.min(data, function(d) { return d.unemployed }) - ySpan * 0.1,
-      d3.max(data, function(d) { return d.unemployed }) + ySpan * 0.1])
-    .range([dim.h, 0])
+    .domain([d3.min(data, function(d) { return d[key] }) - ySpan * 0.1,
+      d3.max(data, function(d) { return d[key] }) + ySpan * 0.1])
+    .range([oneDim.h, 0])
+
 
   // adding bars
   svg.selectAll("bar")
@@ -354,8 +423,8 @@ function plot2(ghettos, munis) {
     .style("fill", function(d) {if (d.ghetto === true) {return "red"} else {return "steelblue"}})
     .attr("x", function(d) { return xScale(d.id); })
     .attr("width", xScale.bandwidth)
-    .attr("y", function(d) { return yScale(d.unemployed); })
-    .attr("height", function(d) { return dim.h - yScale(d.unemployed); });
+    .attr("y", function(d) { return yScale(d[key]); })
+    .attr("height", function(d) { return oneDim.h - yScale(d[key]); });
 
   // adding axis
   var xAxis = d3.axisBottom()
@@ -365,7 +434,7 @@ function plot2(ghettos, munis) {
     .ticks(5)
   svg.append("g")
     .attr("class", "axis")
-    .attr("transform", "translate(0," + dim.h + ")")
+    .attr("transform", "translate(0," + oneDim.h + ")")
     .call(xAxis)
     .selectAll("text")
     .style("text-anchor", "end")
@@ -375,52 +444,18 @@ function plot2(ghettos, munis) {
   svg.append("g")
     .call(yAxis)
 
-  // to-do: adding cut-off line
+  // adding cut-off line
   svg.append("line")
     .attr("x1",0)
-    .attr("y1",yScale(40))
-    .attr("x2",dim.w)
-    .attr("y2",yScale(40))
+    .attr("y1",yScale(criterion[year][key]))
+    .attr("x2",oneDim.w)
+    .attr("y2",yScale(criterion[year][key]))
     .attr("stroke-width", 1)
     .attr("stroke", "black")
     .attr("stroke-dasharray", "4,10")
 
   // to-do: adding title and other stuff
 
-}
-
-function _init(err, ghetto, pop, emp, foreigners, edu, income, crime, reg_crime, reg_income) {
-  console.log("ghetto")
-  console.log(ghetto)
-  console.log("pop")
-  console.log(pop)
-  console.log("emp")
-  console.log(emp)
-  console.log("foreigners")
-  console.log(foreigners)
-  console.log("edu")
-  console.log(edu)
-  console.log("income")
-  console.log(income)
-  console.log("crime")
-  console.log(crime)
-  console.log("reg_crime")
-  console.log(reg_crime)
-  console.log("reg_income")
-  console.log(reg_income)
-
-  ghettos = ghetto
-  munis = collectPops(pop)
-  collectEmp(munis, emp)
-  collectForeigners(munis, foreigners)
-  collectEducation(munis, edu)
-  collectCrime(munis, crime)
-  regions = {}
-  console.log(munis)
-
-  plot2(ghettos, munis)
-
-  generateWeirdHistograms()
 }
 
 function generateWeirdHistograms() {
