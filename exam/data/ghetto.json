@@ -2,7 +2,7 @@
   "2017": [
     {
       "ghetto":true,
-      "name":"Mjølnerparken",
+      "id":"Mjølnerparken",
       "municipality":"København",
       "new":false,
       "residents":1752,
@@ -14,7 +14,7 @@
     },
     {
       "ghetto":true,
-      "name":"Gadelandet/Husumgård",
+      "id":"Gadelandet/Husumgård",
       "municipality":"København",
       "new":true,
       "residents":1048,
@@ -26,7 +26,7 @@
     },
     {
       "ghetto":true,
-      "name":"Tingbjerg/Utterslevhuse",
+      "id":"Tingbjerg/Utterslevhuse",
       "municipality":"København",
       "new":false,
       "residents":6527,
@@ -38,7 +38,7 @@
     },
     {
       "ghetto":true,
-      "name":"Bispeparken",
+      "id":"Bispeparken",
       "municipality":"København",
       "new":false,
       "residents":1701,
@@ -50,8 +50,8 @@
     },
     {
       "ghetto":true,
-      "name":"Tåstrupgård",
-      "municipality":"Høje Tåstrup",
+      "id":"Tåstrupgård",
+      "municipality":"Høje-Taastrup",
       "new":false,
       "residents":2698,
       "unemployed":30.3,
@@ -62,8 +62,8 @@
     },
     {
       "ghetto":true,
-      "name":"Gadehavegård",
-      "municipality":"Høje Tåstrup",
+      "id":"Gadehavegård",
+      "municipality":"Høje-Taastrup",
       "new":false,
       "residents":2133,
       "unemployed":41.4,
@@ -74,7 +74,7 @@
     },
     {
       "ghetto":true,
-      "name":"Agervang",
+      "id":"Agervang",
       "municipality":"Holbæk",
       "new":false,
       "residents":1473,
@@ -86,7 +86,7 @@
     },
     {
       "ghetto":true,
-      "name":"Ringparken, Slagelse",
+      "id":"Ringparken, Slagelse",
       "municipality":"Slagelse",
       "new":false,
       "residents":1979,
@@ -98,7 +98,7 @@
     },
     {
       "ghetto":true,
-      "name":"Motalavej",
+      "id":"Motalavej",
       "municipality":"Slagelse",
       "new":false,
       "residents":1698,
@@ -110,7 +110,7 @@
     },
     {
       "ghetto":true,
-      "name":"Lindholdm",
+      "id":"Lindholdm",
       "municipality":"Guldborgsund",
       "new":true,
       "residents":1549,
@@ -122,7 +122,7 @@
     },
     {
       "ghetto":true,
-      "name":"Solbakken mv",
+      "id":"Solbakken mv",
       "municipality":"Odense",
       "new":false,
       "residents":1313,
@@ -134,7 +134,7 @@
     },
     {
       "ghetto":true,
-      "name":"Vollsmose",
+      "id":"Vollsmose",
       "municipality":"Odense",
       "new":false,
       "residents":9184,
@@ -146,7 +146,7 @@
     },
     {
       "ghetto":true,
-      "name":"Nørager/Søstjernevej m.fl",
+      "id":"Nørager/Søstjernevej m.fl",
       "municipality":"Sønderborg",
       "new":false,
       "residents":1344,
@@ -158,7 +158,7 @@
     },
     {
       "ghetto":true,
-      "name":"Stengårdsvej",
+      "id":"Stengårdsvej",
       "municipality":"Esbjerg",
       "new":false,
       "residents":1719,
@@ -170,7 +170,7 @@
     },
     {
       "ghetto":true,
-      "name":"Korskærparken",
+      "id":"Korskærparken",
       "municipality":"Fredericia",
       "new":false,
       "residents":1717,
@@ -182,7 +182,7 @@
     },
     {
       "ghetto":true,
-      "name":"Sundparken",
+      "id":"Sundparken",
       "municipality":"Horsens",
       "new":false,
       "residents":1482,
@@ -194,7 +194,7 @@
     },
     {
       "ghetto":true,
-      "name":"Munkebo",
+      "id":"Munkebo",
       "municipality":"Kolding",
       "new":false,
       "residents":1441,
@@ -206,7 +206,7 @@
     },
     {
       "ghetto":true,
-      "name":"Skovvejen/Skovparken",
+      "id":"Skovvejen/Skovparken",
       "municipality":"Kolding",
       "new":false,
       "residents":2512,
@@ -218,7 +218,7 @@
     },
     {
       "ghetto":true,
-      "name":"Finlandsparken",
+      "id":"Finlandsparken",
       "municipality":"Vejle",
       "new":false,
       "residents":1630,
@@ -230,7 +230,7 @@
     },
     {
       "ghetto":true,
-      "name":"Bispehaven",
+      "id":"Bispehaven",
       "municipality":"Aarhus",
       "new":false,
       "residents":2256,
@@ -242,7 +242,7 @@
     },
     {
       "ghetto":true,
-      "name":"Skovgårdsparken",
+      "id":"Skovgårdsparken",
       "municipality":"Aarhus",
       "new":false,
       "residents":1437,
@@ -254,7 +254,7 @@
     },
     {
       "ghetto":true,
-      "name":"Gellerupparken/Toveshøj",
+      "id":"Gellerupparken/Toveshøj",
       "municipality":"Aarhus",
       "new":false,
       "residents":5874,
@@ -266,8 +266,8 @@
     },
     {
       "ghetto":false,
-      "name":"Charlotteager",
-      "municipality":"Høje Tåstrup",
+      "id":"Charlotteager",
+      "municipality":"Høje-Taastrup",
       "new":false,
       "residents":1747,
       "unemployed":47.4,
@@ -278,7 +278,7 @@
     },
     {
       "ghetto":false,
-      "name":"Askerød",
+      "id":"Askerød",
       "municipality":"Greve",
       "new":false,
       "residents":1540,
@@ -290,7 +290,7 @@
     },
     {
       "ghetto":false,
-      "name":"Karlemoseparken",
+      "id":"Karlemoseparken",
       "municipality":"Køge",
       "new":false,
       "residents":1511,
@@ -302,7 +302,7 @@
     },
     {
       "ghetto":false,
-      "name":"Rønnebærparken/Æblehaven",
+      "id":"Rønnebærparken/Æblehaven",
       "municipality":"Roskilde",
       "new":false,
       "residents":1483,
@@ -314,7 +314,7 @@
     },
     {
       "ghetto":false,
-      "name":"Byparken/Skovparken",
+      "id":"Byparken/Skovparken",
       "municipality":"Svendborg",
       "new":false,
       "residents":1379,
@@ -328,7 +328,7 @@
   "2016": [
     {
       "ghetto":true,
-      "name":"Mjølnerparken",
+      "id":"Mjølnerparken",
       "municipality":"København",
       "new":false,
       "residents":1790,
@@ -340,7 +340,7 @@
     },
     {
       "ghetto":true,
-      "name":"Tingbejrg/Utterslevhuse",
+      "id":"Tingbejrg/Utterslevhuse",
       "municipality":"København",
       "new":false,
       "residents":6612,
@@ -352,7 +352,7 @@
     },
     {
       "ghetto":true,
-      "name":"Bispeparken",
+      "id":"Bispeparken",
       "municipality":"København",
       "new":true,
       "residents":1683,
@@ -364,8 +364,8 @@
     },
     {
       "ghetto":true,
-      "name":"Tåstrupgård",
-      "municipality":"Høje Tåstrup",
+      "id":"Tåstrupgård",
+      "municipality":"Høje-Taastrup",
       "new":false,
       "residents":2670,
       "unemployed":31.4,
@@ -376,8 +376,8 @@
     },
     {
       "ghetto":true,
-      "name":"Charlotteager",
-      "municipality":"Høje Tåstrup",
+      "id":"Charlotteager",
+      "municipality":"Høje-Taastrup",
       "new":false,
       "residents":1755,
       "unemployed":38.2,
@@ -388,8 +388,8 @@
     },
     {
       "ghetto":true,
-      "name":"Gadehavegård",
-      "municipality":"Høje Tåstrup",
+      "id":"Gadehavegård",
+      "municipality":"Høje-Taastrup",
       "new":false,
       "residents":2153,
       "unemployed":42.0,
@@ -400,7 +400,7 @@
     },
     {
       "ghetto":true,
-      "name":"Askerød",
+      "id":"Askerød",
       "municipality":"Greve",
       "new":false,
       "residents":1539,
@@ -412,7 +412,7 @@
     },
     {
       "ghetto":true,
-      "name":"Karlemoseparken",
+      "id":"Karlemoseparken",
       "municipality":"Køge",
       "new":false,
       "residents":1488,
@@ -424,7 +424,7 @@
     },
     {
       "ghetto":true,
-      "name":"Rønnebærparken/Æblehaven",
+      "id":"Rønnebærparken/Æblehaven",
       "municipality":"Roskilde",
       "new":false,
       "residents":1494,
@@ -436,7 +436,7 @@
     },
     {
       "ghetto":true,
-      "name":"Agervang",
+      "id":"Agervang",
       "municipality":"Holbæk",
       "new":false,
       "residents":1470,
@@ -448,7 +448,7 @@
     },
     {
       "ghetto":true,
-      "name":"Ringparken, Slagelse",
+      "id":"Ringparken, Slagelse",
       "municipality":"Slagelse",
       "new":false,
       "residents":1978,
@@ -460,7 +460,7 @@
     },
     {
       "ghetto":true,
-      "name":"Motalavej",
+      "id":"Motalavej",
       "municipality":"Slagelse",
       "new":false,
       "residents":1691,
@@ -472,7 +472,7 @@
     },
     {
       "ghetto":true,
-      "name":"Solbakken mv",
+      "id":"Solbakken mv",
       "municipality":"Odense",
       "new":true,
       "residents":1301,
@@ -484,7 +484,7 @@
     },
     {
       "ghetto":true,
-      "name":"Vollsmose",
+      "id":"Vollsmose",
       "municipality":"Odense",
       "new":false,
       "residents":9238,
@@ -496,7 +496,7 @@
     },
     {
       "ghetto":true,
-      "name":"Byparken/Skovparken",
+      "id":"Byparken/Skovparken",
       "municipality":"Svendborg",
       "new":false,
       "residents":1415,
@@ -508,7 +508,7 @@
     },
     {
       "ghetto":true,
-      "name":"Nørager/Søstjernevej m.fl",
+      "id":"Nørager/Søstjernevej m.fl",
       "municipality":"Sønderborg",
       "new":true,
       "residents":1308,
@@ -520,7 +520,7 @@
     },
     {
       "ghetto":true,
-      "name":"Stengårdsvej",
+      "id":"Stengårdsvej",
       "municipality":"Esbjerg",
       "new":false,
       "residents":1811,
@@ -532,7 +532,7 @@
     },
     {
       "ghetto":true,
-      "name":"Korskærparken",
+      "id":"Korskærparken",
       "municipality":"Fredericia",
       "new":false,
       "residents":1679,
@@ -544,7 +544,7 @@
     },
     {
       "ghetto":true,
-      "name":"Sundparken",
+      "id":"Sundparken",
       "municipality":"Horsens",
       "new":false,
       "residents":1446,
@@ -556,7 +556,7 @@
     },
     {
       "ghetto":true,
-      "name":"Munkebo",
+      "id":"Munkebo",
       "municipality":"Kolding",
       "new":false,
       "residents":1418,
@@ -568,7 +568,7 @@
     },
     {
       "ghetto":true,
-      "name":"Skovvejen/Skovparken",
+      "id":"Skovvejen/Skovparken",
       "municipality":"Kolding",
       "new":false,
       "residents":2540,
@@ -580,7 +580,7 @@
     },
     {
       "ghetto":true,
-      "name":"Finlandsparken",
+      "id":"Finlandsparken",
       "municipality":"Vejle",
       "new":false,
       "residents":1635,
@@ -592,7 +592,7 @@
     },
     {
       "ghetto":true,
-      "name":"Bispehaven",
+      "id":"Bispehaven",
       "municipality":"Aarhus",
       "new":false,
       "residents":2264,
@@ -604,7 +604,7 @@
     },
     {
       "ghetto":true,
-      "name":"Skovgårdsparken",
+      "id":"Skovgårdsparken",
       "municipality":"Aarhus",
       "new":true,
       "residents":1455,
@@ -616,7 +616,7 @@
     },
     {
       "ghetto":true,
-      "name":"Gellerupparken/Toveshøj",
+      "id":"Gellerupparken/Toveshøj",
       "municipality":"Aarhus",
       "new":false,
       "residents":6097,
@@ -628,7 +628,7 @@
     },
     {
       "ghetto":false,
-      "name":"Præstebakken/Syrenparken",
+      "id":"Præstebakken/Syrenparken",
       "municipality":"Esbjerg",
       "new":false,
       "residents":1566,
@@ -640,7 +640,7 @@
     },
     {
       "ghetto":false,
-      "name":"Sebbersundsvej",
+      "id":"Sebbersundsvej",
       "municipality":"Aalborg",
       "new":false,
       "residents":1200,
@@ -652,7 +652,7 @@
     },
     {
       "ghetto":false,
-      "name":"Løvvangen",
+      "id":"Løvvangen",
       "municipality":"Aalborg",
       "new":false,
       "residents":1817,
@@ -664,7 +664,7 @@
     },
     {
       "ghetto":false,
-      "name":"Stærevej",
+      "id":"Stærevej",
       "municipality":"København",
       "new":false,
       "residents":1085,
@@ -678,7 +678,7 @@
   "2015": [
     {
       "ghetto":true,
-      "name":"Mjølnerparken",
+      "id":"Mjølnerparken",
       "municipality":"København",
       "new":false,
       "residents":1828,
@@ -690,7 +690,7 @@
     },
     {
       "ghetto":true,
-      "name":"Tingbjerg/Utterslevhuse",
+      "id":"Tingbjerg/Utterslevhuse",
       "municipality":"København",
       "new":false,
       "residents":6709,
@@ -702,7 +702,7 @@
     },
     {
       "ghetto":true,
-      "name":"Stærevej mv",
+      "id":"Stærevej mv",
       "municipality":"København",
       "new":true,
       "residents":1094,
@@ -714,8 +714,8 @@
     },
     {
       "ghetto":true,
-      "name":"Tåstrupgård",
-      "municipality":"Høje Tåstrup",
+      "id":"Tåstrupgård",
+      "municipality":"Høje-Taastrup",
       "new":false,
       "residents":2626,
       "unemployed":32.6,
@@ -726,8 +726,8 @@
     },
     {
       "ghetto":true,
-      "name":"Charlotteager",
-      "municipality":"Høje Tåstrup",
+      "id":"Charlotteager",
+      "municipality":"Høje-Taastrup",
       "new":false,
       "residents":1741,
       "unemployed":39.7,
@@ -738,8 +738,8 @@
     },
     {
       "ghetto":true,
-      "name":"Gadehavegård",
-      "municipality":"Høje Tåstrup",
+      "id":"Gadehavegård",
+      "municipality":"Høje-Taastrup",
       "new":false,
       "residents":2142,
       "unemployed":42.6,
@@ -750,7 +750,7 @@
     },
     {
       "ghetto":true,
-      "name":"Askerød",
+      "id":"Askerød",
       "municipality":"Greve",
       "new":true,
       "residents":1528,
@@ -762,7 +762,7 @@
     },
     {
       "ghetto":true,
-      "name":"Karlemoseparken",
+      "id":"Karlemoseparken",
       "municipality":"Køge",
       "new":false,
       "residents":1467,
@@ -774,7 +774,7 @@
     },
     {
       "ghetto":true,
-      "name":"Æblehaven/Rønnebærparken",
+      "id":"Æblehaven/Rønnebærparken",
       "municipality":"Roskilde",
       "new":false,
       "residents":1499,
@@ -786,7 +786,7 @@
     },
     {
       "ghetto":true,
-      "name":"Agervang mv.",
+      "id":"Agervang mv.",
       "municipality":"Holbæk",
       "new":false,
       "residents":1448,
@@ -798,7 +798,7 @@
     },
     {
       "ghetto":true,
-      "name":"Ringparken, Slagelse",
+      "id":"Ringparken, Slagelse",
       "municipality":"Slagelse",
       "new":false,
       "residents":1949,
@@ -810,7 +810,7 @@
     },
     {
       "ghetto":true,
-      "name":"Motalavej",
+      "id":"Motalavej",
       "municipality":"Slagelse",
       "new":false,
       "residents":1570,
@@ -822,7 +822,7 @@
     },
     {
       "ghetto":true,
-      "name":"Vollsmose",
+      "id":"Vollsmose",
       "municipality":"Odense",
       "new":false,
       "residents":9134,
@@ -834,7 +834,7 @@
     },
     {
       "ghetto":true,
-      "name":"Byparken/Skovparken",
+      "id":"Byparken/Skovparken",
       "municipality":"Svendborg",
       "new":false,
       "residents":1206,
@@ -846,7 +846,7 @@
     },
     {
       "ghetto":true,
-      "name":"Præstebakken/Syrenparken",
+      "id":"Præstebakken/Syrenparken",
       "municipality":"Esbjerg",
       "new":false,
       "residents":1502,
@@ -858,7 +858,7 @@
     },
     {
       "ghetto":true,
-      "name":"Stengårdsvej-kvarteret",
+      "id":"Stengårdsvej-kvarteret",
       "municipality":"Esbjerg",
       "new":false,
       "residents":1810,
@@ -870,7 +870,7 @@
     },
     {
       "ghetto":true,
-      "name":"Korskærparken",
+      "id":"Korskærparken",
       "municipality":"Fredericia",
       "new":false,
       "residents":1898,
@@ -882,7 +882,7 @@
     },
     {
       "ghetto":true,
-      "name":"Sundparken",
+      "id":"Sundparken",
       "municipality":"Horsens",
       "new":false,
       "residents":1451,
@@ -894,7 +894,7 @@
     },
     {
       "ghetto":true,
-      "name":"Munkebo",
+      "id":"Munkebo",
       "municipality":"Kolding",
       "new":false,
       "residents":1440,
@@ -906,7 +906,7 @@
     },
     {
       "ghetto":true,
-      "name":"Skovparken/Skovvejen",
+      "id":"Skovparken/Skovvejen",
       "municipality":"Kolding",
       "new":false,
       "residents":2465,
@@ -918,7 +918,7 @@
     },
     {
       "ghetto":true,
-      "name":"Finlandsparken",
+      "id":"Finlandsparken",
       "municipality":"Vejle",
       "new":false,
       "residents":1652,
@@ -930,7 +930,7 @@
     },
     {
       "ghetto":true,
-      "name":"Bispehaven",
+      "id":"Bispehaven",
       "municipality":"Aarhus",
       "new":false,
       "residents":2315,
@@ -942,7 +942,7 @@
     },
     {
       "ghetto":true,
-      "name":"Gellerupparken/Toveshøj",
+      "id":"Gellerupparken/Toveshøj",
       "municipality":"Aarhus",
       "new":false,
       "residents":6464,
@@ -954,7 +954,7 @@
     },
     {
       "ghetto":true,
-      "name":"Løvvangen",
+      "id":"Løvvangen",
       "municipality":"Aalborg",
       "new":true,
       "residents":1567,
@@ -966,7 +966,7 @@
     },
     {
       "ghetto":true,
-      "name":"Sebbersundvej mv",
+      "id":"Sebbersundvej mv",
       "municipality":"Aalborg",
       "new":false,
       "residents":1177,
@@ -978,7 +978,7 @@
     },
     {
       "ghetto":false,
-      "name":"Lundtoftegade",
+      "id":"Lundtoftegade",
       "municipality":"København",
       "new":false,
       "residents":1485,
@@ -990,7 +990,7 @@
     },
     {
       "ghetto":false,
-      "name":"Sjælør Boulevard",
+      "id":"Sjælør Boulevard",
       "municipality":"København",
       "new":false,
       "residents":1240,
@@ -1002,7 +1002,7 @@
     },
     {
       "ghetto":false,
-      "name":"Bispeparken",
+      "id":"Bispeparken",
       "municipality":"København",
       "new":false,
       "residents":1657,
@@ -1014,7 +1014,7 @@
     },
     {
       "ghetto":false,
-      "name":"Degnegården mv",
+      "id":"Degnegården mv",
       "municipality":"København",
       "new":false,
       "residents":1114,
@@ -1026,7 +1026,7 @@
     },
     {
       "ghetto":false,
-      "name":"Hedemarken",
+      "id":"Hedemarken",
       "municipality":"Albertslund",
       "new":false,
       "residents":1741,
@@ -1038,7 +1038,7 @@
     },
     {
       "ghetto":false,
-      "name":"Hedelundgårdparken",
+      "id":"Hedelundgårdparken",
       "municipality":"Esbjerg",
       "new":false,
       "residents":2396,
@@ -1050,7 +1050,7 @@
     },
     {
       "ghetto":false,
-      "name":"Søndermarksvej mv",
+      "id":"Søndermarksvej mv",
       "municipality":"Fredericia",
       "new":false,
       "residents":1113,
@@ -1062,7 +1062,7 @@
     },
     {
       "ghetto":false,
-      "name":"Højvangen",
+      "id":"Højvangen",
       "municipality":"Skanderborg",
       "new":false,
       "residents":1170,
@@ -1074,7 +1074,7 @@
     },
     {
       "ghetto":false,
-      "name":"Trigeparken",
+      "id":"Trigeparken",
       "municipality":"Aarhus",
       "new":false,
       "residents":1080,
@@ -1088,7 +1088,7 @@
   "2014": [
     {
       "ghetto":true,
-      "name":"Lundtoftegade",
+      "id":"Lundtoftegade",
       "municipality":"København",
       "new":true,
       "residents":1504,
@@ -1100,7 +1100,7 @@
     },
     {
       "ghetto":true,
-      "name":"Mjølnerparken",
+      "id":"Mjølnerparken",
       "municipality":"København",
       "new":false,
       "residents":1905,
@@ -1112,7 +1112,7 @@
     },
     {
       "ghetto":true,
-      "name":"Sjælør Boulevard",
+      "id":"Sjælør Boulevard",
       "municipality":"København",
       "new":true,
       "residents":1257,
@@ -1124,7 +1124,7 @@
     },
     {
       "ghetto":true,
-      "name":"Tingbjerg/Utterslevhuse",
+      "id":"Tingbjerg/Utterslevhuse",
       "municipality":"København",
       "new":false,
       "residents":6533,
@@ -1136,7 +1136,7 @@
     },
     {
       "ghetto":true,
-      "name":"Bispeparken",
+      "id":"Bispeparken",
       "municipality":"København",
       "new":false,
       "residents":1669,
@@ -1148,7 +1148,7 @@
     },
     {
       "ghetto":true,
-      "name":"Degnegården mv",
+      "id":"Degnegården mv",
       "municipality":"København",
       "new":true,
       "residents":1062,
@@ -1160,7 +1160,7 @@
     },
     {
       "ghetto":true,
-      "name":"Hedemarken",
+      "id":"Hedemarken",
       "municipality":"Albertslund",
       "new":false,
       "residents":1743,
@@ -1172,8 +1172,8 @@
     },
     {
       "ghetto":true,
-      "name":"Tåstrupgård",
-      "municipality":"Høje Tåstrup",
+      "id":"Tåstrupgård",
+      "municipality":"Høje-Taastrup",
       "new":false,
       "residents":2549,
       "unemployed":35.0,
@@ -1184,8 +1184,8 @@
     },
     {
       "ghetto":true,
-      "name":"Charlotteager",
-      "municipality":"Høje Tåstrup",
+      "id":"Charlotteager",
+      "municipality":"Høje-Taastrup",
       "new":false,
       "residents":1715,
       "unemployed":41.7,
@@ -1196,8 +1196,8 @@
     },
     {
       "ghetto":true,
-      "name":"Gadehavegård",
-      "municipality":"Høje Tåstrup",
+      "id":"Gadehavegård",
+      "municipality":"Høje-Taastrup",
       "new":false,
       "residents":2078,
       "unemployed":43.8,
@@ -1208,7 +1208,7 @@
     },
     {
       "ghetto":true,
-      "name":"Karlemoseparken",
+      "id":"Karlemoseparken",
       "municipality":"Køge",
       "new":true,
       "residents":1466,
@@ -1220,7 +1220,7 @@
     },
     {
       "ghetto":true,
-      "name":"Æblehaven/Rønnebærparken",
+      "id":"Æblehaven/Rønnebærparken",
       "municipality":"Roskilde",
       "new":false,
       "residents":1513,
@@ -1232,7 +1232,7 @@
     },
     {
       "ghetto":true,
-      "name":"Agervang mv.",
+      "id":"Agervang mv.",
       "municipality":"Holbæk",
       "new":false,
       "residents":1453,
@@ -1244,7 +1244,7 @@
     },
     {
       "ghetto":true,
-      "name":"Ringparken, Slagelse",
+      "id":"Ringparken, Slagelse",
       "municipality":"Slagelse",
       "new":false,
       "residents":1878,
@@ -1256,7 +1256,7 @@
     },
     {
       "ghetto":true,
-      "name":"Motalavej",
+      "id":"Motalavej",
       "municipality":"Slagelse",
       "new":false,
       "residents":1539,
@@ -1268,7 +1268,7 @@
     },
     {
       "ghetto":true,
-      "name":"Vollsmose",
+      "id":"Vollsmose",
       "municipality":"Odense",
       "new":false,
       "residents":9098,
@@ -1280,7 +1280,7 @@
     },
     {
       "ghetto":true,
-      "name":"Byparken/Skovparken",
+      "id":"Byparken/Skovparken",
       "municipality":"Svenborg",
       "new":false,
       "residents":1047,
@@ -1292,7 +1292,7 @@
     },
     {
       "ghetto":true,
-      "name":"Præstebakken/Syrenparken",
+      "id":"Præstebakken/Syrenparken",
       "municipality":"Esbjerg",
       "new":true,
       "residents":1462,
@@ -1304,7 +1304,7 @@
     },
     {
       "ghetto":true,
-      "name":"Stengårdsvej-kvarteret",
+      "id":"Stengårdsvej-kvarteret",
       "municipality":"Esbjerg",
       "new":false,
       "residents":1846,
@@ -1316,7 +1316,7 @@
     },
     {
       "ghetto":true,
-      "name":"Hedelundgårdparken",
+      "id":"Hedelundgårdparken",
       "municipality":"Esbjerg",
       "new":false,
       "residents":2346,
@@ -1328,7 +1328,7 @@
     },
     {
       "ghetto":true,
-      "name":"Korskærparken",
+      "id":"Korskærparken",
       "municipality":"Fredericia",
       "new":false,
       "residents":1749,
@@ -1340,7 +1340,7 @@
     },
     {
       "ghetto":true,
-      "name":"Søndermarksvej mv",
+      "id":"Søndermarksvej mv",
       "municipality":"Fredericia",
       "new":false,
       "residents":1120,
@@ -1352,7 +1352,7 @@
     },
     {
       "ghetto":true,
-      "name":"Sundparken",
+      "id":"Sundparken",
       "municipality":"Horsens",
       "new":false,
       "residents":1523,
@@ -1364,7 +1364,7 @@
     },
     {
       "ghetto":true,
-      "name":"Munkeob",
+      "id":"Munkeob",
       "municipality":"Kolding",
       "new":false,
       "residents":1462,
@@ -1376,7 +1376,7 @@
     },
     {
       "ghetto":true,
-      "name":"Skovparken/Skovvejen",
+      "id":"Skovparken/Skovvejen",
       "municipality":"Kolding",
       "new":false,
       "residents":2414,
@@ -1388,7 +1388,7 @@
     },
     {
       "ghetto":true,
-      "name":"Finlandsparken",
+      "id":"Finlandsparken",
       "municipality":"Vejle",
       "new":false,
       "residents":1616,
@@ -1400,7 +1400,7 @@
     },
     {
       "ghetto":true,
-      "name":"Højvangen",
+      "id":"Højvangen",
       "municipality":"Skanderborg",
       "new":false,
       "residents":1204,
@@ -1412,7 +1412,7 @@
     },
     {
       "ghetto":true,
-      "name":"Bispehaven",
+      "id":"Bispehaven",
       "municipality":"Århus",
       "new":false,
       "residents":2252,
@@ -1424,7 +1424,7 @@
     },
     {
       "ghetto":true,
-      "name":"Gellerupparken/Toveshøj",
+      "id":"Gellerupparken/Toveshøj",
       "municipality":"Århus",
       "new":false,
       "residents":6652,
@@ -1436,7 +1436,7 @@
     },
     {
       "ghetto":true,
-      "name":"Trigeparken",
+      "id":"Trigeparken",
       "municipality":"Århus",
       "new":false,
       "residents":1083,
@@ -1448,7 +1448,7 @@
     },
     {
       "ghetto":true,
-      "name":"Sebbersundvej mv",
+      "id":"Sebbersundvej mv",
       "municipality":"Ålborg",
       "new":false,
       "residents":1195,
@@ -1460,7 +1460,7 @@
     },
     {
       "ghetto":false,
-      "name":"Aldersrogade",
+      "id":"Aldersrogade",
       "municipality":"København",
       "new":false,
       "residents":2347,
@@ -1472,7 +1472,7 @@
     },
     {
       "ghetto":false,
-      "name":"Nivåhøj",
+      "id":"Nivåhøj",
       "municipality":"Fredensborg",
       "new":false,
       "residents":1489,
@@ -1484,7 +1484,7 @@
     },
     {
       "ghetto":false,
-      "name":"Ladegårdsparken",
+      "id":"Ladegårdsparken",
       "municipality":"Holbæk",
       "new":false,
       "residents":1089,
@@ -1496,7 +1496,7 @@
     },
     {
       "ghetto":false,
-      "name":"Solbakken mv",
+      "id":"Solbakken mv",
       "municipality":"Odense",
       "new":false,
       "residents":1269,
@@ -1508,7 +1508,7 @@
     },
     {
       "ghetto":false,
-      "name":"Nørager/Søstjernevej m.fl",
+      "id":"Nørager/Søstjernevej m.fl",
       "municipality":"Sønderborg",
       "new":false,
       "residents":1308,
@@ -1520,7 +1520,7 @@
     },
     {
       "ghetto":false,
-      "name":"Løget by",
+      "id":"Løget by",
       "municipality":"Vejle",
       "new":false,
       "residents":1591,
@@ -1532,7 +1532,7 @@
     },
     {
       "ghetto":false,
-      "name":"Glarbjervej-området",
+      "id":"Glarbjervej-området",
       "municipality":"Randers",
       "new":false,
       "residents":1449,
@@ -1546,7 +1546,7 @@
   "2013": [
     {
       "ghetto":true,
-      "name":"Lundtoftegade",
+      "id":"Lundtoftegade",
       "municipality":"København",
       "new":false,
       "residents":1485,
@@ -1556,7 +1556,7 @@
     },
     {
       "ghetto":true,
-      "name":"Aldersrogade",
+      "id":"Aldersrogade",
       "municipality":"København",
       "new":true,
       "residents":2351,
@@ -1566,7 +1566,7 @@
     },
     {
       "ghetto":true,
-      "name":"Mjølnerparken",
+      "id":"Mjølnerparken",
       "municipality":"København",
       "new":false,
       "residents":1920,
@@ -1576,7 +1576,7 @@
     },
     {
       "ghetto":true,
-      "name":"Sjælør Boulevard",
+      "id":"Sjælør Boulevard",
       "municipality":"København",
       "new":false,
       "residents":1280,
@@ -1586,7 +1586,7 @@
     },
     {
       "ghetto":true,
-      "name":"Bispeparken",
+      "id":"Bispeparken",
       "municipality":"København",
       "new":false,
       "residents":1587,
@@ -1596,7 +1596,7 @@
     },
     {
       "ghetto":true,
-      "name":"Stærevej mv",
+      "id":"Stærevej mv",
       "municipality":"København",
       "new":false,
       "residents":1069,
@@ -1606,7 +1606,7 @@
     },
     {
       "ghetto":true,
-      "name":"Degnegården mv",
+      "id":"Degnegården mv",
       "municipality":"København",
       "new":false,
       "residents":1046,
@@ -1616,7 +1616,7 @@
     },
     {
       "ghetto":true,
-      "name":"Hørgården",
+      "id":"Hørgården",
       "municipality":"København",
       "new":false,
       "residents":1619,
@@ -1626,8 +1626,8 @@
     },
     {
       "ghetto":true,
-      "name":"Tåstrupgård",
-      "municipality":"Høje Tåstrup",
+      "id":"Tåstrupgård",
+      "municipality":"Høje-Taastrup",
       "new":false,
       "residents":2563,
       "unemployed":36.4,
@@ -1636,8 +1636,8 @@
     },
     {
       "ghetto":true,
-      "name":"Charlotteager",
-      "municipality":"Høje Tåstrup",
+      "id":"Charlotteager",
+      "municipality":"Høje-Taastrup",
       "new":false,
       "residents":1697,
       "unemployed":40.8,
@@ -1646,8 +1646,8 @@
     },
     {
       "ghetto":true,
-      "name":"Gadehavegård",
-      "municipality":"Høje Tåstrup",
+      "id":"Gadehavegård",
+      "municipality":"Høje-Taastrup",
       "new":false,
       "residents":2056,
       "unemployed":41.3,
@@ -1656,7 +1656,7 @@
     },
     {
       "ghetto":true,
-      "name":"Nivåhøj",
+      "id":"Nivåhøj",
       "municipality":"Fredensborg",
       "new":false,
       "residents":1474,
@@ -1666,7 +1666,7 @@
     },
     {
       "ghetto":true,
-      "name":"Askerød",
+      "id":"Askerød",
       "municipality":"Greve",
       "new":false,
       "residents":1475,
@@ -1676,7 +1676,7 @@
     },
     {
       "ghetto":true,
-      "name":"Karlemoseparken",
+      "id":"Karlemoseparken",
       "municipality":"Køge",
       "new":false,
       "residents":1509,
@@ -1686,7 +1686,7 @@
     },
     {
       "ghetto":true,
-      "name":"Rønnebærparken/Æblehaven",
+      "id":"Rønnebærparken/Æblehaven",
       "municipality":"Roskilde",
       "new":false,
       "residents":1524,
@@ -1696,7 +1696,7 @@
     },
     {
       "ghetto":true,
-      "name":"Agervang mv.",
+      "id":"Agervang mv.",
       "municipality":"Holbæk",
       "new":false,
       "residents":1433,
@@ -1706,7 +1706,7 @@
     },
     {
       "ghetto":true,
-      "name":"Ladegårdsparken",
+      "id":"Ladegårdsparken",
       "municipality":"Holbæk",
       "new":true,
       "residents":1370,
@@ -1716,7 +1716,7 @@
     },
     {
       "ghetto":true,
-      "name":"Ringparken, Slagelse",
+      "id":"Ringparken, Slagelse",
       "municipality":"Slagelse",
       "new":false,
       "residents":1865,
@@ -1726,7 +1726,7 @@
     },
     {
       "ghetto":true,
-      "name":"Solbakken mv",
+      "id":"Solbakken mv",
       "municipality":"Odense",
       "new":false,
       "residents":1304,
@@ -1736,7 +1736,7 @@
     },
     {
       "ghetto":true,
-      "name":"Korsløkkeparken Øst",
+      "id":"Korsløkkeparken Øst",
       "municipality":"Odense",
       "new":true,
       "residents":2423,
@@ -1746,7 +1746,7 @@
     },
     {
       "ghetto":true,
-      "name":"Vollsmose",
+      "id":"Vollsmose",
       "municipality":"Odense",
       "new":false,
       "residents":9089,
@@ -1756,7 +1756,7 @@
     },
     {
       "ghetto":true,
-      "name":"Byparken/Skovparken",
+      "id":"Byparken/Skovparken",
       "municipality":"Svendborg",
       "new":false,
       "residents":1085,
@@ -1766,7 +1766,7 @@
     },
     {
       "ghetto":true,
-      "name":"Nørager/Søstjernevej m.fl",
+      "id":"Nørager/Søstjernevej m.fl",
       "municipality":"Sønderborg",
       "new":false,
       "residents":1296,
@@ -1776,7 +1776,7 @@
     },
     {
       "ghetto":true,
-      "name":"Stengårdsvej-kvarteret",
+      "id":"Stengårdsvej-kvarteret",
       "municipality":"Esbjerg",
       "new":false,
       "residents":1854,
@@ -1786,7 +1786,7 @@
     },
     {
       "ghetto":true,
-      "name":"Hedelundgårdparken",
+      "id":"Hedelundgårdparken",
       "municipality":"Esbjerg",
       "new":false,
       "residents":2376,
@@ -1796,7 +1796,7 @@
     },
     {
       "ghetto":true,
-      "name":"Høje Kolstrup",
+      "id":"Høje Kolstrup",
       "municipality":"Åbenrå",
       "new":true,
       "residents":1579,
@@ -1806,7 +1806,7 @@
     },
     {
       "ghetto":true,
-      "name":"Korskærparken",
+      "id":"Korskærparken",
       "municipality":"Fredericia",
       "new":false,
       "residents":1874,
@@ -1816,7 +1816,7 @@
     },
     {
       "ghetto":true,
-      "name":"Sundparken",
+      "id":"Sundparken",
       "municipality":"Horsens",
       "new":false,
       "residents":1509,
@@ -1826,7 +1826,7 @@
     },
     {
       "ghetto":true,
-      "name":"Munkebo",
+      "id":"Munkebo",
       "municipality":"Kolding",
       "new":false,
       "residents":1459,
@@ -1836,7 +1836,7 @@
     },
     {
       "ghetto":true,
-      "name":"Skovparken/Skovvejen",
+      "id":"Skovparken/Skovvejen",
       "municipality":"Kolding",
       "new":false,
       "residents":2378,
@@ -1846,7 +1846,7 @@
     },
     {
       "ghetto":true,
-      "name":"Finlandsparken",
+      "id":"Finlandsparken",
       "municipality":"Vejle",
       "new":false,
       "residents":1558,
@@ -1856,7 +1856,7 @@
     },
     {
       "ghetto":true,
-      "name":"Glarbjergvej-området",
+      "id":"Glarbjergvej-området",
       "municipality":"Randers",
       "new":true,
       "residents":1439,
@@ -1866,7 +1866,7 @@
     },
     {
       "ghetto":true,
-      "name":"Arendalsvej",
+      "id":"Arendalsvej",
       "municipality":"Silkeborg",
       "new":true,
       "residents":1102,
@@ -1876,7 +1876,7 @@
     },
     {
       "ghetto":true,
-      "name":"Højvangen",
+      "id":"Højvangen",
       "municipality":"Skanderborg",
       "new":true,
       "residents":1199,
@@ -1886,7 +1886,7 @@
     },
     {
       "ghetto":true,
-      "name":"Bispehaven",
+      "id":"Bispehaven",
       "municipality":"Århus",
       "new":false,
       "residents":2305,
@@ -1896,7 +1896,7 @@
     },
     {
       "ghetto":true,
-      "name":"Langkærparken",
+      "id":"Langkærparken",
       "municipality":"Århus",
       "new":true,
       "residents":2023,
@@ -1906,7 +1906,7 @@
     },
     {
       "ghetto":true,
-      "name":"Trigeparken",
+      "id":"Trigeparken",
       "municipality":"Århus",
       "new":false,
       "residents":1057,
@@ -1916,7 +1916,7 @@
     },
     {
       "ghetto":true,
-      "name":"Havrevej",
+      "id":"Havrevej",
       "municipality":"Thisted",
       "new":true,
       "residents":1153,
@@ -1926,7 +1926,7 @@
     },
     {
       "ghetto":true,
-      "name":"Sebbersundvej mv",
+      "id":"Sebbersundvej mv",
       "municipality":"Ålborg",
       "new":false,
       "residents":1162,
@@ -1936,7 +1936,7 @@
     },
     {
       "ghetto":false,
-      "name":"Blågården",
+      "id":"Blågården",
       "municipality":"København",
       "new":false,
       "residents":2515,
@@ -1946,7 +1946,7 @@
     },
     {
       "ghetto":false,
-      "name":"Sianavænget/Heliosvænget",
+      "id":"Sianavænget/Heliosvænget",
       "municipality":"Odense",
       "new":false,
       "residents":1078,
@@ -1958,7 +1958,7 @@
   "2012": [
     {
       "ghetto":true,
-      "name":"Blågården",
+      "id":"Blågården",
       "municipality":"København",
       "new":false,
       "residents":2502,
@@ -1968,7 +1968,7 @@
     },
     {
       "ghetto":true,
-      "name":"Lundtoftegade",
+      "id":"Lundtoftegade",
       "municipality":"København",
       "new":false,
       "residents":1511,
@@ -1978,7 +1978,7 @@
     },
     {
       "ghetto":true,
-      "name":"Mjølnerparken",
+      "id":"Mjølnerparken",
       "municipality":"København",
       "new":false,
       "residents":1897,
@@ -1988,7 +1988,7 @@
     },
     {
       "ghetto":true,
-      "name":"Sjælør Boulevard",
+      "id":"Sjælør Boulevard",
       "municipality":"København",
       "new":false,
       "residents":1283,
@@ -1998,7 +1998,7 @@
     },
     {
       "ghetto":true,
-      "name":"Bispeparken",
+      "id":"Bispeparken",
       "municipality":"København",
       "new":false,
       "residents":1497,
@@ -2008,7 +2008,7 @@
     },
     {
       "ghetto":true,
-      "name":"Stærevej mv",
+      "id":"Stærevej mv",
       "municipality":"København",
       "new":true,
       "residents":1046,
@@ -2018,7 +2018,7 @@
     },
     {
       "ghetto":true,
-      "name":"Degnegården mv",
+      "id":"Degnegården mv",
       "municipality":"København",
       "new":true,
       "residents":1014,
@@ -2028,7 +2028,7 @@
     },
     {
       "ghetto":true,
-      "name":"Hørgården",
+      "id":"Hørgården",
       "municipality":"København",
       "new":false,
       "residents":1632,
@@ -2038,7 +2038,7 @@
     },
     {
       "ghetto":true,
-      "name":"Tåstrupgård",
+      "id":"Tåstrupgård",
       "municipality":"Høje-Taastrup",
       "new":false,
       "residents":2511,
@@ -2048,7 +2048,7 @@
     },
     {
       "ghetto":true,
-      "name":"Charlotteager",
+      "id":"Charlotteager",
       "municipality":"Høje-Taastrup",
       "new":false,
       "residents":1629,
@@ -2058,7 +2058,7 @@
     },
     {
       "ghetto":true,
-      "name":"Gadehavegård",
+      "id":"Gadehavegård",
       "municipality":"Høje-Taastrup",
       "new":true,
       "residents":2031,
@@ -2069,7 +2069,7 @@
     {
       "ghetto":true,
       "municipality":"Fredensborg",
-      "name":"Nivåhøj",
+      "id":"Nivåhøj",
       "new":true,
       "residents":1467,
       "unemployed":47.3,
@@ -2079,7 +2079,7 @@
     {
       "ghetto":true,
       "municipality":"Greve",
-      "name":"Askerød",
+      "id":"Askerød",
       "new":true,
       "residents":1448,
       "unemployed":53.7,
@@ -2089,7 +2089,7 @@
     {
       "ghetto":true,
       "municipality":"Køge",
-      "name":"Karlemoseparken",
+      "id":"Karlemoseparken",
       "new":true,
       "residents":1515,
       "unemployed":49.4,
@@ -2099,7 +2099,7 @@
     {
       "ghetto":true,
       "municipality":"Roskilde",
-      "name":"Rønnebærparken/Æblehaven",
+      "id":"Rønnebærparken/Æblehaven",
       "new":true,
       "residents":1539,
       "unemployed":44.4,
@@ -2109,7 +2109,7 @@
     {
       "ghetto":true,
       "municipality":"Holbæk",
-      "name":"Agervang",
+      "id":"Agervang",
       "new":false,
       "residents":1439,
       "unemployed":58.2,
@@ -2119,7 +2119,7 @@
     {
       "ghetto":true,
       "municipality":"Slagelse",
-      "name":"Ringparken, Slagelse",
+      "id":"Ringparken, Slagelse",
       "new":false,
       "residents":1858,
       "unemployed":55.0,
@@ -2129,7 +2129,7 @@
     {
       "ghetto":true,
       "municipality":"Odense",
-      "name":"Solbakken mv",
+      "id":"Solbakken mv",
       "new":false,
       "residents":1280,
       "unemployed":46.7,
@@ -2139,7 +2139,7 @@
     {
       "ghetto":true,
       "municipality":"Odense",
-      "name":"Vollsmose",
+      "id":"Vollsmose",
       "new":false,
       "residents":9040,
       "unemployed":67.5,
@@ -2149,7 +2149,7 @@
     {
       "ghetto":true,
       "municipality":"Odense",
-      "name":"Dianavænget/Heliosvænget",
+      "id":"Dianavænget/Heliosvænget",
       "new":false,
       "residents":1086,
       "unemployed":41.3,
@@ -2159,7 +2159,7 @@
     {
       "ghetto":true,
       "municipality":"Svendborg",
-      "name":"Byparken/Skovparken",
+      "id":"Byparken/Skovparken",
       "new":false,
       "residents":1267,
       "unemployed":51.1,
@@ -2169,7 +2169,7 @@
     {
       "ghetto":true,
       "municipality":"Sønderborg",
-      "name":"Nørager/Søstjernevej m.fl",
+      "id":"Nørager/Søstjernevej m.fl",
       "new":false,
       "residents":1291,
       "unemployed":62.2,
@@ -2179,7 +2179,7 @@
     {
       "ghetto":true,
       "municipality":"Esbjerg",
-      "name":"Stengårdsvej",
+      "id":"Stengårdsvej",
       "new":false,
       "residents":1851,
       "unemployed":62.6,
@@ -2189,7 +2189,7 @@
     {
       "ghetto":true,
       "municipality":"Esbjerg",
-      "name":"Kvaglund",
+      "id":"Kvaglund",
       "new":true,
       "residents":2397,
       "unemployed":25.9,
@@ -2199,7 +2199,7 @@
     {
       "ghetto":true,
       "municipality":"Fredericia",
-      "name":"Korskærparken",
+      "id":"Korskærparken",
       "new":false,
       "residents":1900,
       "unemployed":44.0,
@@ -2209,7 +2209,7 @@
     {
       "ghetto":true,
       "municipality":"Horsens",
-      "name":"Sundparken",
+      "id":"Sundparken",
       "new":false,
       "residents":1532,
       "unemployed":63.0,
@@ -2219,7 +2219,7 @@
     {
       "ghetto":true,
       "municipality":"Kolding",
-      "name":"Munkebo",
+      "id":"Munkebo",
       "new":true,
       "residents":1474,
       "unemployed":57.7,
@@ -2229,7 +2229,7 @@
     {
       "ghetto":true,
       "municipality":"Kolding",
-      "name":"Skovvejen/Skovparken",
+      "id":"Skovvejen/Skovparken",
       "new":false,
       "residents":2328,
       "unemployed":58.6,
@@ -2239,7 +2239,7 @@
     {
       "ghetto":true,
       "municipality":"Vejle",
-      "name":"Finlandsparken",
+      "id":"Finlandsparken",
       "new":true,
       "residents":1563,
       "unemployed":71.7,
@@ -2249,7 +2249,7 @@
     {
       "ghetto":true,
       "municipality":"Århus",
-      "name":"Bispehaven",
+      "id":"Bispehaven",
       "new":false,
       "residents":2371,
       "unemployed":67.1,
@@ -2259,7 +2259,7 @@
     {
       "ghetto":true,
       "municipality":"Århus",
-      "name":"Gellerupparken/Toveshøj",
+      "id":"Gellerupparken/Toveshøj",
       "new":false,
       "residents":7200,
       "unemployed":79.4,
@@ -2269,7 +2269,7 @@
     {
       "ghetto":true,
       "municipality":"Århus",
-      "name":"Trigeparken",
+      "id":"Trigeparken",
       "new":false,
       "residents":1051,
       "unemployed":33.4,
@@ -2279,7 +2279,7 @@
     {
       "ghetto":true,
       "municipality":"Aalborg",
-      "name":"Sebbersundvej mv",
+      "id":"Sebbersundvej mv",
       "new":false,
       "residents":1150,
       "unemployed":19.5,
@@ -2289,7 +2289,7 @@
     {
       "ghetto":false,
       "municipality":"København",
-      "name":"Aldersrogade",
+      "id":"Aldersrogade",
       "new":false,
       "residents":2329,
       "unemployed":73.6,
@@ -2299,7 +2299,7 @@
     {
       "ghetto":false,
       "municipality":"København",
-      "name":"Akacieparken",
+      "id":"Akacieparken",
       "new":false,
       "residents":1130,
       "unemployed":64.1,
@@ -2309,7 +2309,7 @@
     {
       "ghetto":false,
       "municipality":"København",
-      "name":"Gadelandet/Husumgård",
+      "id":"Gadelandet/Husumgård",
       "new":false,
       "residents":1057,
       "unemployed":64.3,
@@ -2319,7 +2319,7 @@
     {
       "ghetto":false,
       "municipality":"København",
-      "name":"Tingbjerg/Utterslevhuse",
+      "id":"Tingbjerg/Utterslevhuse",
       "new":false,
       "residents":6065,
       "unemployed":68.9,
@@ -2329,7 +2329,7 @@
     {
       "ghetto":false,
       "municipality":"Thisted",
-      "name":"Havrevej",
+      "id":"Havrevej",
       "new":false,
       "residents":1138,
       "unemployed":29.7,

@@ -2,13 +2,6 @@ d3.select(window).on("load", init);
 
 // global variables
 
-const margin = {
-  top: 20,
-  bottom: 30,
-  left: 10,
-  right: 30,
-}
-
 var ghettos
 var munis
 var regions
@@ -235,6 +228,141 @@ function collectCrime(munis, crime) {
   })
 }
 
+function plot2(ghettos, munis) {
+
+  // to-do: expand data. currently only 2015
+  // filter ghetto = true
+  function ghettoFilter(obj) {
+    return obj.ghetto
+  }
+  var g = ghettos[2015].filter(ghettoFilter)
+
+  // list of unique municipalities of the ghettos
+  var muniList = [...new Set(g.map(item => item.municipality))]
+  console.log(g)
+  console.log(muniList)
+
+  // filter munis
+  function muniFilter(obj) {
+    if (muniList.indexOf(obj.municipality) >= 0) {
+      return true
+    } else {
+      return false
+    }
+  }
+  var m = munis[2015].filter(muniFilter)
+  console.log(m)
+
+  // number of ghettos in each municipality
+  muniGhettoN = []
+  g.forEach(function(item) {
+    t = muniList.indexOf(item.municipality)
+    if (isNaN(muniGhettoN[t])) {
+      muniGhettoN[t] = 1
+    } else {muniGhettoN[t] ++}
+  })
+  console.log(muniGhettoN)
+
+  function compareMuni(a, b) {
+    // by number of ghettos in municipality
+    an = muniGhettoN[muniList.indexOf(a.municipality)]
+    bn = muniGhettoN[muniList.indexOf(b.municipality)]
+    if (an > bn) {
+      return -1
+    }
+    else if (an < bn) {
+      return 1
+    }
+    else {return 0}
+  }
+  m.sort(compareMuni)
+
+  // initialize data array
+  data = []
+  // fill
+  m.forEach(function(i) {
+    data.push(i)
+    g.forEach(function(t) {
+      if (t.municipality === i.municipality) {
+        data.push(t)
+      }
+    })
+  })
+
+  // defining margin
+  const margin = {
+    top: 20,
+    bottom: 150,
+    left:30,
+    right: 30,
+  }
+
+  // defining dimensions of the 5 subplots
+  const dim = {
+    w: 700 - margin.left - margin.right,
+    h: 280 - margin.top - margin.bottom,
+  }
+
+  // selecting plot area
+  var svg = d3.select('#plot2')
+    .attr('width', dim.w + margin.left + margin.right)
+    .attr('height', dim.h + margin.top + margin.bottom)
+    .append('g')
+    .attr('transform', `translate(${margin.left}, ${margin.top})`);
+
+  // define scales
+  var xScale = d3.scaleBand() // to-do: add the ordering (muni-ghettos, muni-ghettos ...)
+    .domain(data.map(function(d) { return d.id }))
+    .range([0, dim.w])
+    .padding(0.1)
+  var ySpan =  d3.max(data, function(d) { return d.unemployed }) - d3.min(data, function(d) { return d.unemployed })
+  var yScale = d3.scaleLinear()
+    .domain([d3.min(data, function(d) { return d.unemployed }) - ySpan * 0.1,
+      d3.max(data, function(d) { return d.unemployed }) + ySpan * 0.1])
+    .range([dim.h, 0])
+
+  // adding bars
+  svg.selectAll("bar")
+    .data(data)
+    .enter().append("rect")
+    .style("fill", function(d) {if (d.ghetto === true) {return "red"} else {return "steelblue"}})
+    .attr("x", function(d) { return xScale(d.id); })
+    .attr("width", xScale.bandwidth)
+    .attr("y", function(d) { return yScale(d.unemployed); })
+    .attr("height", function(d) { return dim.h - yScale(d.unemployed); });
+
+  // adding axis
+  var xAxis = d3.axisBottom()
+    .scale(xScale)
+  var yAxis = d3.axisLeft()
+    .scale(yScale)
+    .ticks(5)
+  svg.append("g")
+    .attr("class", "axis")
+    .attr("transform", "translate(0," + dim.h + ")")
+    .call(xAxis)
+    .selectAll("text")
+    .style("text-anchor", "end")
+    .attr("dx", "-.8em")
+    .attr("dy", "-.55em")
+    .attr("transform", "rotate(-90)" );
+  svg.append("g")
+    .call(yAxis)
+
+  // to-do: adding cut-off line
+  svg.append("line")
+    .attr("x1",0)
+    .attr("y1",yScale(40))
+    .attr("x2",dim.w)
+    .attr("y2",yScale(40))
+    .attr("stroke-width", 1)
+    .attr("stroke", "black")
+    .attr("stroke-dasharray", "4,10")
+
+  // to-do: adding title and other stuff
+
+}
+
 function _init(err, ghetto, pop, emp, foreigners, edu, income, crime, reg_crime, reg_income) {
   console.log("ghetto")
   console.log(ghetto)
@@ -263,4 +391,5 @@ function _init(err, ghetto, pop, emp, foreigners, edu, income, crime, reg_crime,
   collectCrime(munis, crime)
   regions = {}
   console.log(munis)
+  plot2(ghettos, munis)
 }
