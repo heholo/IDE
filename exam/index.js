@@ -366,10 +366,10 @@ function onePlot2(svg, key, year, oneDim, padding, i, margin) {
     .attr('width', oneDim.w)
     .attr('height', oneDim.h)
     .attr('transform', `translate(${(oneDim.w+1/3*padding) * i}, ${0})`);
-  updatePlot2(svgSub, key, year, oneDim, i)
+  updatePlot2(svgSub, key, year, oneDim, i, margin)
 }
 
-function updatePlot2(svg, key, year, oneDim, i) {
+function updatePlot2(svg, key, year, oneDim, i, margin) {
   // filter ghetto = true
   function ghettoFilter(obj) {
     return obj.ghetto
@@ -438,8 +438,12 @@ function updatePlot2(svg, key, year, oneDim, i) {
     .range([0, oneDim.w ])
   var yScale = d3.scaleBand()
     .domain(data.map(function(d) { return d.id }))
-    .range([oneDim.h, 0])
+    .rangeRound([oneDim.h, 0])
     .padding(0.1)
+  var bScale = yScale.copy() // scale for background
+    .padding(0)
+    .align(0.5)
+
   // old scales
 /*
   var xScale = d3.scaleBand()
@@ -453,6 +457,28 @@ function updatePlot2(svg, key, year, oneDim, i) {
     .range([oneDim.h, 0])
 */
 
+  // adding background
+  if (i === 0) {
+    // init
+    count = 0
+    oldMuni = "initVal"
+    svg.selectAll("bar")
+      .data(data)
+      .enter().append("rect")
+      .style("fill", function(d) {
+        if (d.municipality !== oldMuni) {count ++; oldMuni = d.municipality}
+        if (count % 2 === 0) {return "lightgray"}
+        else return "white"
+      })
+      .style("fill-opacity", function() { if (count % 2 === 0) {return "1"}
+        else return "0"}) // invisible
+      .attr("x", - margin.left)
+      .attr("width", oneDim.w*5.1 + margin.left + 5)
+      .attr("y", function(d) { return bScale(d.id); })
+      .attr("height", bScale.bandwidth);
+  }
+
+
   // adding bars
   svg.selectAll("bar")
     .data(data)
@@ -464,7 +490,6 @@ function updatePlot2(svg, key, year, oneDim, i) {
     .attr("height", yScale.bandwidth);
 
   // adding axis
-
   var xAxis = d3.axisBottom()
     .scale(xScale)
     .ticks(5)
