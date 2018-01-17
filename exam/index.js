@@ -322,7 +322,30 @@ function collectCrime(munis, crime) {
   })
 }
 
-function plot2(ghettos, munis) {
+const plot2Margin = {
+  top: 20,
+  bottom: 20,
+  left: 150,
+  right: 100,
+  padding: 10,
+}
+
+const plot2Dim = {
+  w: 500,
+  h: 500,
+}
+
+const plot2SubDim = {
+  w: plot2Dim.w / 5,
+  h: plot2Dim.h,
+}
+
+// all new function!
+function generatePlot2() {
+  var svg = d3.select("#plot2") // selecting the main svg
+}
+
+function plot2(year) {
 
   // defining margin
   const margin = {
@@ -345,18 +368,28 @@ function plot2(ghettos, munis) {
   }
 
   const padding = 10
-
+// _________
   var svg = d3.select('#plot2')
     .attr('width', dim.w + margin.left + margin.right)
     .attr('height', dim.h + margin.top + margin.bottom)
     .append("g")
     .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
-  Object.keys(criterion[2015]).forEach(function (key, i) {
-    onePlot2(svg, key, 2015, oneDim, padding, i, margin)
-    console.log(key)
+  var allCats = Object.keys(criterion[2017])
+  var yearCats = Object.keys(criterion[year])
+
+  allCats.forEach(function(key, i) {
+    if (yearCats.indexOf(key) >= 0) {
+      svg.transition()
+        .style("stroke-opacity", 1)
+        .style("fill-opacity", 1)
+      onePlot2(svg, key, year, oneDim, padding, i, margin)
+    } else {
+      svg.transition()
+        .style("stroke-opacity", 0.05)
+        .style("fill-opacity", 0.05)
+    }
   })
-  console.log("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
 }
 
 function onePlot2(svg, key, year, oneDim, padding, i, margin) {
@@ -430,12 +463,14 @@ function updatePlot2(svg, key, year, oneDim, i, margin) {
     data.push(i)
   })
 
+
   // define scales
-  var xSpan = d3.max(data, function(d) { return d[key] }) - d3.min(data, function(d) { return d[key] })
+//  var xSpan = d3.max(data, function(d) { return d[key] }) - d3.min(data, function(d) { return d[key] })
   var xScale = d3.scaleLinear()
-    .domain([d3.min(data, function(d) { return d[key] }) - xSpan * 0.1,
-      d3.max(data, function(d) { return d[key] }) + xSpan * 0.1])
+    .domain([0,
+      d3.max(data, function(d) { return d[key] })])
     .range([0, oneDim.w ])
+
   var yScale = d3.scaleBand()
     .domain(data.map(function(d) { return d.id }))
     .rangeRound([oneDim.h, 0])
@@ -443,19 +478,6 @@ function updatePlot2(svg, key, year, oneDim, i, margin) {
   var bScale = yScale.copy() // scale for background
     .padding(0)
     .align(0.5)
-
-  // old scales
-/*
-  var xScale = d3.scaleBand()
-    .domain(data.map(function(d) { return d.id }))
-    .range([0, oneDim.w])
-    .padding(0.1)
-  var ySpan =  d3.max(data, function(d) { return d[key] }) - d3.min(data, function(d) { return d[key] })
-  var yScale = d3.scaleLinear()
-    .domain([d3.min(data, function(d) { return d[key] }) - ySpan * 0.1,
-      d3.max(data, function(d) { return d[key] }) + ySpan * 0.1])
-    .range([oneDim.h, 0])
-*/
 
   // adding background
   if (i === 0) {
@@ -478,21 +500,34 @@ function updatePlot2(svg, key, year, oneDim, i, margin) {
       .attr("height", bScale.bandwidth);
   }
 
-
-  // adding bars
+  // adding new bars
   svg.selectAll("bar")
     .data(data)
     .enter().append("rect")
     .style("fill", function(d) {if (d.ghetto === true) {return "tomato"} else {return "steelblue"}})
     .attr("x", 0)
-    .attr("width", function(d) { return xScale(d[key]); })
     .attr("y", function(d) { return yScale(d.id); })
     .attr("height", yScale.bandwidth)
+    .attr("width", 0)
+    .transition()
+    .duration(650)
+    .attr("width", function(d) { return xScale(d[key]); })
+
+  // update old bars
+  svg.selectAll("bar")
+    .data(data)
+    .style("fill", function(d) {if (d.ghetto === true) {return "tomato"} else {return "steelblue"}})
+    .attr("x", 0)
+    .attr("y", function(d) { return yScale(d.id); })
+    .attr("height", yScale.bandwidth)
+    .transition()
+    .duration(650)
+    .attr("width", function(d) { return xScale(d[key]); })
 
   // adding axis
   var xAxis = d3.axisBottom()
     .scale(xScale)
-    .ticks(5)
+    .ticks(2)
   var yAxis = d3.axisLeft()
     .scale(yScale)
   svg.append("g")
@@ -508,10 +543,20 @@ function updatePlot2(svg, key, year, oneDim, i, margin) {
       .call(yAxis)
       .selectAll("text")
       .data(data)
+      .transition()
       .style("font-weight", function(d) {if (d.id === d.municipality) {return "bold"} else {return "normal"}})
       .style("text-decoration", function(d) {if (d.id === d.municipality) {return "underline"} else {return "normal"}})
+  }   else {
+    svg.append("line")
+      .attr("x1",0)
+      .attr("y1",0)
+      .attr("x2",0)
+      .attr("y2",oneDim.h)
+      .attr("stroke-width", 1)
+      .attr("stroke", "black")
   }
-  /* vertical lines, not a fan
+  //  vertical lines, not a fan
+  /*
   else {
     svg.append("line")
       .attr("x1",0)
@@ -600,14 +645,13 @@ function _init(err, ghetto, pop, emp, foreigners, edu, edu_cur, income, crime, m
   })
   $("#sticky-selector").sticky({topSpacing: 0});
 
-  plot2(ghettos, munis)
-
   d3.select("#sticky-selector")
     .append("button")
     .text("play")
     .on("click", playAll)
 
   generateWeirdHistograms()
+  generatePlot2()
 
   d3.select("body")
     .append("div")
@@ -635,6 +679,7 @@ function play(year) {
 function yearChange(year) {
   d3.select("#sticky-selector select").property("value", year)
   updateAllWeirdHistograms(year);
+  plot2(year);
 }
 
 function showTooltip(x, y, content) {
