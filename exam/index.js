@@ -487,7 +487,7 @@ function updatePlot2(svg, key, year, oneDim, i, margin) {
     .attr("x", 0)
     .attr("width", function(d) { return xScale(d[key]); })
     .attr("y", function(d) { return yScale(d.id); })
-    .attr("height", yScale.bandwidth);
+    .attr("height", yScale.bandwidth)
 
   // adding axis
   var xAxis = d3.axisBottom()
