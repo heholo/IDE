@@ -351,7 +351,7 @@ function generatePlot2() {
   Object.keys(criterion[2017]).forEach(function (key, i) {
     // creating svg and setting dimensions
     var svg = d3.select("#plot2")
-      .append("svg")
+      .append("g")
       .attr("class", key)
       .attr('width', plot2SubDim.w)
       .attr('height', plot2SubDim.h)
@@ -368,34 +368,15 @@ function generatePlot2() {
       .attr("class", "bars")
     svg.append("g")
       .attr("class", "limit")
-
-    // updating
-    updateSubPlot2(key, i, 2017)
   })
+
+  // updating
+  updateAllSubPlot2(2017)
 }
 
 // for dynamically updating
 function updateAllSubPlot2(year) {
-  var allCats = Object.keys(criterion[2017])
-  var yearCats = Object.keys(criterion[year])
 
-  allCats.forEach(function(key, i) {
-    var svg = d3.select(`#plot2 .${key}`)
-    if (yearCats.indexOf(key) >= 0) {
-      svg.transition()
-        .style("stroke-opacity", 1)
-        .style("fill-opacity", 1)
-      updateSubPlot2(key, i, year)
-    } else {
-      svg.transition()
-        .style("stroke-opacity", 0.05)
-        .style("fill-opacity", 0.05)
-    }
-  })
-}
-
-// MAIN FUNCTION
-function updateSubPlot2(key, i, year) {
   // data building (only necessary once per year)
   const yay = 0
   if (yay === 0) {
@@ -460,6 +441,27 @@ function updateSubPlot2(key, i, year) {
     })
   }
 
+  var allCats = Object.keys(criterion[2017])
+  var yearCats = Object.keys(criterion[year])
+
+  allCats.forEach(function(key, i) {
+    var svg = d3.select(`#plot2 .${key}`)
+    if (yearCats.indexOf(key) >= 0) {
+      svg.transition()
+        .style("stroke-opacity", 1)
+        .style("fill-opacity", 1)
+      updateSubPlot2(key, i, year, data)
+    } else {
+      svg.transition()
+        .style("stroke-opacity", 0.05)
+        .style("fill-opacity", 0.05)
+    }
+  })
+}
+
+// MAIN FUNCTION
+function updateSubPlot2(key, i, year, data) {
+
   // defining scales
   var xScale = d3.scaleLinear()
     .domain([0, d3.max(data, function(d) { return d[key] })])
@@ -472,32 +474,34 @@ function updateSubPlot2(key, i, year) {
     .padding(0)
     .align(0.5)
 
-  // NOW TO DO PROPER UPDATING!
-
   // selecting subplot
   svg = d3.select(`#plot2 .${key}`)
 
+  // selecting bars and binding data
   bars = svg.select(".bars")
-    .selectAll(".bars")
-    .data(data)
-    .attr("x", 0)
-    .attr("width", 0)
+    .selectAll("rect")
+    .data(data, function(d) {return d.id})
+  // updating bars
+  bars.transition()
+    .duration(1000)
+    .attr("width", function(d) { return xScale(d[key]); })
     .attr("y", function(d) { return yScale(d.id); })
     .attr("height", yScale.bandwidth)
-
-  // adding and updating
+  // adding bars
   bars.enter()
     .append("rect")
-    .transition()
-    .duration(650)
     .style("fill", function(d) {if (d.ghetto === true) {return "tomato"} else {return "steelblue"}})
     .attr("width", function(d) { return xScale(d[key]); })
     .attr("y", function(d) { return yScale(d.id); })
     .attr("height", yScale.bandwidth)
-
-  // removing
+    .style("opacity", 0)
+    .transition()
+    .duration(1000)
+    .style("opacity", 1)
+  // removing bars
   bars.exit()
     .transition()
+    .duration(1000)
     .style("opacity", 0)
     .remove()
 
