@@ -322,6 +322,7 @@ function collectCrime(munis, crime) {
   })
 }
 
+// plot2 constants
 const plot2Margin = {
   top: 20,
   bottom: 20,
@@ -329,20 +330,177 @@ const plot2Margin = {
   right: 100,
   padding: 10,
 }
-
 const plot2Dim = {
   w: 500,
   h: 500,
 }
-
 const plot2SubDim = {
   w: plot2Dim.w / 5,
   h: plot2Dim.h,
 }
 
-// all new function!
+// run at page-load, initialize plot2
 function generatePlot2() {
-  var svg = d3.select("#plot2") // selecting the main svg
+  // setting dimensions for total plot area
+  d3.select("#plot2")
+    .attr('width', plot2Dim.w + plot2Margin.left + plot2Margin.right)
+    .attr('height', plot2Dim.h + plot2Margin.top + plot2Margin.bottom)
+    .attr('transform', `translate(${plot2Margin.left}, ${plot2Margin.top})`)
+
+  // initialize each subplot for 2017
+  Object.keys(criterion[2017]).forEach(function (key, i) {
+    // creating svg and setting dimensions
+    var svg = d3.select("#plot2")
+      .append("svg")
+      .attr("class", key)
+      .attr('width', plot2SubDim.w)
+      .attr('height', plot2SubDim.h)
+      .attr('transform', `translate(${(plot2SubDim.w + 1/3*plot2Margin.padding) * i}, ${0})`)
+
+    // adding elements of the subplot
+    svg.append("g")
+      .attr("class", "x-axis")
+    svg.append("g")
+      .attr("class", "y-axis")
+    svg.append("g")
+      .attr("class", "background")
+    svg.append("g")
+      .attr("class", "bars")
+    svg.append("g")
+      .attr("class", "limit")
+
+    // updating
+    updateSubPlot2(key, i, 2017)
+  })
+}
+
+// for dynamically updating
+function updateAllSubPlot2(year) {
+  var allCats = Object.keys(criterion[2017])
+  var yearCats = Object.keys(criterion[year])
+
+  allCats.forEach(function(key, i) {
+    var svg = d3.select(`#plot2 .${key}`)
+    if (yearCats.indexOf(key) >= 0) {
+      svg.transition()
+        .style("stroke-opacity", 1)
+        .style("fill-opacity", 1)
+      updateSubPlot2(key, i, year)
+    } else {
+      svg.transition()
+        .style("stroke-opacity", 0.05)
+        .style("fill-opacity", 0.05)
+    }
+  })
+}
+
+// MAIN FUNCTION
+function updateSubPlot2(key, i, year) {
+  // data building (only necessary once per year)
+  const yay = 0
+  if (yay === 0) {
+    // filter ghetto = true
+    function ghettoFilter(obj) {
+      return obj.ghetto
+    }
+    var g = ghettos[year].filter(ghettoFilter)
+
+    // list of unique municipalities of the ghettos
+    var muniList = [...new Set(g.map(item => item.municipality))]
+    console.log(g)
+    console.log(muniList)
+
+    // filter munis
+    function muniFilter(obj) {
+      if (muniList.indexOf(obj.municipality) >= 0) {
+        return true
+      } else {
+        return false
+      }
+    }
+    var m = munis[year].filter(muniFilter)
+    console.log(m)
+
+    // number of ghettos in each municipality
+    muniGhettoN = []
+    g.forEach(function(item) {
+      t = muniList.indexOf(item.municipality)
+      if (isNaN(muniGhettoN[t])) {
+        muniGhettoN[t] = 1
+      } else {muniGhettoN[t] ++}
+    })
+    console.log(muniGhettoN)
+
+    function compareMuni(a, b) {
+      // by number of ghettos in municipality
+      an = muniGhettoN[muniList.indexOf(a.municipality)]
+      bn = muniGhettoN[muniList.indexOf(b.municipality)]
+      if (an > bn) {
+        return -1
+      }
+      else if (an < bn) {
+        return 1
+      }
+      else {return 0}
+    }
+    m.sort(compareMuni)
+    m.reverse()
+
+    // initialize data array
+    data = []
+    // fill
+    m.forEach(function(i) {
+
+      g.forEach(function(t) {
+        if (t.municipality === i.municipality) {
+          data.push(t)
+        }
+      })
+      data.push(i)
+    })
+  }
+
+  // defining scales
+  var xScale = d3.scaleLinear()
+    .domain([0, d3.max(data, function(d) { return d[key] })])
+    .range([0, plot2SubDim.w ])
+  var yScale = d3.scaleBand()
+    .domain(data.map(function(d) { return d.id }))
+    .rangeRound([plot2SubDim.h, 0])
+    .padding(0.1)
+  var bScale = yScale.copy() // scale for background
+    .padding(0)
+    .align(0.5)
+
+  // NOW TO DO PROPER UPDATING!
+
+  // selecting subplot
+  svg = d3.select(`#plot2 .${key}`)
+
+  bars = svg.select(".bars")
+    .selectAll(".bars")
+    .data(data)
+    .attr("x", 0)
+    .attr("width", 0)
+    .attr("y", function(d) { return yScale(d.id); })
+    .attr("height", yScale.bandwidth)
+
+  // adding and updating
+  bars.enter()
+    .append("rect")
+    .transition()
+    .duration(650)
+    .style("fill", function(d) {if (d.ghetto === true) {return "tomato"} else {return "steelblue"}})
+    .attr("width", function(d) { return xScale(d[key]); })
+    .attr("y", function(d) { return yScale(d.id); })
+    .attr("height", yScale.bandwidth)
+
+  // removing
+  bars.exit()
+    .transition()
+    .style("opacity", 0)
+    .remove()
+
 }
 
 function plot2(year) {
@@ -368,7 +526,7 @@ function plot2(year) {
   }
 
   const padding = 10
-// _________
+
   var svg = d3.select('#plot2')
     .attr('width', dim.w + margin.left + margin.right)
     .attr('height', dim.h + margin.top + margin.bottom)
@@ -395,7 +553,7 @@ function plot2(year) {
 function onePlot2(svg, key, year, oneDim, padding, i, margin) {
   // selecting plot area
   var svgSub = svg.append("g")
-    .attr("class", key)
+    .attr("class", key) // USED
     .attr('width', oneDim.w)
     .attr('height', oneDim.h)
     .attr('transform', `translate(${(oneDim.w+1/3*padding) * i}, ${0})`);
@@ -463,7 +621,6 @@ function updatePlot2(svg, key, year, oneDim, i, margin) {
     data.push(i)
   })
 
-
   // define scales
 //  var xSpan = d3.max(data, function(d) { return d[key] }) - d3.min(data, function(d) { return d[key] })
   var xScale = d3.scaleLinear()
@@ -523,6 +680,8 @@ function updatePlot2(svg, key, year, oneDim, i, margin) {
     .transition()
     .duration(650)
     .attr("width", function(d) { return xScale(d[key]); })
+
+  //____________________________
 
   // adding axis
   var xAxis = d3.axisBottom()
@@ -679,7 +838,7 @@ function play(year) {
 function yearChange(year) {
   d3.select("#sticky-selector select").property("value", year)
   updateAllWeirdHistograms(year);
-  plot2(year);
+  updateAllSubPlot2(year);
 }
 
 function showTooltip(x, y, content) {
