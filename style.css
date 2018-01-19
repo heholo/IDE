@@ -3,6 +3,18 @@ body {
     /* max-width: 900px; */
 }
 
+div.text {
+    max-width: 900px;
+    background-color: #e6e6e682;
+    padding: 5px 10px 5px 10px;
+    border-radius: 6px;
+}
+
+hr {
+    border-top: 1px dotted #8c8b8b;
+    margin-top: 22px;
+    margin-bottom: 22px;
+}
 a {
     color: blue;
     font-weight: bold;
@@ -10,7 +22,7 @@ a {
 }
 
 h1 {
-    color: #916887
+    color: black
 }
 
 .negative {color: red}
@@ -151,6 +163,16 @@ circle.selected {
 
 .point.hasGhetto {
     fill:teal;
+}
+
+.point.highlighted, .point.sticky-highlighted {
+    stroke-width: 2.5;
+    stroke-opacity: 0.7;
+    stroke: #00ffdb;
+}
+
+.point.sticky-highlighted {
+    stroke: purple;
 }
 
 g.limit line {
