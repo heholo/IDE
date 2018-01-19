@@ -915,7 +915,7 @@ function updateWeirdHistogram(container, key, year, dims, padding) {
             .domain(prettyExt)
             .range([0, dims.width])
 
-  var ticks = 70
+  var ticks = 75
   //var actualTicks = x.ticks(ticks)
   var actualTicks = d3.range(ext[0], ext[1], (ext[1] - ext[0]) / ticks)
   var tickWidth = (dims.width) / actualTicks.length
@@ -955,7 +955,7 @@ function updateWeirdHistogram(container, key, year, dims, padding) {
     .data(pointsData, (d) => d.id)
 
   var _ypos = function(d, i) {
-    var mag = ((d.binIndex + 1) / 2) * 7 + 2
+    var mag = ((d.binIndex + 1) / 2) * 6 + 2
     return (d.binIndex + 1) % 2 ? 0.5-mag : mag
   }
 

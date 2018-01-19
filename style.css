@@ -1,13 +1,29 @@
 body {
-    font-family: arial, monospace;
+    font-family: Georgia, serif;
     /* max-width: 900px; */
 }
 
 div.text {
+    min-width: 200px;
     max-width: 900px;
+    margin: auto;
     background-color: #e6e6e682;
-    padding: 5px 10px 5px 10px;
+    padding: 5px 5px 5px 5px;
     border-radius: 6px;
+}
+
+div.text h4 {
+    margin-top: 2px;
+}
+
+#bars {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+#bars div.text {
+    max-width: 40%;
+    min-width: 400px;
 }
 
 hr {
@@ -22,7 +38,9 @@ a {
 }
 
 h1 {
-    color: black
+    color: black;
+    font-size: 40px;
+    margin-bottom: 40px;
 }
 
 .negative {color: red}
@@ -111,7 +129,8 @@ svg {
 }
 
 .legend text {
-  font-size: 11px;
+    font-size: 11px;
+    pointer-events: none;
 }
 
 .link.spouse {
@@ -153,7 +172,11 @@ circle.selected {
 }
 
 #histograms svg text {
-    font-size: 11px
+    font-size: 11px;
+}
+
+#histograms g.title text {
+    pointer-events: none;
 }
 
 .point.ghetto {
