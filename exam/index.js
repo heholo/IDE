@@ -549,7 +549,12 @@ function updateSubPlot2(key, i, year, data, featureCount) {
       .selectAll("rect")
       .data(data, function(d) {return d.id})
     // updating bars
-    bars.transition()
+    bars.on("mouseover", function (d) {
+      showTooltip(d3.event.pageX + 11, d3.event.pageY, `${d.id}<br>${d[key].toFixed(2)}%`)
+        })
+      .on("mouseout", function () {hideTooltip()
+        })
+      .transition()
       .duration(1000)
       .attr("width", function(d) { return xScale(d[key]); })
       .attr("y", function(d) { return yScale(d.id); })
@@ -561,6 +566,12 @@ function updateSubPlot2(key, i, year, data, featureCount) {
       .attr("width", function(d) { return xScale(d[key]); })
       .attr("y", function(d) { return yScale(d.id); })
       .attr("height", yScale.bandwidth)
+      .on("mouseover", function (d) {
+        showTooltip(d3.event.pageX + 11, d3.event.pageY, `${d[key].toFixed(2)}%`) // `${d.id}<br>${key}<br>${d[key].toFixed(2)}%`)
+      })
+      .on("mouseout", function () {
+        hideTooltip()
+      })
       .style("opacity", 0)
       .transition()
       .duration(1000)
