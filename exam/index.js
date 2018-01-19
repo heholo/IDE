@@ -352,7 +352,7 @@ function collectExtents(extents, munis, ghettos) {
 const plot2Margin = {
   top: 40,
   bottom: 40,
-  left: 150,
+  left: 225,
   right: 100,
   padding: 10,
 }
@@ -412,6 +412,8 @@ function updateAllSubPlot2(year) {
       return obj.ghetto
     }
     var g = ghettos[year].filter(ghettoFilter)
+    // test, outgoing ghettos
+    var g = ghettos[year]
 
     // list of unique municipalities of the ghettos
     var muniList = [...new Set(g.map(item => item.municipality))]
@@ -557,22 +559,32 @@ function updateSubPlot2(key, i, year, data, featureCount) {
         })
       .transition()
       .duration(1000)
+      .style("fill", function(d) { if (d.municipality === d.id) { // is municipality
+        return "steelblue"} else { // if hell: begin
+        if (key === "income") {
+          if (d[key] >= criterion[year][key]) { // special case income
+            return "#ffa696"} else {
+            return "orangered"}
+        } else if (d[key] <= criterion[year][key]) {
+          return "#ffa696"} else {
+          return "orangered"}
+      }})
       .attr("width", function(d) { return xScale(d[key]); })
       .attr("y", function(d) { return yScale(d.id); })
       .attr("height", yScale.bandwidth)
     // adding bars
     bars.enter()
       .append("rect")
-      .style("fill", function(d) {if (d.ghetto === true) { // if hell: begin
+      .style("fill", function(d) { if (d.municipality === d.id) { // is municipality
+        return "steelblue"} else { // if hell: begin
         if (key === "income") {
-          if (d[key] > criterion[year][key]) { // special case income
+          if (d[key] >= criterion[year][key]) { // special case income
             return "#ffa696"} else {
             return "orangered"}
-        } else if (d[key] < criterion[year][key]) {
+        } else if (d[key] <= criterion[year][key]) {
           return "#ffa696"} else {
           return "orangered"}
-        } else {
-        return "steelblue"}})
+      }})
       .attr("width", function(d) { return xScale(d[key]); })
       .attr("y", function(d) { return yScale(d.id); })
       .attr("height", yScale.bandwidth)
@@ -642,6 +654,8 @@ function updateSubPlot2(key, i, year, data, featureCount) {
         .data(data)
         .style("font-weight", function(d) {if (d.id === d.municipality) {return "bold"} else {return "normal"}})
         .style("text-decoration", function(d) {if (d.id === d.municipality) {return "underline"} else {return "none"}})
+        .style("font-style", function(d) {if (d.id !== d.municipality && d.ghetto !== true) {return "italic"} else {return "normal"}})
+        .attr("fill", function(d) {if (d.id !== d.municipality && d.ghetto !== true) {return "orangered"} else {return "black"}})
       temp.transition()
         .duration(1000)
         .call(yAxis)
