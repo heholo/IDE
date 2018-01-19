@@ -203,6 +203,16 @@ g.limit line {
     stroke-dasharray: 2px;
 }
 
+#plot2 g.limit line {
+    stroke: black;
+    stroke-dasharray: 5,5;
+}
+
+#plot2 g.limit text {
+    font-size: 10;
+    font-family: sans-serif;
+}
+
 #tooltip {
     position: absolute;			
     text-align: center;
