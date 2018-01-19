@@ -352,7 +352,7 @@ function collectExtents(extents, munis, ghettos) {
 const plot2Margin = {
   top: 40,
   bottom: 40,
-  left: 225,
+  left: 150,
   right: 100,
   padding: 10,
 }
