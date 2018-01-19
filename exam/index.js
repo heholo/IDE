@@ -723,7 +723,7 @@ function playAll() {
 function play(year) {
   if (year > 2017) return;
   yearChange(year)
-  d3.timeout(() => play(year + 1), 1000)
+  d3.timeout(() => play(year + 1), 1200)
 
 }
 
