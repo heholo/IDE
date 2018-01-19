@@ -351,7 +351,7 @@ function collectExtents(extents, munis, ghettos) {
 // plot2 constants
 const plot2Margin = {
   top: 40,
-  bottom: 20,
+  bottom: 40,
   left: 150,
   right: 100,
   padding: 10,
@@ -393,6 +393,8 @@ function generatePlot2() {
       .attr("class", "y-axis")
     svg.append("g")
       .attr("class", "limit")
+    svg.append("g")
+      .attr("class", "name")
   })
 
   // updating
@@ -538,6 +540,9 @@ function updateSubPlot2(key, i, year, data, featureCount) {
     svg.select(".limit")
       .selectAll("*")
       .remove()
+    svg.select(".name")
+      .selectAll("*")
+      .remove()
   } else { // update subplot
     // selecting bars and binding data
     bars = svg.select(".bars")
@@ -589,6 +594,8 @@ function updateSubPlot2(key, i, year, data, featureCount) {
       .attr("text-anchor", "start")
       .attr("x",xScale(criterion[year][key]))
       .attr("y",-5)
+      .style("font-size", 12)
+      .style("font-family", "sans-serif")
 
     // defining x-axis (for values)
     var xAxis = d3.axisBottom()
@@ -627,6 +634,18 @@ function updateSubPlot2(key, i, year, data, featureCount) {
         .attr("stroke-width", 1)
         .attr("stroke", "black")
     }
+
+    // removing name of feature
+    svg.select(".name")
+      .selectAll("*")
+      .remove()
+    // adding name of feature
+    svg.select(".name")
+      .append("text")
+      .text(key.charAt(0).toUpperCase() + key.slice(1))
+      .attr('transform', `translate(${3}, ${plot2SubDim.h + 3 * plot2Margin.padding})`)
+      .style("font-size", 12)
+      .style("font-family", "sans-serif")
   }
 }
 
