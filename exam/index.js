@@ -753,7 +753,73 @@ function _init(err, ghetto, pop, emp, foreigners, edu, edu_cur, income, crime, m
   dropdownMenu.property("value", 2017)
   dropdownMenu.on("change", function () {
     yearChange(d3.select(this).property("value"))
-  })
+  });
+
+  d3.select("a.crime")
+    .on("mouseover", function () {
+      d3.selectAll("#histograms div.histogram svg")
+        .classed("faded", true)
+      d3.select("#histograms div.prosecuted svg")
+        .classed("faded", false)
+      d3.select("#histograms div.immigrants svg")
+        .classed("faded", false)
+
+      
+    })
+    .on("mouseout", function () {
+      d3.selectAll("#histograms div.histogram svg")
+        .classed("faded", false)
+
+    })
+    .on("click", function () {
+      var dthis = d3.select(this)
+      if (dthis.text() == "Show 2010") {
+        yearChange(2010)
+        dthis.text("Show 2017")
+      } else {
+        yearChange(2017)
+        dthis.text("Show 2010")
+      }
+    })
+
+  var unlucky = ["Tingbjerg/Utterslevhuse", "Bispeparken", "Tåstrupgård", "Degnegården mv"]
+  d3.select("a.income")
+    .on("mouseover", function () {
+      yearChange(2014)
+      d3.selectAll("#histograms div.histogram svg")
+        .classed("faded", true)
+      d3.select("#histograms div.unemployed svg")
+        .classed("faded", false)
+      d3.select("#histograms div.income svg")
+        .classed("faded", false)
+
+      d3.select("#histograms")
+        .selectAll(".histogram .point")
+        .filter(function (d) {
+          console.log(unlucky)
+          
+          return unlucky.indexOf(d.id) >= 0
+        })
+        .classed("sticky-highlighted", true)
+
+      
+    })
+    .on("mouseout", function () {
+      d3.selectAll("#histograms div.histogram svg")
+        .classed("faded", false)
+      d3.select("#histograms")
+        .selectAll(".histogram .point")
+        .classed("filter", function (d) {
+          return unlucky.indexOf(d.id) >= 0
+        })
+        .classed("sticky-highlighted", false)
+
+
+    })
+    .on("click", function () {
+      yearChange(2014)
+    })
+
 }
 
 function playAll() {
@@ -819,7 +885,7 @@ function generateWeirdHistograms() {
   Object.keys(criterion[2017]).forEach(function (key, i) {
     var svg = d3.select("#histograms")
                 .append("div")
-                .attr("class", key)
+                .attr("class", `${key} histogram`)
                 .append("svg")
                 .style("width", 2*padding + dims.width + "px")
                 .style("height", 2*padding + histoMensions.height + "px")
@@ -933,18 +999,14 @@ function updateAllWeirdHistograms(year) {
   var yearCats = Object.keys(criterion[year])
 
   allCats.forEach(function(cat) {
-    var svg = d3.select(`#histograms .${cat}`)
+    var svg = d3.select(`#histograms div.${cat} svg`)
 
     if (yearCats.indexOf(cat) >= 0) {
-      svg.transition()
-         .style("stroke-opacity", 1)
-         .style("fill-opacity", 1)
+        svg.classed("hidden", false)
       updateWeirdHistogram(svg, cat, year, histoMensions, padding)
 
     } else {
-      svg.transition()
-         .style("stroke-opacity", 0.05)
-         .style("fill-opacity", 0.05)
+        svg.classed("hidden", true)
 
     }
   })
@@ -966,8 +1028,8 @@ function updateWeirdHistogram(container, key, year, dims, padding) {
             .domain(prettyExt)
             .range([0, dims.width])
 
-  var ticks = 75
-  //var actualTicks = x.ticks(ticks)
+  var ticks = 70
+  //var actualTicks = d3.ticks(ext[0], ext[1], ticks - 1)
   var actualTicks = d3.range(ext[0], ext[1], (ext[1] - ext[0]) / ticks)
   var tickWidth = (dims.width) / actualTicks.length
   var dotSize = (tickWidth / 2) * 0.5
