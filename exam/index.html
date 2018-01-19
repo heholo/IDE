@@ -139,14 +139,48 @@
         </div>
         <hr>
         <div>
-            <h2 align="center">Ghettos and Their Municipalities</h2>
+            <div style="width:100%">
+                <h2 align="center">Ghettos and Their Municipalities</h2>
+            </div>
+            <div class="text" style="width:100%">
+                <p>
+                    Below is a detailed view of the ghettolist data including municipalities of the ghettos.
+                    The year can be changed in the top-left, in a manner identical to the overview visualization.
+                    Each ghetto is listed together with it's municipality for easy comparison.
+                </p>
+            </div>
             <div id="bars">
                 <div class="text">
-                    <h4 align="center">Lorem</h4>
-                    Aliquam erat volutpat.  Nunc eleifend leo vitae magna.  In id erat non orci commodo lobortis.  Proin neque massa, cursus ut, gravida ut, lobortis eget, lacus.  Sed diam.  Praesent fermentum tempor tellus.  Nullam tempus.  Mauris ac felis vel velit tristique imperdiet.  Donec at pede.  Etiam vel neque nec dui dignissim bibendum.  Vivamus id enim.  Phasellus neque orci, porta a, aliquet quis, semper a, massa.  Phasellus purus.  Pellentesque tristique imperdiet tortor.  Nam euismod tellus id erat.
+                    <p style="color:Blue;">Municipalities are colored blue</p>
+                    <p style="color:OrangeRed;">Fulfilled criteria is colored dark red</p>
+                    <p style="color:#ffa696;">Unfulfilled criteria is colored light red</p>
+                    <p style="color:#ffa696;">Ghettos leaving the list that year is also colored light red</p>
                 </div>
                 <div>
                     <svg id="plot2"></svg>
+                </div>
+                <div class="text">
+                    What follows are a few observations based on the detailed visualization above:
+                    <ul>
+                        <li>
+                            If we, for 2017, compare the ghettos of Copenhagen with the ghettos of Aarhus, we can see that there is greater
+                            unemployment in the ghettos in Aarhus. However the reverse is true for the municipalities: the
+                            unemployment pct. of Copenhagen is almost twice that of Aarhus.
+                        </li>
+                        <li>
+                            We see that crime is falling and only two ghettos in 2017 fulfill the criteria.
+                        </li>
+                        <li>
+                            If we look at income criteria for 2017 we see that ghettos in Copenhagen and Høje-Taastrup, both
+                            located in the Central Region, are the most represented, reflecting the fact that
+                            the average income in the Central Region is larger than other regions while the income
+                            in the ghetto stays low.
+                        </li>
+                        <li>
+                            Looking at the last three years (2015-2017) education, immigrants and unemployment are the
+                            three criteria that most ghettos are fulfilling.
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
