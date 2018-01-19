@@ -701,9 +701,9 @@ function generateWeirdHistograms() {
   }
 
   var outer = d3.select("#histograms")
-  var legend = outer.append("div")
-                    .attr("class", "legend")
-                    .append("svg")
+  outer.select("div.legend div.text").style("width", dims.width + "px")
+  var legend = outer.select("div.legend")
+                    .insert("svg", ":first-child")
                     .style("width", 2*padding + dims.width + "px")
                     .style("height", 2*padding + "px")
   generateHistogramLegend(legend, histoMensions.height / 3, dims.width, padding)
@@ -910,6 +910,10 @@ function updateWeirdHistogram(container, key, year, dims, padding) {
         .attr("cx", (d) => x((d.x1 + d.x0) / 2))
         .attr("cy", _ypos)
 
+  var _getFromMuni = (d) => d3.select("#histograms")
+                              .selectAll(".point")
+                              .filter((d2) => !!d2 && d.municipality == d2.municipality);
+
   points.enter()
         .append("circle")
         .attr("r", dotSize)
@@ -920,23 +924,19 @@ function updateWeirdHistogram(container, key, year, dims, padding) {
         .classed("hasGhetto", (d) => !d.ghetto && d.ghettos)
         .on("mouseover", function (d) {
           showTooltip(d3.event.pageX + 11, d3.event.pageY, `${d.id}<br>${d[key].toFixed(2)}%`);
-
-          d3.select("#histograms")
-            .selectAll(".point")
-            .filter((d2) => !!d2 && d.municipality == d2.municipality)
-            .classed("highlighted", true)
+          _getFromMuni(d).classed("highlighted", true);
           
         })
         .on("mouseout", function (d) {
           hideTooltip()
-          d3.select("#histograms")
-            .selectAll(".point")
-            .filter((d2) => !!d2 && d.municipality == d2.municipality)
-            .classed("highlighted", false)
+          _getFromMuni(d).classed("highlighted", false)
 
         })
         .on("click", function(d) {
-          d3.select(this).classed("sticky-highlighted", !d3.select(this).classed("sticky-highlighted"))
+          var selector = d3.event.shiftKey ? _getFromMuni(d) : d3.select("#histograms")
+                                                                 .selectAll(".point")
+                                                                 .filter((dd) => dd && dd.id == d.id)
+          selector.classed("sticky-highlighted", !d3.select(this).classed("sticky-highlighted"))
         })
         .style("opacity", 0)
         .transition()

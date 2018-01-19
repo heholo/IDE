@@ -110,7 +110,7 @@
     },
     {
       "ghetto":true,
-      "id":"Lindholdm",
+      "id":"Lindholm",
       "municipality":"Guldborgsund",
       "new":true,
       "residents":1549,
@@ -1962,8 +1962,8 @@
       "municipality":"København",
       "new":false,
       "residents":2502,
-      "unemployed":62.6,
-      "immigrants":34.4,
+      "immigrants":62.6,
+      "unemplyed":34.4,
       "prosecuted":2.75
     },
     {
@@ -1972,8 +1972,8 @@
       "municipality":"København",
       "new":false,
       "residents":1511,
-      "unemployed":52.5,
-      "immigrants":40.8,
+      "immigrants":52.5,
+      "unemployed":40.8,
       "prosecuted":4.00
     },
     {
@@ -1982,8 +1982,8 @@
       "municipality":"København",
       "new":false,
       "residents":1897,
-      "unemployed":87.9,
-      "immigrants":47.9,
+      "immigrants":87.9,
+      "unemployed":47.9,
       "prosecuted":3.15
     },
     {
@@ -1992,8 +1992,8 @@
       "municipality":"København",
       "new":false,
       "residents":1283,
-      "unemployed":57.3,
-      "immigrants":35.0,
+      "immigrants":57.3,
+      "unemployed":35.0,
       "prosecuted":2.94
     },
     {
@@ -2002,8 +2002,8 @@
       "municipality":"København",
       "new":false,
       "residents":1497,
-      "unemployed":56.0,
-      "immigrants":42.0,
+      "immigrants":56.0,
+      "unemployed":42.0,
       "prosecuted":4.52
     },
     {
@@ -2012,8 +2012,8 @@
       "municipality":"København",
       "new":true,
       "residents":1046,
-      "unemployed":39.0,
-      "immigrants":41.1,
+      "unemployed":41.1,
+      "immigrants":39.0,
       "prosecuted":5.72
     },
     {
@@ -2022,8 +2022,8 @@
       "municipality":"København",
       "new":true,
       "residents":1014,
-      "unemployed":53.6,
-      "immigrants":36.7,
+      "immigrants":53.6,
+      "unemployed":36.7,
       "prosecuted":3.15
     },
     {
@@ -2032,8 +2032,8 @@
       "municipality":"København",
       "new":false,
       "residents":1632,
-      "unemployed":52.6,
-      "immigrants":35.6,
+      "immigrants":52.6,
+      "unemployed":35.6,
       "prosecuted":2.92
     },
     {
@@ -2042,8 +2042,8 @@
       "municipality":"Høje-Taastrup",
       "new":false,
       "residents":2511,
-      "unemployed":68.9,
-      "immigrants":34.8,
+      "immigrants":68.9,
+      "unemployed":34.8,
       "prosecuted":3.16
     },
     {
@@ -2052,8 +2052,8 @@
       "municipality":"Høje-Taastrup",
       "new":false,
       "residents":1629,
-      "unemployed":53.2,
-      "immigrants":39.3,
+      "immigrants":53.2,
+      "unemployed":39.3,
       "prosecuted":3.89
     },
     {
@@ -2062,8 +2062,8 @@
       "municipality":"Høje-Taastrup",
       "new":true,
       "residents":2031,
-      "unemployed":52.5,
-      "immigrants":38.8,
+      "immigrants":52.5,
+      "unemployed":38.8,
       "prosecuted":3.20
     },
     {
@@ -2072,8 +2072,8 @@
       "id":"Nivåhøj",
       "new":true,
       "residents":1467,
-      "unemployed":47.3,
-      "immigrants":40.3,
+      "immigrants":47.3,
+      "unemployed":40.3,
       "prosecuted":2.71
     },
     {
@@ -2082,8 +2082,8 @@
       "id":"Askerød",
       "new":true,
       "residents":1448,
-      "unemployed":53.7,
-      "immigrants":30.2,
+      "immigrants":53.7,
+      "unemployed":30.2,
       "prosecuted":2.81
     },
     {
@@ -2092,8 +2092,8 @@
       "id":"Karlemoseparken",
       "new":true,
       "residents":1515,
-      "unemployed":49.4,
-      "immigrants":40.8,
+      "immigrants":49.4,
+      "unemployed":40.8,
       "prosecuted":2.83
     },
     {
@@ -2102,8 +2102,8 @@
       "id":"Rønnebærparken/Æblehaven",
       "new":true,
       "residents":1539,
-      "unemployed":44.4,
-      "immigrants":40.7,
+      "immigrants":44.4,
+      "unemployed":40.7,
       "prosecuted":3.21
     },
     {
@@ -2112,8 +2112,8 @@
       "id":"Agervang",
       "new":false,
       "residents":1439,
-      "unemployed":58.2,
-      "immigrants":49.9,
+      "immigrants":58.2,
+      "unemployed":49.9,
       "prosecuted":2.93
     },
     {
@@ -2132,8 +2132,8 @@
       "id":"Solbakken mv",
       "new":false,
       "residents":1280,
-      "unemployed":46.7,
-      "immigrants":44.3,
+      "immigrants":46.7,
+      "unemployed":44.3,
       "prosecuted":3.11
     },
     {
@@ -2142,8 +2142,8 @@
       "id":"Vollsmose",
       "new":false,
       "residents":9040,
-      "unemployed":67.5,
-      "immigrants":53.7,
+      "immigrants":67.5,
+      "unemployed":53.7,
       "prosecuted":3.75
     },
     {
@@ -2152,8 +2152,8 @@
       "id":"Dianavænget/Heliosvænget",
       "new":false,
       "residents":1086,
-      "unemployed":41.3,
-      "immigrants":49.3,
+      "immigrants":41.3,
+      "unemployed":49.3,
       "prosecuted":2.85
     },
     {
@@ -2162,8 +2162,8 @@
       "id":"Byparken/Skovparken",
       "new":false,
       "residents":1267,
-      "unemployed":51.1,
-      "immigrants":53.8,
+      "immigrants":51.1,
+      "unemployed":53.8,
       "prosecuted":3.53
     },
     {
@@ -2172,8 +2172,8 @@
       "id":"Nørager/Søstjernevej m.fl",
       "new":false,
       "residents":1291,
-      "unemployed":62.2,
-      "immigrants":47.9,
+      "immigrants":62.2,
+      "unemployed":47.9,
       "prosecuted":2.71
     },
     {
@@ -2182,8 +2182,8 @@
       "id":"Stengårdsvej",
       "new":false,
       "residents":1851,
-      "unemployed":62.6,
-      "immigrants":45.4,
+      "immigrants":62.6,
+      "unemployed":45.4,
       "prosecuted":3.33
     },
     {
@@ -2192,8 +2192,8 @@
       "id":"Kvaglund",
       "new":true,
       "residents":2397,
-      "unemployed":25.9,
-      "immigrants":43.4,
+      "immigrants":25.9,
+      "unemployed":43.4,
       "prosecuted":2.71
     },
     {
@@ -2202,8 +2202,8 @@
       "id":"Korskærparken",
       "new":false,
       "residents":1900,
-      "unemployed":44.0,
-      "immigrants":45.8,
+      "immigrants":44.0,
+      "unemployed":45.8,
       "prosecuted":2.78
     },
     {
@@ -2212,8 +2212,8 @@
       "id":"Sundparken",
       "new":false,
       "residents":1532,
-      "unemployed":63.0,
-      "immigrants":52.5,
+      "immigrants":63.0,
+      "unemployed":52.5,
       "prosecuted":2.45
     },
     {
@@ -2222,8 +2222,8 @@
       "id":"Munkebo",
       "new":true,
       "residents":1474,
-      "unemployed":57.7,
-      "immigrants":41.7,
+      "immigrants":57.7,
+      "unemployed":41.7,
       "prosecuted":1.99
     },
     {
@@ -2232,8 +2232,8 @@
       "id":"Skovvejen/Skovparken",
       "new":false,
       "residents":2328,
-      "unemployed":58.6,
-      "immigrants":42.5,
+      "immigrants":58.6,
+      "unemployed":42.5,
       "prosecuted":3.11
     },
     {
@@ -2242,8 +2242,8 @@
       "id":"Finlandsparken",
       "new":true,
       "residents":1563,
-      "unemployed":71.7,
-      "immigrants":42.2,
+      "immigrants":71.7,
+      "unemployed":42.2,
       "prosecuted":2.31
     },
     {
@@ -2252,8 +2252,8 @@
       "id":"Bispehaven",
       "new":false,
       "residents":2371,
-      "unemployed":67.1,
-      "immigrants":43.0,
+      "immigrants":67.1,
+      "unemployed":43.0,
       "prosecuted":2.71
     },
     {
@@ -2262,8 +2262,8 @@
       "id":"Gellerupparken/Toveshøj",
       "new":false,
       "residents":7200,
-      "unemployed":79.4,
-      "immigrants":50.8,
+      "immigrants":79.4,
+      "unemployed":50.8,
       "prosecuted":4.44
     },
     {
@@ -2272,8 +2272,8 @@
       "id":"Trigeparken",
       "new":false,
       "residents":1051,
-      "unemployed":33.4,
-      "immigrants":42.0,
+      "immigrants":33.4,
+      "unemployed":42.0,
       "prosecuted":2.85
     },
     {
@@ -2282,8 +2282,8 @@
       "id":"Sebbersundvej mv",
       "new":false,
       "residents":1150,
-      "unemployed":19.5,
-      "immigrants":44.6,
+      "immigrants":19.5,
+      "unemployed":44.6,
       "prosecuted":3.18
     },
     {
@@ -2292,8 +2292,8 @@
       "id":"Aldersrogade",
       "new":false,
       "residents":2329,
-      "unemployed":73.6,
-      "immigrants":38.9,
+      "immigrants":73.6,
+      "unemployed":38.9,
       "prosecuted":2.65
     },
     {
@@ -2302,8 +2302,8 @@
       "id":"Akacieparken",
       "new":false,
       "residents":1130,
-      "unemployed":64.1,
-      "immigrants":39.6,
+      "immigrants":64.1,
+      "unemployed":39.6,
       "prosecuted":2.62
     },
     {
@@ -2312,8 +2312,8 @@
       "id":"Gadelandet/Husumgård",
       "new":false,
       "residents":1057,
-      "unemployed":64.3,
-      "immigrants":39.7,
+      "immigrants":64.3,
+      "unemployed":39.7,
       "prosecuted":1.91
     },
     {
@@ -2322,8 +2322,8 @@
       "id":"Tingbjerg/Utterslevhuse",
       "new":false,
       "residents":6065,
-      "unemployed":68.9,
-      "immigrants":36.1,
+      "immigrants":68.9,
+      "unemployed":36.1,
       "prosecuted":2.66
     },
     {
@@ -2332,9 +2332,93 @@
       "id":"Havrevej",
       "new":false,
       "residents":1138,
-      "unemployed":29.7,
-      "immigrants":45.7,
+      "immigrants":29.7,
+      "unemployed":45.7,
       "prosecuted":2.60
     }
+  ],
+  "2011": [{"unemployed": 43.0, "immigrants": 49.9, "municipality": "København", "prosecuted": 4.23, "residents": 1.350, "id": "Bispeparken", "ghetto": true},
+           {"unemployed": 43.1, "immigrants": 45.3, "municipality": "Odense", "prosecuted": 2.97, "residents": 1.294, "id": "Solbakken mv", "ghetto": true},
+           {"unemployed": 43.3, "immigrants": 64.6, "municipality": "København", "prosecuted": 1.88, "residents": 1.037, "id": "Gadelandet/Husumgård", "ghetto": true},
+           {"unemployed": 42.2, "immigrants": 76.7, "municipality": "København", "prosecuted": 2.81, "residents": 2.356, "id": "Aldersrogade", "ghetto": true},
+           {"unemployed": 45.4, "immigrants": 23.6, "municipality": "Viborg", "prosecuted": 3.29, "residents": 1.008, "id": "Houlkærvænget", "ghetto": true},
+           {"unemployed": 47.7, "immigrants": 59.3, "municipality": "Holbæk", "prosecuted": 2.34, "residents": 1.447, "id": "Agervang", "ghetto": true},
+           {"unemployed": 39.1, "immigrants": 54.2, "municipality": "Høje-Taastrup", "prosecuted": 3.92, "residents": 1.701, "id": "Charlotteager", "ghetto": true},
+           {"unemployed": 52.8, "immigrants": 89.9, "municipality": "København", "prosecuted": 3.03, "residents": 1.992, "id": "Mjølnerparken", "ghetto": true},
+           {"unemployed": 46.7, "immigrants": 62.3, "municipality": "Esbjerg", "prosecuted": 2.86, "residents": 1.847, "id": "Stengårdsvej", "ghetto": true},
+           {"unemployed": 39.2, "immigrants": 67.9, "municipality": "København", "prosecuted": 2.77, "residents": 5.863, "id": "Tingbjerg/Utterslevhuse", "ghetto": true},
+           {"unemployed": 48.7, "immigrants": 61.3, "municipality": "Horsens", "prosecuted": 2.41, "residents": 1.529, "id": "Sundparken", "ghetto": true},
+           {"unemployed": 53.2, "immigrants": 83.7, "municipality": "Aarhus", "prosecuted": 4.29, "residents": 7.191, "id": "Gellerupparken/Toveshøj", "ghetto": true},
+           {"unemployed": 46.3, "immigrants": 62.6, "municipality": "Sønderborg", "prosecuted": 2.83, "residents": 1.323, "id": "Nørager/Søstjernevej m.fl", "ghetto": true},
+           {"unemployed": 44.1, "immigrants": 27.3, "municipality": "Thisted", "prosecuted": 3.09, "residents": 1.086, "id": "Havrevej", "ghetto": true},
+           {"unemployed": 44.2, "immigrants": 51.0, "municipality": "Slagelse", "prosecuted": 2.61, "residents": 1.907, "id": "Ringparken, Slagelse", "ghetto": true},
+           {"unemployed": 44.6, "immigrants": 52.9, "municipality": "København", "prosecuted": 4.38, "residents": 1.478, "id": "Lundtoftegade", "ghetto": true},
+           {"unemployed": 41.5, "immigrants": 55.4, "municipality": "Kolding", "prosecuted": 3.28, "residents": 2.361, "id": "Skovvejen/Skovparken", "ghetto": true},
+           {"unemployed": 35.0, "immigrants": 54.1, "municipality": "København", "prosecuted": 2.84, "residents": 1.265, "id": "Sjælør Boulevard", "ghetto": true},
+           {"unemployed": 38.2, "immigrants": 52.1, "municipality": "København", "prosecuted": 3.2, "residents": 1.583, "id": "Hørgården", "ghetto": true},
+           {"unemployed": 29.5, "immigrants": 55.6, "municipality": "Greve", "prosecuted": 2.99, "residents": 1.455, "id": "Askerød", "ghetto": true},
+           {"unemployed": 36.8, "immigrants": 65.5, "municipality": "København", "prosecuted": 2.8, "residents": 2.440, "id": "Blågården", "ghetto": true},
+           {"unemployed": 53.2, "immigrants": 50.2, "municipality": "Svendborg", "prosecuted": 3.99, "residents": 1.434, "id": "Byparken/Skovparken", "ghetto": true},
+           {"unemployed": 44.3, "immigrants": 70.1, "municipality": "København", "prosecuted": 3.09, "residents": 1.160, "id": "Akacieparken", "ghetto": true},
+           {"unemployed": 43.3, "immigrants": 68.6, "municipality": "Aarhus", "prosecuted": 2.79, "residents": 2.395, "id": "Bispehaven", "ghetto": true},
+           {"unemployed": 54.4, "immigrants": 67.7, "municipality": "Odense", "prosecuted": 3.58, "residents": 9.259, "id": "Vollsmose", "ghetto": true},
+           {"unemployed": 43.4, "immigrants": 38.3, "municipality": "Fredericia", "prosecuted": 2.81, "residents": 1.876, "id": "Korskærparken", "ghetto": true},
+           {
+             "municipality": "Høje-Taastrup",
+             "id": "Tåstrupgård",
+             "residents": 2.441,
+             "immigrants": 67.8,
+             "unemployed": 32.6,
+             "prosecuted": 2.59,
+             "ghetto": false
+           },
+           {
+             "municipality": "Ishøj",
+             "id": "Vejleåparken",
+             "residents": 4.610,
+             "immigrants": 56.8,
+             "unemployed": 26.9,
+             "prosecuted": 2.51,
+             "ghetto": false
+           },
+           {
+             "municipality": "Aalborg",
+             "id": "Sebbersundvej mv",
+             "residents": 1.158,
+             "immigrants": 18.4,
+             "unemployed": 43.0,
+             "prosecuted": 2.64,
+             "ghetto": false
+           }
+          ],
+  "2010": [ { "municipality": "København", "id": "Blågården", "residents": 2.440, "immigrants": 65.5, "unemployed": 36.8, "prosecuted": 2.83, "ghetto": true },
+            { "municipality": "København", "id": "Lundtoftegade", "residents": 1.478, "immigrants": 52.9, "unemployed": 44.6, "prosecuted": 4.62, "ghetto": true },
+            { "municipality": "København", "id": "Aldersrogade", "residents": 2.356, "immigrants": 76.7, "unemployed": 42.2, "prosecuted": 2.80, "ghetto": true },
+            { "municipality": "København", "id": "Mjølnerparken", "residents": 1.992, "immigrants": 89.9, "unemployed": 52.8, "prosecuted": 3.26, "ghetto": true },
+            { "municipality": "København", "id": "Sjælør Boulevard", "residents": 1.265, "immigrants": 54.1, "unemployed": 35.0, "prosecuted": 3.04, "ghetto": true },
+            { "municipality": "København", "id": "Akacieparken", "residents": 1.160, "immigrants": 70.1, "unemployed": 44.3, "prosecuted": 3.42, "ghetto": true },
+            { "municipality": "København", "id": "Gadelandet/Husumgård", "residents": 1.037, "immigrants": 64.6, "unemployed": 43.3, "prosecuted": 1.88, "ghetto": true },
+            { "municipality": "København", "id": "Tingbjerg/Utterslevhuse", "residents": 5.863, "immigrants": 67.9, "unemployed": 39.2, "prosecuted": 2.87, "ghetto": true },
+            { "municipality": "København", "id": "Bispeparken", "residents": 1.350, "immigrants": 49.9, "unemployed": 43.0, "prosecuted": 4.27, "ghetto": true },
+            { "municipality": "København", "id": "Hørgården", "residents": 1.583, "immigrants": 52.1, "unemployed": 38.2, "prosecuted": 3.48, "ghetto": true },
+            { "municipality": "Høje-Taastrup", "id": "Tåstrupgård", "residents": 2.441, "immigrants": 67.8, "unemployed": 32.6, "prosecuted": 2.74, "ghetto": true },
+            { "municipality": "Høje-Taastrup", "id": "Charlotteager", "residents": 1.701, "immigrants": 54.2, "unemployed": 39.1, "prosecuted": 4.25, "ghetto": true },
+            { "municipality": "Ishøj", "id": "Vejleåparken", "residents": 4.610, "immigrants": 56.8, "unemployed": 26.9, "prosecuted": 2.77, "ghetto": true },
+            { "municipality": "Greve", "id": "Askerød", "residents": 1.455, "immigrants": 55.6, "unemployed": 29.5, "prosecuted": 2.88, "ghetto": true },
+            { "municipality": "Holbæk", "id": "Agervang", "residents": 1.447, "immigrants": 59.3, "unemployed": 47.7, "prosecuted": 2.62, "ghetto": true },
+            { "municipality": "Slagelse", "id":  "Ringparken, Slagelse", "residents": 1.907, "immigrants": 51.0, "unemployed": 44.2, "prosecuted": 2.76, "ghetto": true },
+            { "municipality": "Odense", "id":  "Solbakken mv", "residents": 1.294, "immigrants": 45.3, "unemployed": 43.1, "prosecuted": 3.46, "ghetto": true },
+            { "municipality": "Odense", "id":  "Vollsmose", "residents": 9.259, "immigrants": 67.7, "unemployed": 54.4, "prosecuted": 3.73, "ghetto": true },
+            { "municipality": "Svendborg", "id":  "Byparken/Skovparken", "residents": 1.434, "immigrants": 50.2, "unemployed": 53.2, "prosecuted": 4.41, "ghetto": true },
+            { "municipality": "Sønderborg", "id":  "Nørager/Søstjernevej m.fl", "residents": 1.323, "immigrants": 62.6, "unemployed": 46.3, "prosecuted": 3.02, "ghetto": true },
+            { "municipality": "Esbjerg", "id":  "Stengårdsvej", "residents": 1.847, "immigrants": 62.3, "unemployed": 46.7, "prosecuted": 2.69, "ghetto": true },
+            { "municipality": "Fredericia", "id":  "Korskærparken", "residents": 1.876, "immigrants": 38.3, "unemployed": 43.4, "prosecuted": 3.05, "ghetto": true },
+            { "municipality": "Horsens", "id":  "Sundparken", "residents": 1.529, "immigrants": 61.3, "unemployed": 48.7, "prosecuted": 2.29, "ghetto": true },
+            { "municipality": "Kolding", "id":  "Skovvejen/Skovparken", "residents": 2.361, "immigrants": 55.4, "unemployed": 41.5, "prosecuted": 3.32, "ghetto": true },
+            { "municipality": "Aarhus", "id":  "Bispehaven", "residents": 2.395, "immigrants": 68.6, "unemployed": 43.3, "prosecuted": 2.79, "ghetto": true },
+            { "municipality": "Aarhus", "id":  "Gellerupparken/Toveshøj", "residents": 7.191, "immigrants": 83.7, "unemployed": 53.2, "prosecuted": 4.56, "ghetto": true },
+            { "municipality": "Thisted", "id":  "Havrevej", "residents": 1.086, "immigrants": 27.3, "unemployed": 44.1, "prosecuted": 3.00, "ghetto": true },
+            { "municipality": "Viborg", "id":  "Houlkærvænget", "residents": 1.008, "immigrants": 23.6, "unemployed": 45.4, "prosecuted": 3.45, "ghetto": true },
+            { "municipality": "Aalborg", "id":  "Sebbersundvej mv", "residents": 1.158, "immigrants": 18.4, "unemployed": 43.0, "prosecuted": 2.85, "ghetto": true }
   ]
 }
