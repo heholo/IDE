@@ -350,7 +350,7 @@ function collectExtents(extents, munis, ghettos) {
 
 // plot2 constants
 const plot2Margin = {
-  top: 10,
+  top: 40,
   bottom: 20,
   left: 150,
   right: 100,
@@ -380,7 +380,7 @@ function generatePlot2() {
       .attr("class", key)
       .attr('width', plot2SubDim.w)
       .attr('height', plot2SubDim.h)
-      .attr('transform', `translate(${plot2Margin.left + (plot2SubDim.w + 1/3*plot2Margin.padding) * i}, ${plot2Margin.top})`)
+      .attr('transform', `translate(${plot2Margin.left + (plot2SubDim.w + plot2Margin.padding) * i}, ${plot2Margin.top})`)
 
     // adding elements of the subplot
     svg.append("g")
@@ -477,12 +477,12 @@ function updateAllSubPlot2(year) {
 
 // MAIN FUNCTION
 function updateSubPlot2(key, i, year, data, featureCount) {
-
-  // defining scales
-  var xSpan = d3.max(data, function(d) { return d[key] }) - d3.min(data, function(d) { return d[key] })
+  // defining scales, same for all years
+  var xSpan = extents[key].max - extents[key].min
   var xScale = d3.scaleLinear()
-    .domain([0, d3.max(data, function(d) { return d[key] }) + 0.1*xSpan])
+    .domain([0, extents[key].max + 0.1*xSpan])
     .range([0, plot2SubDim.w ])
+    .nice()
   var yScale = d3.scaleBand()
     .domain(data.map(function(d) { return d.id }))
     .range([plot2SubDim.h, 0])
@@ -509,7 +509,7 @@ function updateSubPlot2(key, i, year, data, featureCount) {
     background.enter()
       .append("rect")
       .attr("x", - plot2Margin.left)
-      .attr("width", plot2SubDim.w* (featureCount * 1.03) + plot2Margin.left)
+      .attr("width", plot2SubDim.w* (featureCount * 1.08) + plot2Margin.left)
       .attr("y", function(d) { return bScale(d.id); })
       .attr("height", bScale.bandwidth)
       .style("fill", "white")
@@ -578,9 +578,17 @@ function updateSubPlot2(key, i, year, data, featureCount) {
       .attr("y1",0)
       .attr("x2",xScale(criterion[year][key]))
       .attr("y2",plot2SubDim.h)
-      .attr("stroke-width", 1.5)
-      .attr("stroke", "black")
-      .attr("stroke-dasharray", "2,10")
+      .attr("stroke-width", 1)
+//      .attr("stroke", "black")
+//      .attr("stroke-dasharray", "2,10")
+//      .text(criterion[year][key])
+    svg.select(".limit")
+      .append("text")
+      .text(criterion[year][key]+ "%")
+      .attr("transform","rotate(-20 " + xScale(criterion[year][key]) + " 0)" )
+      .attr("text-anchor", "start")
+      .attr("x",xScale(criterion[year][key]))
+      .attr("y",-5)
 
     // defining x-axis (for values)
     var xAxis = d3.axisBottom()
@@ -599,13 +607,16 @@ function updateSubPlot2(key, i, year, data, featureCount) {
     var yAxis = d3.axisLeft()
       .scale(yScale)
     if (i === 0) { // only apply on the leftmost subplot
-      svg.select(".y-axis")
-        .call(yAxis)
+      temp = svg.select(".y-axis")
+      temp.call(yAxis)
         .selectAll("text")
-        //.data(data, function(d) {return d.id})
+//        .data(data, function(d) {return d.id})
         .data(data)
         .style("font-weight", function(d) {if (d.id === d.municipality) {return "bold"} else {return "normal"}})
-        .style("text-decoration", function(d) {if (d.id === d.municipality) {return "underline"} else {return "normal"}})
+        .style("text-decoration", function(d) {if (d.id === d.municipality) {return "underline"} else {return "none"}})
+      temp.transition()
+        .duration(1000)
+        .call(yAxis)
     }   else {
       svg.select(".y-axis")
         .append("line")
