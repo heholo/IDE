@@ -413,8 +413,8 @@ function updateAllSubPlot2(year) {
 
     // list of unique municipalities of the ghettos
     var muniList = [...new Set(g.map(item => item.municipality))]
-    console.log(g)
-    console.log(muniList)
+    //console.log(g)
+    //console.log(muniList)
 
     // filter munis
     function muniFilter(obj) {
@@ -425,7 +425,7 @@ function updateAllSubPlot2(year) {
       }
     }
     var m = munis[year].filter(muniFilter)
-    console.log(m)
+    //console.log(m)
 
     // number of ghettos in each municipality
     muniGhettoN = []
@@ -435,7 +435,7 @@ function updateAllSubPlot2(year) {
         muniGhettoN[t] = 1
       } else {muniGhettoN[t] ++}
     })
-    console.log(muniGhettoN)
+    //console.log(muniGhettoN)
 
     function compareMuni(a, b) {
       // by number of ghettos in municipality
@@ -673,7 +673,7 @@ function _init(err, ghetto, pop, emp, foreigners, edu, edu_cur, income, crime, m
 
   collectIncome(munis, regions, income)
   collectExtents(extents, munis, ghettos)
-  console.log(munis)
+  //console.log(munis)
 
   var dropdownMenu = d3.select("#sticky-selector")
                        .append("select")
@@ -709,7 +709,7 @@ function _init(err, ghetto, pop, emp, foreigners, edu, edu_cur, income, crime, m
     .attr("id", "tooltip")
     .style("opacity", 0);
 
-  console.log(dropdownMenu)
+  //console.log(dropdownMenu)
   dropdownMenu.property("value", 2017)
   dropdownMenu.on("change", function () {
     yearChange(d3.select(this).property("value"))
