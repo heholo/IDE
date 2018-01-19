@@ -8,13 +8,18 @@ div.text {
     max-width: 900px;
     margin: auto;
     margin-top: 25px;
-    font-size: 11px;
+    font-size: 12.5px;
     margin-bottom: 25px;
     background-color: #e6e6e682;
-    padding: 5px 30px 15px 30px;
+    padding: 10px 30px 10px 30px;
     border-radius: 1px;
     line-height: 1.34;
     letter-spacing: 0.05px;
+}
+
+div.text.wide {
+    padding-left: 60px;
+    padding-right: 60px
 }
 
 div.text h4 {
@@ -52,8 +57,17 @@ a {
 }
 
 a.int {
-    font-size: 12px;
     margin-left: 5px;
+    background-color: #9d9dd85e;
+    font-size: 14px;
+    margin-left: 5px;
+    padding: 2px;
+    border-radius: 6px;
+}
+
+a.int:hover {
+    background-color: #0090ff;
+    color: #fffffd;
 }
 
 h1 {
@@ -216,6 +230,10 @@ circle.selected {
 
 #histograms g.title text {
     pointer-events: none;
+}
+
+#after-histograms {
+    margin-top: -10px;
 }
 
 .point.ghetto {

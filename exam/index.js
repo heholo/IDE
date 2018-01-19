@@ -670,6 +670,8 @@ function updateSubPlot2(key, i, year, data, featureCount) {
   }
 }
 
+var everGhettoOn = false
+
 function _init(err, ghetto, pop, emp, foreigners, edu, edu_cur, income, crime, muni_region, reg_crime, reg_income) {
   console.log("ghetto")
   console.log(ghetto)
@@ -763,13 +765,16 @@ function _init(err, ghetto, pop, emp, foreigners, edu, edu_cur, income, crime, m
         .classed("faded", false)
       d3.select("#histograms div.immigrants svg")
         .classed("faded", false)
-
+      showTooltip(d3.event.pageX + 10, d3.event.pageY, "Click To Toggle Years")
       
+    })
+    .on("mousemove", function () {
+      showTooltip(d3.event.pageX + 10, d3.event.pageY, "Click To Toggle Years")
     })
     .on("mouseout", function () {
       d3.selectAll("#histograms div.histogram svg")
         .classed("faded", false)
-
+      hideTooltip()
     })
     .on("click", function () {
       var dthis = d3.select(this)
@@ -796,11 +801,9 @@ function _init(err, ghetto, pop, emp, foreigners, edu, edu_cur, income, crime, m
       d3.select("#histograms")
         .selectAll(".histogram .point")
         .filter(function (d) {
-          console.log(unlucky)
-          
           return unlucky.indexOf(d.id) >= 0
         })
-        .classed("sticky-highlighted", true)
+        .classed("highlighted", true)
 
       
     })
@@ -812,12 +815,46 @@ function _init(err, ghetto, pop, emp, foreigners, edu, edu_cur, income, crime, m
         .classed("filter", function (d) {
           return unlucky.indexOf(d.id) >= 0
         })
-        .classed("sticky-highlighted", false)
+        .classed("highlighted", false)
 
 
     })
     .on("click", function () {
       yearChange(2014)
+    })
+
+  var everGhetto = Object.values(ghettos).reduce(function (acc, e, i) {
+    var accc = acc
+    if (i == 1) accc = e.filter(d => d.ghetto).map(d => d.id)
+    return e.filter(d => d.ghetto && accc.indexOf(d.id) >= 0).map(d => d.id)
+  })
+  d3.select("span.ever-ghetto").text(everGhetto.length);
+
+  d3.select("a.unlucky")
+    .on("mouseover", function () {
+      d3.select("#histograms")
+        .selectAll(".histogram .point")
+        .filter(function (d) {
+          return everGhetto.indexOf(d.id) >= 0
+        })
+        .classed("highlighted", true)                       
+    })
+    .on("mouseout", function () {
+      d3.select("#histograms")
+        .selectAll(".histogram .point")
+        .filter(function (d) {
+          return everGhetto.indexOf(d.id) >= 0
+        })
+        .classed("highlighted", false)                       
+    })
+    .on("click", function () {
+      d3.select("#histograms")
+        .selectAll(".histogram .point")
+        .filter(function (d) {
+          return everGhetto.indexOf(d.id) >= 0
+        })
+        .classed("sticky-highlighted", !everGhettoOn)
+      everGhettoOn = !everGhettoOn
     })
 
 }
