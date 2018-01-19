@@ -324,6 +324,7 @@ function collectCrime(munis, crime) {
   })
 }
 
+
 function collectExtents(extents, munis, ghettos) {
   var years = Object.keys(criterion)
 
@@ -348,6 +349,281 @@ function collectExtents(extents, munis, ghettos) {
 }
 
 function plot2(ghettos, munis) {
+// plot2 constants
+const plot2Margin = {
+  top: 10,
+  bottom: 20,
+  left: 150,
+  right: 100,
+  padding: 10,
+}
+const plot2Dim = {
+  w: 500,
+  h: 550,
+}
+const plot2SubDim = {
+  w: plot2Dim.w / 5,
+  h: plot2Dim.h,
+}
+
+// run at page-load, initialize plot2
+function generatePlot2() {
+  // setting dimensions for total plot area
+  d3.select("#plot2")
+    .attr('width', plot2Dim.w + plot2Margin.left + plot2Margin.right)
+    .attr('height', plot2Dim.h + plot2Margin.top + plot2Margin.bottom)
+//    .attr('transform', `translate(${plot2Margin.left}, ${plot2Margin.top})`)
+
+  // initialize each subplot for 2017
+  Object.keys(criterion[2017]).forEach(function (key, i) {
+    // creating svg and setting dimensions
+    var svg = d3.select("#plot2")
+      .append("g")
+      .attr("class", key)
+      .attr('width', plot2SubDim.w)
+      .attr('height', plot2SubDim.h)
+      .attr('transform', `translate(${plot2Margin.left + (plot2SubDim.w + 1/3*plot2Margin.padding) * i}, ${plot2Margin.top})`)
+//      .attr('transform', `translate(${(plot2SubDim.w + 1/3*plot2Margin.padding) * i}, ${0})`)
+
+    // adding elements of the subplot
+    svg.append("g")
+      .attr("class", "background")
+    svg.append("g")
+      .attr("class", "bars")
+    svg.append("g")
+      .attr("class", "x-axis")
+    svg.append("g")
+      .attr("class", "y-axis")
+    svg.append("g")
+      .attr("class", "limit")
+  })
+
+  // updating
+  updateAllSubPlot2(2017)
+}
+
+// for dynamically updating
+function updateAllSubPlot2(year) {
+
+  // data building (only necessary once per year)
+  const yay = 0
+  if (yay === 0) {
+    // filter ghetto = true
+    function ghettoFilter(obj) {
+      return obj.ghetto
+    }
+    var g = ghettos[year].filter(ghettoFilter)
+
+    // list of unique municipalities of the ghettos
+    var muniList = [...new Set(g.map(item => item.municipality))]
+    console.log(g)
+    console.log(muniList)
+
+    // filter munis
+    function muniFilter(obj) {
+      if (muniList.indexOf(obj.municipality) >= 0) {
+        return true
+      } else {
+        return false
+      }
+    }
+    var m = munis[year].filter(muniFilter)
+    console.log(m)
+
+    // number of ghettos in each municipality
+    muniGhettoN = []
+    g.forEach(function(item) {
+      t = muniList.indexOf(item.municipality)
+      if (isNaN(muniGhettoN[t])) {
+        muniGhettoN[t] = 1
+      } else {muniGhettoN[t] ++}
+    })
+    console.log(muniGhettoN)
+
+    function compareMuni(a, b) {
+      // by number of ghettos in municipality
+      an = muniGhettoN[muniList.indexOf(a.municipality)]
+      bn = muniGhettoN[muniList.indexOf(b.municipality)]
+      if (an > bn) {
+        return -1
+      }
+      else if (an < bn) {
+        return 1
+      }
+      else {return 0}
+    }
+    m.sort(compareMuni)
+    m.reverse()
+
+    // initialize data array
+    data = []
+    // fill
+    m.forEach(function(i) {
+
+      g.forEach(function(t) {
+        if (t.municipality === i.municipality) {
+          data.push(t)
+        }
+      })
+      data.push(i)
+    })
+  }
+
+  var allCats = Object.keys(criterion[2017])
+  var yearCats = Object.keys(criterion[year])
+  var featureCount = yearCats.length
+
+  allCats.forEach(function(key, i) {
+    updateSubPlot2(key, i, year, data, featureCount)
+  })
+}
+
+// MAIN FUNCTION
+function updateSubPlot2(key, i, year, data, featureCount) {
+
+  // defining scales
+  var xSpan = d3.max(data, function(d) { return d[key] }) - d3.min(data, function(d) { return d[key] })
+  var xScale = d3.scaleLinear()
+    .domain([0, d3.max(data, function(d) { return d[key] }) + 0.1*xSpan])
+    .range([0, plot2SubDim.w ])
+  var yScale = d3.scaleBand()
+    .domain(data.map(function(d) { return d.id }))
+    .range([plot2SubDim.h, 0])
+    .padding(0.1)
+  var bScale = yScale.copy() // scale for background
+    .padding(0)
+    .align(0.5)
+
+  // selecting subplot
+  svg = d3.select(`#plot2 .${key}`)
+
+  // removing background
+  svg.select(".background")
+    .selectAll("*")
+    .remove()
+  // selecting background and binding data
+  background = svg.select(".background")
+    .selectAll("rect")
+    .data(data, function(d) {return d.id})
+  // adding background
+  if (i === 0) {
+    count = 0
+    oldMuni = "initVal"
+    background.enter()
+      .append("rect")
+      .attr("x", - plot2Margin.left)
+      .attr("width", plot2SubDim.w* (featureCount * 1.03) + plot2Margin.left)
+      .attr("y", function(d) { return bScale(d.id); })
+      .attr("height", bScale.bandwidth)
+      .style("fill", "white")
+      .transition()
+      .duration(1000)
+      .style("fill", function(d) {
+        if (d.municipality !== oldMuni) {count ++; oldMuni = d.municipality}
+        if (count % 2 === 0) {return "lightgray"}
+        else return "white"
+      })
+//      .style("fill-opacity", function() { if (count % 2 === 0) {return "1"}
+//      else return "0"}) // invisible
+  }
+
+  // remove feature if not part of yearly criteria
+  if (i >= featureCount) {
+    svg.select(".bars")
+      .selectAll("*")
+      .remove()
+    svg.select(".x-axis")
+      .selectAll("*")
+      .remove()
+    svg.select(".y-axis")
+      .selectAll("*")
+      .remove()
+    svg.select(".limit")
+      .selectAll("*")
+      .remove()
+  } else { // update subplot
+    // selecting bars and binding data
+    bars = svg.select(".bars")
+      .selectAll("rect")
+      .data(data, function(d) {return d.id})
+    // updating bars
+    bars.transition()
+      .duration(1000)
+      .attr("width", function(d) { return xScale(d[key]); })
+      .attr("y", function(d) { return yScale(d.id); })
+      .attr("height", yScale.bandwidth)
+    // adding bars
+    bars.enter()
+      .append("rect")
+      .style("fill", function(d) {if (d.ghetto === true) {return "tomato"} else {return "steelblue"}})
+      .attr("width", function(d) { return xScale(d[key]); })
+      .attr("y", function(d) { return yScale(d.id); })
+      .attr("height", yScale.bandwidth)
+      .style("opacity", 0)
+      .transition()
+      .duration(1000)
+      .style("opacity", 1)
+    // removing bars
+    bars.exit()
+      .transition()
+      .duration(1000)
+      .style("opacity", 0)
+      .remove()
+
+    // removing limit
+    svg.select(".limit")
+      .selectAll("*")
+      .remove()
+    // adding limit
+    svg.select(".limit")
+      .append("line")
+      .attr("x1",xScale(criterion[year][key]))
+      .attr("y1",0)
+      .attr("x2",xScale(criterion[year][key]))
+      .attr("y2",plot2SubDim.h)
+      .attr("stroke-width", 1.5)
+      .attr("stroke", "black")
+      .attr("stroke-dasharray", "2,10")
+
+    // defining x-axis (for values)
+    var xAxis = d3.axisBottom()
+      .scale(xScale)
+      .ticks(2)
+    // selecting and calling x-axis
+    svg.select(".x-axis")
+      .attr("transform", "translate(0," + plot2SubDim.h + ")")
+      .call(xAxis)
+      .selectAll("text")
+      .style("text-anchor", "end")
+      .attr("dx", "+.4em")
+      .attr("dy", "+.55em")
+
+    // defining y-axis (for id's)
+    var yAxis = d3.axisLeft()
+      .scale(yScale)
+    if (i === 0) { // only apply on the leftmost subplot
+      svg.select(".y-axis")
+        .call(yAxis)
+        .selectAll("text")
+        //.data(data, function(d) {return d.id})
+        .data(data)
+        .style("font-weight", function(d) {if (d.id === d.municipality) {return "bold"} else {return "normal"}})
+        .style("text-decoration", function(d) {if (d.id === d.municipality) {return "underline"} else {return "normal"}})
+    }   else {
+      svg.select(".y-axis")
+        .append("line")
+        .attr("x1",0)
+        .attr("y1",0)
+        .attr("x2",0)
+        .attr("y2",plot2SubDim.h)
+        .attr("stroke-width", 1)
+        .attr("stroke", "black")
+    }
+  }
+}
+
+function plot2(year) {
+
 
   // defining margin
   const margin = {
@@ -377,17 +653,27 @@ function plot2(ghettos, munis) {
     .append("g")
     .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
-  Object.keys(criterion[2015]).forEach(function (key, i) {
-    onePlot2(svg, key, 2015, oneDim, padding, i, margin)
-    console.log(key)
+  var allCats = Object.keys(criterion[2017])
+  var yearCats = Object.keys(criterion[year])
+
+  allCats.forEach(function(key, i) {
+    if (yearCats.indexOf(key) >= 0) {
+      svg.transition()
+        .style("stroke-opacity", 1)
+        .style("fill-opacity", 1)
+      onePlot2(svg, key, year, oneDim, padding, i, margin)
+    } else {
+      svg.transition()
+        .style("stroke-opacity", 0.05)
+        .style("fill-opacity", 0.05)
+    }
   })
-  console.log("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
 }
 
 function onePlot2(svg, key, year, oneDim, padding, i, margin) {
   // selecting plot area
   var svgSub = svg.append("g")
-    .attr("class", key)
+    .attr("class", key) // USED
     .attr('width', oneDim.w)
     .attr('height', oneDim.h)
     .attr('transform', `translate(${(oneDim.w+1/3*padding) * i}, ${0})`);
@@ -395,72 +681,75 @@ function onePlot2(svg, key, year, oneDim, padding, i, margin) {
 }
 
 function updatePlot2(svg, key, year, oneDim, i, margin) {
-  // filter ghetto = true
-  function ghettoFilter(obj) {
-    return obj.ghetto
-  }
-  var g = ghettos[year].filter(ghettoFilter)
-
-  // list of unique municipalities of the ghettos
-  var muniList = [...new Set(g.map(item => item.municipality))]
-  console.log(g)
-  console.log(muniList)
-
-  // filter munis
-  function muniFilter(obj) {
-    if (muniList.indexOf(obj.municipality) >= 0) {
-      return true
-    } else {
-      return false
+  if (1 === 1) {
+    // filter ghetto = true
+    function ghettoFilter(obj) {
+      return obj.ghetto
     }
-  }
-  var m = munis[year].filter(muniFilter)
-  console.log(m)
+    var g = ghettos[year].filter(ghettoFilter)
 
-  // number of ghettos in each municipality
-  muniGhettoN = []
-  g.forEach(function(item) {
-    t = muniList.indexOf(item.municipality)
-    if (isNaN(muniGhettoN[t])) {
-      muniGhettoN[t] = 1
-    } else {muniGhettoN[t] ++}
-  })
-  console.log(muniGhettoN)
+    // list of unique municipalities of the ghettos
+    var muniList = [...new Set(g.map(item => item.municipality))]
+    console.log(g)
+    console.log(muniList)
 
-  function compareMuni(a, b) {
-    // by number of ghettos in municipality
-    an = muniGhettoN[muniList.indexOf(a.municipality)]
-    bn = muniGhettoN[muniList.indexOf(b.municipality)]
-    if (an > bn) {
-      return -1
-    }
-    else if (an < bn) {
-      return 1
-    }
-    else {return 0}
-  }
-  m.sort(compareMuni)
-  m.reverse()
-
-  // initialize data array
-  data = []
-  // fill
-  m.forEach(function(i) {
-
-    g.forEach(function(t) {
-      if (t.municipality === i.municipality) {
-        data.push(t)
+    // filter munis
+    function muniFilter(obj) {
+      if (muniList.indexOf(obj.municipality) >= 0) {
+        return true
+      } else {
+        return false
       }
+    }
+    var m = munis[year].filter(muniFilter)
+    console.log(m)
+
+    // number of ghettos in each municipality
+    muniGhettoN = []
+    g.forEach(function(item) {
+      t = muniList.indexOf(item.municipality)
+      if (isNaN(muniGhettoN[t])) {
+        muniGhettoN[t] = 1
+      } else {muniGhettoN[t] ++}
     })
-    data.push(i)
-  })
+    console.log(muniGhettoN)
+
+    function compareMuni(a, b) {
+      // by number of ghettos in municipality
+      an = muniGhettoN[muniList.indexOf(a.municipality)]
+      bn = muniGhettoN[muniList.indexOf(b.municipality)]
+      if (an > bn) {
+        return -1
+      }
+      else if (an < bn) {
+        return 1
+      }
+      else {return 0}
+    }
+    m.sort(compareMuni)
+    m.reverse()
+
+    // initialize data array
+    data = []
+    // fill
+    m.forEach(function(i) {
+
+      g.forEach(function(t) {
+        if (t.municipality === i.municipality) {
+          data.push(t)
+        }
+      })
+      data.push(i)
+    })
+  }
 
   // define scales
-  var xSpan = d3.max(data, function(d) { return d[key] }) - d3.min(data, function(d) { return d[key] })
+//  var xSpan = d3.max(data, function(d) { return d[key] }) - d3.min(data, function(d) { return d[key] })
   var xScale = d3.scaleLinear()
-    .domain([d3.min(data, function(d) { return d[key] }) - xSpan * 0.1,
-      d3.max(data, function(d) { return d[key] }) + xSpan * 0.1])
+    .domain([0,
+      d3.max(data, function(d) { return d[key] })])
     .range([0, oneDim.w ])
+
   var yScale = d3.scaleBand()
     .domain(data.map(function(d) { return d.id }))
     .rangeRound([oneDim.h, 0])
@@ -468,19 +757,6 @@ function updatePlot2(svg, key, year, oneDim, i, margin) {
   var bScale = yScale.copy() // scale for background
     .padding(0)
     .align(0.5)
-
-  // old scales
-/*
-  var xScale = d3.scaleBand()
-    .domain(data.map(function(d) { return d.id }))
-    .range([0, oneDim.w])
-    .padding(0.1)
-  var ySpan =  d3.max(data, function(d) { return d[key] }) - d3.min(data, function(d) { return d[key] })
-  var yScale = d3.scaleLinear()
-    .domain([d3.min(data, function(d) { return d[key] }) - ySpan * 0.1,
-      d3.max(data, function(d) { return d[key] }) + ySpan * 0.1])
-    .range([oneDim.h, 0])
-*/
 
   // adding background
   if (i === 0) {
@@ -503,21 +779,34 @@ function updatePlot2(svg, key, year, oneDim, i, margin) {
       .attr("height", bScale.bandwidth);
   }
 
-
-  // adding bars
+  // adding new bars
   svg.selectAll("bar")
     .data(data)
     .enter().append("rect")
     .style("fill", function(d) {if (d.ghetto === true) {return "tomato"} else {return "steelblue"}})
     .attr("x", 0)
-    .attr("width", function(d) { return xScale(d[key]); })
     .attr("y", function(d) { return yScale(d.id); })
     .attr("height", yScale.bandwidth)
+    .attr("width", 0)
+    .transition()
+    .duration(650)
+    .attr("width", function(d) { return xScale(d[key]); })
+
+  // update old bars
+  svg.selectAll("bar")
+    .data(data)
+    .style("fill", function(d) {if (d.ghetto === true) {return "tomato"} else {return "steelblue"}})
+    .attr("x", 0)
+    .attr("y", function(d) { return yScale(d.id); })
+    .attr("height", yScale.bandwidth)
+    .transition()
+    .duration(650)
+    .attr("width", function(d) { return xScale(d[key]); })
 
   // adding axis
   var xAxis = d3.axisBottom()
     .scale(xScale)
-    .ticks(5)
+    .ticks(2)
   var yAxis = d3.axisLeft()
     .scale(yScale)
   svg.append("g")
@@ -533,10 +822,21 @@ function updatePlot2(svg, key, year, oneDim, i, margin) {
       .call(yAxis)
       .selectAll("text")
       .data(data)
+//      .transition()
       .style("font-weight", function(d) {if (d.id === d.municipality) {return "bold"} else {return "normal"}})
       .style("text-decoration", function(d) {if (d.id === d.municipality) {return "underline"} else {return "normal"}})
+  }   else {
+    svg.append("line")
+      .attr("x1",0)
+      .attr("y1",0)
+      .attr("x2",0)
+      .attr("y2",oneDim.h)
+      .attr("stroke-width", 1)
+      .attr("stroke", "black")
   }
-  /* vertical lines, not a fan
+
+  //  vertical lines, not a fan
+  /*
   else {
     svg.append("line")
       .attr("x1",0)
@@ -557,6 +857,8 @@ function updatePlot2(svg, key, year, oneDim, i, margin) {
     .attr("stroke-width", 1)
     .attr("stroke", "black")
     .attr("stroke-dasharray", "5,5")
+
+  //____________________________
 
   // to-do: adding title and other stuff
 
@@ -628,14 +930,13 @@ function _init(err, ghetto, pop, emp, foreigners, edu, edu_cur, income, crime, m
   
   $("#sticky-selector").sticky({topSpacing: 0});
 
-  plot2(ghettos, munis)
-
   d3.select("#sticky-selector")
     .append("button")
     .text("play")
     .on("click", playAll)
 
   generateWeirdHistograms()
+  generatePlot2()
 
   d3.select("body")
     .append("div")
@@ -663,6 +964,7 @@ function play(year) {
 function yearChange(year) {
   d3.select("#sticky-selector select").property("value", year)
   updateAllWeirdHistograms(year);
+  updateAllSubPlot2(year);
 }
 
 function showTooltip(x, y, content) {
