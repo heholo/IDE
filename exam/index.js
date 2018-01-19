@@ -543,7 +543,8 @@ function updateSubPlot2(key, i, year, data, featureCount) {
     svg.select(".name")
       .selectAll("*")
       .remove()
-  } else { // update subplot
+  } else { // update subplot!
+
     // selecting bars and binding data
     bars = svg.select(".bars")
       .selectAll("rect")
@@ -562,7 +563,16 @@ function updateSubPlot2(key, i, year, data, featureCount) {
     // adding bars
     bars.enter()
       .append("rect")
-      .style("fill", function(d) {if (d.ghetto === true) {return "tomato"} else {return "steelblue"}})
+      .style("fill", function(d) {if (d.ghetto === true) { // if hell: begin
+        if (key === "income") {
+          if (d[key] > criterion[year][key]) { // special case income
+            return "#ffa696"} else {
+            return "orangered"}
+        } else if (d[key] < criterion[year][key]) {
+          return "#ffa696"} else {
+          return "orangered"}
+        } else {
+        return "steelblue"}})
       .attr("width", function(d) { return xScale(d[key]); })
       .attr("y", function(d) { return yScale(d.id); })
       .attr("height", yScale.bandwidth)
